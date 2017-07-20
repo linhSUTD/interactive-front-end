@@ -3,7 +3,7 @@
  */
 var forgotPasswordModule = angular.module('page.forgotPassword', []);
 
-forgotPasswordModule.config(function($stateProvider, $urlRouterProvider){
+forgotPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('forgotPassword', {
@@ -13,20 +13,19 @@ forgotPasswordModule.config(function($stateProvider, $urlRouterProvider){
 		})
 });
 
-forgotPasswordModule.controller('forgotPasswordCtrl', ['$scope', '$http', 'settings', 'authService',
-	function ($scope, $http, settings, authService) {
+forgotPasswordModule.controller('forgotPasswordCtrl', ['$scope', '$http', 'settings', 'authService', function ($scope, $http, settings, authService) {
 
 	$scope.user = {
 		email: ""
 	};
 
-	$scope.forgot = function() {
+	$scope.forgot = function () {
 
-		authService.forgotPassword($scope.user).then(function(response) {
+		authService.forgotPassword($scope.user).then(function (response) {
 
 			showPopUp("We have sent you password reset instructions.");
 
-		}, function(error) {
+		}, function (error) {
 
 			showPopUp(error.data.error);
 		})
