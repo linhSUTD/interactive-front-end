@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -10,111 +11,114 @@
 
     <title>Interactive Machine Learning</title>
     <link href="build/main.css" rel="stylesheet">
+
+    <link data-name="vs/editor/editor.main" rel="stylesheet" href="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.css">
+    <script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
+    <script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+    <script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
 </head>
 
 <body ng-app="mainApp" ng-controller="baseCtrl">
-<div class="corporate">
-    <div class="header">
-        <div class="container" ng-show="!isLoggedIn">
-            <a class="site-logo" href="index.html"><img style="width: 100%; height: auto;"src="../img/new_logo.png"></a>
+    <div class="corporate">
+        <div class="header">
+            <div class="container" ng-show="!isLoggedIn">
+                <a class="site-logo" href="index.html"><img style="width: 100%; height: auto;"src="../img/new_logo.png"></a>
 
-            <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+                <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
-            <!-- BEGIN NAVIGATION -->
-            <div class="header-navigation pull-right font-transform-inherit">
-                <ul>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="home">
+                <!-- BEGIN NAVIGATION -->
+                <div class="header-navigation pull-right font-transform-inherit">
+                    <ul>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="home">
                             Home
                         </a>
-                    </li>
-                    <li class="dropdown dropdown-megamenu">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="courses">
+                        </li>
+                        <li class="dropdown dropdown-megamenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="courses">
                             Courses
                         </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="pricing">
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="pricing">
                             Pricing
                         </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="blog">
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="blog">
                             Blog
                         </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="login">
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="login">
                             Login
                         </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="registration">
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="registration">
                             Register
                         </a>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <div class="container" ng-show="isLoggedIn">
-            <a class="site-logo" href="index.html"><img style="width: 100%; height: auto;"src="../img/new_logo.png"></a>
+            <div class="container" ng-show="isLoggedIn">
+                <a class="site-logo" href="index.html"><img style="width: 100%; height: auto;"src="../img/new_logo.png"></a>
 
-            <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+                <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
-            <div class="header-navigation pull-right font-transform-inherit">
-                <ul>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="dashboard">
+                <div class="header-navigation pull-right font-transform-inherit">
+                    <ul>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="dashboard">
                             DashBoard
                         </a>
-                    </li>
-                    <li class="dropdown dropdown-megamenu">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="courses">
+                        </li>
+                        <li class="dropdown dropdown-megamenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="courses">
                             Courses
                         </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="pricing">
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="pricing">
                             Pricing
                         </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="blog">
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="blog">
                             Blog
                         </a>
-                    </li>
+                        </li>
 
-                    <li class="dropdown" style="margin-right: 10px;">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <li class="dropdown" style="margin-right: 10px;">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <img alt="" class="img-circle" src="../img/avatar9.jpg" style="margin-top: -12px; margin-right: 8px; height: 40px; float: left;">
                             <span class="username username-hide-mobile">Linh Nguyen</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a href="extra_profile.html">
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="extra_profile.html">
                                     <i class="icon-user"></i> My Profile </a>
-                            </li>
-                            <li>
-                                <a ng-click="logout()">
+                                </li>
+                                <li>
+                                    <a ng-click="logout()">
                                     <i class="icon-key"></i> Log Out
                                 </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <!-- Header END -->
     </div>
-    <!-- Header END -->
-</div>
 
-<div class="container" ui-view></div>
+    <div class="container" ui-view></div>
 
-<script src="build/vendor.js"></script>
-<script src="build/main.js"></script>
-
-<script>
-</script>
+    <script src="build/vendor.js"></script>
+    <script src="build/main.js"></script>
 </body>
+
 </html>

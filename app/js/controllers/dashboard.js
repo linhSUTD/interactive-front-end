@@ -4,7 +4,7 @@
 
 var dashboardModule = angular.module('page.dashboard', ['ngCookies']);
 
-dashboardModule.config(function($stateProvider, $urlRouterProvider){
+dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('dashboard', {
@@ -14,12 +14,12 @@ dashboardModule.config(function($stateProvider, $urlRouterProvider){
 		})
 })
 
-dashboardModule.run(function($cookies, $state, settings) {
+dashboardModule.run(function ($cookies, $state, settings) {
 	if (!$cookies.get('token')) {
 		window.location = settings.webUrl + settings.pageUrl.HOME;
 	}
 })
 
-dashboardModule.controller('dashboardCtrl', ['$scope', function($scope) {
+dashboardModule.controller('dashboardCtrl', ['$scope', function ($scope) {
 	$scope.changeLoginState(true);
 }]);
