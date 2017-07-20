@@ -5,7 +5,7 @@ var config = angular.module('config', []);
 
 config.constant('settings', {
 	apiUrl: 'http://localhost:5001/api',
-	webUrl: 'http://localhost:3000/#!',
+	webUrl: 'http://localhost:3002/#!',
 	userRole: {
 		PUBLIC: "Public",
 		ADMIN: "Admin"
