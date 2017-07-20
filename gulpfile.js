@@ -19,14 +19,6 @@ gulp.task('vendor', function(){
 		"node_modules/angular-route/angular-route.min.js",
 		"node_modules/angular-cookies/angular-cookies.min.js",
 		"node_modules/angular-ui-router/release/angular-ui-router.min.js",
-		"node_modules/ace-builds/src-min-noconflict/ace.js",
-		"node_modules/ace-builds/src-min-noconflict/mode-r.js",
-		"node_modules/ace-builds/src-min-noconflict/mode-r_console.js",
-		"node_modules/ace-builds/src-min-noconflict/mode-python.js",
-		"node_modules/ace-builds/src-min-noconflict/mode-python_console.js",
-		"node_modules/ace-builds/src-min-noconflict/theme-crimson_editor.js",
-		"node_modules/ace-builds/src-min-noconflict/theme-twilight.js",
-		"node_modules/ace-builds/src-min-noconflict/ext-language_tools.js"
 	]).pipe(concat('vendor.js'))
 		.pipe(gulpif(production, uglify({mangle:false})))
 		.pipe(gulp.dest('app/build'));

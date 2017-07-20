@@ -23,7 +23,7 @@ firstCourseModule.config(function($stateProvider, $urlRouterProvider){
 		})
 })
 
-firstCourseModule.run(function($cookies, $state) {
+firstCourseModule.run(function($cookies, $state, settings) {
 	if (!$cookies.get('token')) {
 		window.location = settings.webUrl + settings.pageUrl.HOME;
 	}
