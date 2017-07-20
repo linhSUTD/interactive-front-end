@@ -149,7 +149,6 @@ firstCourseModule.controller('firstCourseCtrl', ['$scope', function ($scope) {
 }]);
 
 firstCourseModule.controller('firstCourse.Introduction.Ctrl', ['$scope', '$state', function ($scope, $state) {
-
 	$scope.registerCourse = function () {
 		// Call to server
 
@@ -176,10 +175,10 @@ firstCourseModule.controller('firstCourse.Content.Ctrl', ['$scope', '$state', 'E
 	var initialized = false;
 	var editor;
 	function loadNewExercise() {
-		$scope.graphSrc = "null";
+		$scope.graphSrc = "";
 		$scope.outputText = null;
 
-		var exercise = exerciseLoader.getExercise();
+		var exercise = exerciseLoader.getExercise(2);
 		window.editor.setValue(exercise.pre_exercise_code);
 
 		return exercise;
@@ -200,6 +199,7 @@ firstCourseModule.controller('firstCourse.Content.Ctrl', ['$scope', '$state', 'E
 	}
 
 	function handleCodeOutput(output) {
+		console.log(output);
 		$scope.graphSrc = "null";
 		$scope.outputText = null;
 		for (var i = 0; i < output.length; i++) {
@@ -223,6 +223,7 @@ firstCourseModule.controller('firstCourse.Content.Ctrl', ['$scope', '$state', 'E
 		// If there is no SCT, simply do a console command
 		var action = backendSessionManager.runConsole;
 		var code = window.editor.getValue();
+		console.log(code);
 		if (backendSessionManager.sessionActive()) {
 			//Session is already active, just execute the code.
 
@@ -764,15 +765,16 @@ angular.module('page.firstCourse').factory('ExerciseLoader', ['$log', function (
         "import numpy as np \n\
 import matplotlib.pyplot as plt\n\
 \n\
+print(\"sample output\") \n\
 x = np.arange(0, 5, 0.1);\n\
 y = np.sin(x)\n\
 plt.plot(x, y)\n\
 plt.show()"
     ];
 
-    function getExercise() {
+    function getExercise(exerciseId) {
         return {
-            pre_exercise_code: code[(++i % code.length)],
+            pre_exercise_code: code[exerciseId],
             sample: "",
             solution: "",
             sct: "",
