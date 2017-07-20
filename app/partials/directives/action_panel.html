@@ -1,0 +1,12 @@
+<div class="dcl-action-panel clearfix">
+    <button ng-show="hasHint()" class="dcl-btn dcl-btn-secondary dcl-btn-small" href ng-click="showHint()" tooltip-placement="top" uib-tooltip="Get Hint">
+        Hint
+    </button>
+    <button ng-show="solutionButtonShown" class="dcl-btn dcl-btn-secondary dcl-btn-small" href ng-click="showSolutionTab()" tooltip-placement="top" uib-tooltip="Show Solution">
+        Solution
+    </button>
+    <button class="dcl-btn dcl-btn-primary dcl-btn-small" href ng-click="execute()" submit-disable tooltip-placement="top" uib-tooltip="Execute Code">
+        Run
+    </button>
+    <app-status></app-status>
+</div>

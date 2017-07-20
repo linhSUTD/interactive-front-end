@@ -1,0 +1,24 @@
+html, body {
+  height: 100%; }
+
+.container {
+  position: relative;
+  height: 100%; }
+
+.instruction_panel {
+  width: 50%;
+  height: 100%;
+  float: left;
+  border: 1px solid #d5eaef; }
+
+.editor_panel {
+  width: 50%;
+  height: 50%;
+  float: left;
+  border: 1px solid #d5eaef; }
+
+.console_panel {
+  width: 50%;
+  height: 50%;
+  float: left;
+  border: 1px solid #d5eaef; }

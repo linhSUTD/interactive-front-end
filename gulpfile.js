@@ -1,0 +1,72 @@
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var cssmin = require('gulp-cssmin');
+var gulpif = require('gulp-if');
+var autoprefixer = require('gulp-autoprefixer');
+var plumber = require('gulp-plumber');
+var uglify = require('gulp-uglify');
+var browserSync = require('browser-sync').create();
+
+var production = process.env.NODE_ENV === 'production';
+
+/// Bundle Libraries
+gulp.task('vendor', function(){
+	return gulp.src([
+		"node_modules/jquery/dist/jquery.min.js",
+		"node_modules/bootstrap/dist/js/bootstrap.min.js",
+		"node_modules/angular/angular.min.js",
+		"node_modules/angular-route/angular-route.min.js",
+		"node_modules/angular-cookies/angular-cookies.min.js",
+		"node_modules/angular-ui-router/release/angular-ui-router.min.js",
+		"node_modules/ace-builds/src-min-noconflict/ace.js",
+		"node_modules/ace-builds/src-min-noconflict/mode-r.js",
+		"node_modules/ace-builds/src-min-noconflict/mode-r_console.js",
+		"node_modules/ace-builds/src-min-noconflict/mode-python.js",
+		"node_modules/ace-builds/src-min-noconflict/mode-python_console.js",
+		"node_modules/ace-builds/src-min-noconflict/theme-crimson_editor.js",
+		"node_modules/ace-builds/src-min-noconflict/theme-twilight.js",
+		"node_modules/ace-builds/src-min-noconflict/ext-language_tools.js"
+	]).pipe(concat('vendor.js'))
+		.pipe(gulpif(production, uglify({mangle:false})))
+		.pipe(gulp.dest('app/build'));
+})
+
+// Static Server + watching scss/html files
+gulp.task('serve', ['styles', 'scripts'], function () {
+
+	browserSync.init({
+		server: "./app"
+	});
+
+	gulp.watch('./app/scss/**/*.scss', ['styles']);
+	gulp.watch('./app/js/**/*.js', ['scripts']);
+	gulp.watch("app/**/*.html").on('change', browserSync.reload);
+});
+
+gulp.task('scripts', function () {
+	return gulp.src([
+			'app/js/utils/**/*.js',
+			'app/js/config.js',
+			'app/js/app.js',
+			'app/js/controllers/**/*.js',
+			'app/js/directives/**/*.js',
+			'app/js/filters/**/*.js',
+			'app/js/services/**/*.js',
+			'app/js/directives/**/*.js'
+	]).pipe(concat('main.js'))
+		.pipe(gulpif(production, uglify({mangle:false})))
+		.pipe(gulp.dest('./app/build'));
+});
+
+gulp.task('styles', function(){
+	return gulp.src('app/scss/*.scss')
+		.pipe(plumber())
+		.pipe(sass())
+		.pipe(autoprefixer())
+		.pipe(gulpif(production, cssmin()))
+		.pipe(gulp.dest('app/build'));
+})
+
+
+gulp.task('default', ['vendor', 'styles', 'scripts', 'serve']);
