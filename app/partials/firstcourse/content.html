@@ -1,5 +1,3 @@
-
-
 <div class="container" style="min-height: 800px; min-width: 800px;">
     <div class="instruction_panel">
     </div>
@@ -7,6 +5,8 @@
     <div class="editor_panel" id="editor_panel">
 
     </div>
+    <br />
+    <button ng-click="onSubmit()">Submit</button>
 
     <div class="console_panel">
         <div class="portlet light">
@@ -15,10 +15,14 @@
                     <li class="active">
                         <a href="" data-toggle="tab">
                             Console </a>
+                        <br>
+                        <div>{{outputText}}</div>
                     </li>
                     <li>
                         <a href="" data-toggle="tab">
                             Plot </a>
+                            <br>
+                        <img ng-src="{{getGraphSrc()}}" alt="">
                     </li>
                 </ul>
                 <div class="tab-content">

@@ -8,15 +8,16 @@ angular.module('page.firstCourse').factory('ExerciseLoader', ['$log', function (
         "import numpy as np \n\
 import matplotlib.pyplot as plt\n\
 \n\
+print(\"sample output\") \n\
 x = np.arange(0, 5, 0.1);\n\
 y = np.sin(x)\n\
 plt.plot(x, y)\n\
 plt.show()"
     ];
 
-    function getExercise() {
+    function getExercise(exerciseId) {
         return {
-            pre_exercise_code: code[(++i % code.length)],
+            pre_exercise_code: code[exerciseId],
             sample: "",
             solution: "",
             sct: "",
