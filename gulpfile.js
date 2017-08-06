@@ -19,6 +19,8 @@ gulp.task('vendor', function(){
 		"node_modules/angular-route/angular-route.min.js",
 		"node_modules/angular-cookies/angular-cookies.min.js",
 		"node_modules/angular-ui-router/release/angular-ui-router.min.js",
+		"node_modules/angular-sanitize/angular-sanitize.min.js",
+		"node_modules/angular-markdown-directive/markdown.js"
 	]).pipe(concat('vendor.js'))
 		.pipe(gulpif(production, uglify({mangle:false})))
 		.pipe(gulp.dest('app/build'));

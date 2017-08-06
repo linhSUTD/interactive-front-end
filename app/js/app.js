@@ -16,6 +16,7 @@ var app = angular.module('mainApp', [
 ]);
 
 app.run(function ($cookies, $state, settings) {
+
 	if ($cookies.get('token')) {
 		window.location = settings.webUrl + settings.pageUrl.DASH_BOARD;
 	}

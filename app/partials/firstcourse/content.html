@@ -2,47 +2,40 @@
     <div class="instruction_panel">
     </div>
 
-    <div class="editor_panel" id="editor_panel">
+    <div class="editor_panel">
+        <div class="editor">
 
+        </div>
+
+        <ul class="nav nav-tabs" style="border-color: #fff; margin-top: 10px;">
+            <li class="active">
+                <a href="" data-toggle="tab" style="cursor: auto;">
+                    Submit
+                </a>
+            </li>
+        </ul>
     </div>
     <br />
-    <button ng-click="onSubmit()">Submit</button>
+
 
     <div class="console_panel">
-        <div class="portlet light">
-            <div class="portlet-body">
-                <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="" data-toggle="tab">
-                            Console </a>
-                        <br>
-                        <div>{{outputText}}</div>
-                    </li>
-                    <li>
-                        <a href="" data-toggle="tab">
-                            Plot </a>
-                            <br>
-                        <img ng-src="{{getGraphSrc()}}" alt="">
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade active in" id="tab_1_1">
-                        <p>
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="tab_1_2">
-                        <p>
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="tab_1_3">
-                        <p>
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="tab_1_4">
-                        <p>
-                        </p>
-                    </div>
-                </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="" data-toggle="tab">
+                    Console </a>
+                <br>
+                <div>{{outputText}}</div>
+            </li>
+            <li>
+                <a href="" data-toggle="tab">
+                    Plot </a>
+                    <br>
+                <img ng-src="{{getGraphSrc()}}" alt="">
+            </li>
+        </ul>
+
+        <div class="console" style="margin-top: -15px;">
+            <div btf-markdown="markdown">
             </div>
         </div>
     </div>

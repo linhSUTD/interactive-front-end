@@ -12,8 +12,18 @@ authServiceModule.factory('authService', function ($http, $q, settings) {
 
 		},
 		register: function (data) {
+			var form_data = new FormData();
 
-			return $http.post(settings.apiUrl + '/register', data);
+			for ( var key in data ) {
+				console.log(key);
+				console.log(data[key]);
+				form_data.append(key, data[key]);
+			}
+
+			console.log("dmdmd");
+			console.log(form_data);
+
+			return $http.post(settings.apiUrl + '/account', form_data, {withCredentials: false});
 
 		},
 		forgotPassword: function (data) {

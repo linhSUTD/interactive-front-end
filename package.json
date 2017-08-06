@@ -5,8 +5,12 @@
   "private": true,
   "dependencies": {
     "ace-builds": "^1.2.8",
+    "angular-markdown-directive": "^0.3.1",
+    "angular-sanitize": "^1.6.5",
+    "js-angular-markdown": "^1.0.1",
     "node-sass": "^4.5.3",
-    "save": "^2.3.1"
+    "save": "^2.3.1",
+    "showdown": "^1.7.2"
   },
   "devDependencies": {
     "angular": "^1.5.0",

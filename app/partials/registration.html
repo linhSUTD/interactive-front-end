@@ -3,15 +3,9 @@
 </div>
 <form class="form-horizontal" id="signup-form" ng-submit="register()">
     <div class="form-group">
-        <label class="col-sm-3 control-label">First Name</label>
+        <label class="col-sm-3 control-label">Name</label>
         <div class="col-sm-7">
-            <input class="form-control" type="text" name="first_name" placeholder="First Name" autofocus="autofocus" required ng-model="user.given_name">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Last Name</label>
-        <div class="col-sm-7">
-            <input class="form-control" type="text" name="last_name" placeholder="Last Name" required ng-model="user.sur_name">
+            <input class="form-control" type="text" name="name" placeholder="Name" required ng-model="user.name">
         </div>
     </div>
     <div class="form-group">
@@ -24,12 +18,6 @@
         <label class="col-sm-3 control-label">Password</label>
         <div class="col-sm-7">
             <input class="form-control" type="password" name="password" placeholder="Password" required ng-model="user.password">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">Confirm Password</label>
-        <div class="col-sm-7">
-            <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password" required ng-model="user.confirmPassword">
         </div>
     </div>
     <div class="form-group">
