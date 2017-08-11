@@ -18,6 +18,10 @@ registrationModule.controller('registrationCtrl', ['$scope', '$http', 'authServi
 
 	$scope.user = {};
 
+	authService.getCourses().then(function(data) {
+		console.log(data);
+	})
+
 	$scope.register = function() {
 
 		authService.register($scope.user).then(function(response) {

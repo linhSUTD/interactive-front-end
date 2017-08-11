@@ -20,100 +20,249 @@
 </head>
 
 <body ng-app="mainApp" ng-controller="baseCtrl">
-    <div class="corporate">
-        <div class="header">
-            <div class="container" ng-show="!isLoggedIn">
-                <a class="site-logo" href="index.html"><img style="width: 100%; height: auto;"src="../img/new_logo.png"></a>
 
-                <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-
-                <!-- BEGIN NAVIGATION -->
-                <div class="header-navigation pull-right font-transform-inherit">
-                    <ul>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="home">
-                            Home
-                        </a>
-                        </li>
-                        <li class="dropdown dropdown-megamenu">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="courses">
-                            Courses
-                        </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="pricing">
-                            Pricing
-                        </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="blog">
-                            Blog
-                        </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="login">
-                            Login
-                        </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="registration">
-                            Register
-                        </a>
-                        </li>
-                    </ul>
+    <div class="page-header">
+        <!-- BEGIN HEADER TOP -->
+        <div class="page-header-top">
+            <div class="container">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html"><img src="img/logo-default.png" alt="logo" class="logo-default"></a>
                 </div>
-            </div>
-
-            <div class="container" ng-show="isLoggedIn">
-                <a class="site-logo" href="index.html"><img style="width: 100%; height: auto;"src="../img/new_logo.png"></a>
-
-                <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-
-                <div class="header-navigation pull-right font-transform-inherit">
-                    <ul>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="dashboard">
-                            DashBoard
-                        </a>
-                        </li>
-                        <li class="dropdown dropdown-megamenu">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="courses">
-                            Courses
-                        </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="pricing">
-                            Pricing
-                        </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" ui-sref="blog">
-                            Blog
-                        </a>
-                        </li>
-
-                        <li class="dropdown" style="margin-right: 10px;">
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler"></a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <li class="dropdown dropdown-extended dropdown-dark dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="../img/avatar9.jpg" style="margin-top: -12px; margin-right: 8px; height: 40px; float: left;">
-                            <span class="username username-hide-mobile">Linh Nguyen</span>
-                        </a>
-                            <ul class="dropdown-menu dropdown-menu-default">
-                                <li>
-                                    <a href="extra_profile.html">
-                                    <i class="icon-user"></i> My Profile </a>
-                                </li>
-                                <li>
-                                    <a ng-click="logout()">
-                                    <i class="icon-key"></i> Log Out
-                                </a>
+                                <i class="icon-bell"></i>
+                                <span class="badge badge-default">7</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3>You have <strong>0 pending</strong> tasks</h3>
+                                    <a href="javascript:;">view all</a>
                                 </li>
                             </ul>
                         </li>
+                        <!-- END NOTIFICATION DROPDOWN -->
+
+                        <li class="droddown dropdown-separator">
+                            <span class="separator"></span>
+                        </li>
+                        <!-- BEGIN INBOX DROPDOWN -->
+                        <li class="dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="circle">3</span>
+                                <span class="corner"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3>You have <strong>0 New</strong> Messages</h3>
+                                    <a href="javascript:;">view all</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END INBOX DROPDOWN -->
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <li class="dropdown dropdown-user dropdown-dark">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle" src="img/avatar9.jpg">
+                                <span class="username username-hide-mobile">Linh</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a ui-sref="user.profile({userId: 1})">
+                                        <i class="icon-user"></i> My Profile </a>
+                                </li>
+                                <li>
+                                    <a href="inbox.html">
+                                        <i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
+                                        0 </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
+                                        0 </span>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="login.html">
+                                        <i class="icon-key"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
                     </ul>
                 </div>
+                <!-- END TOP NAVIGATION MENU -->
             </div>
         </div>
-        <!-- Header END -->
+
+        <!-- BEGIN HEADER MENU -->
+        <div class="page-header-menu">
+            <div class="container">
+                <div class="hor-menu ">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a ui-sref="home">Home</a>
+                        </li>
+                        <li class="menu-dropdown mega-menu-dropdown ">
+                            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+                                Courses <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 710px">
+                                <li>
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Beginner</h3>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="course.introduction({courseId: 1})" class="iconify">
+                                                            <i class="icon-home"></i>
+                                                            Introduction to Machine Learning </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Intermediate</h3>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Advanced</h3>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a ui-sref="blog">Blog</a>
+                        </li>
+                        <li>
+                            <a ui-sref="community">Community</a>
+                        </li>
+                        <li>
+                            <a ui-sref="contactus">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MEGA MENU -->
+            </div>
+        </div>
+        <!-- END HEADER MENU -->
+    </div>
+
+    <div class="page-header" style="display: none;">
+        <!-- BEGIN HEADER TOP -->
+        <div class="page-header-top">
+            <div class="container">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html"><img src="img/logo-default.png" alt="logo" class="logo-default"></a>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler"></a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <li><a ui-sref="login">Log In</a></li>
+                        <!-- END NOTIFICATION DROPDOWN -->
+
+                        <li class="droddown dropdown-separator">
+                            <span class="separator"></span>
+                        </li>
+                        <!-- BEGIN INBOX DROPDOWN -->
+                        <li><a ui-sref="registration">Register</a></li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+        </div>
+
+        <!-- BEGIN HEADER MENU -->
+        <div class="page-header-menu">
+            <div class="container">
+                <div class="hor-menu ">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a ui-sref="home">Home</a>
+                        </li>
+                        <li class="menu-dropdown mega-menu-dropdown ">
+                            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
+                                Courses <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 710px">
+                                <li>
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Beginner</h3>
+                                                    </li>
+                                                    <li>
+                                                        <a ui-sref="course.introduction({courseId: 1})" class="iconify">
+                                                            <i class="icon-home"></i>
+                                                            Introduction to Machine Learning </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Intermediate</h3>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <ul class="mega-menu-submenu">
+                                                    <li>
+                                                        <h3>Advanced</h3>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a ui-sref="blog">Blog</a>
+                        </li>
+                        <li>
+                            <a ui-sref="community">Community</a>
+                        </li>
+                        <li>
+                            <a ui-sref="contactus">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MEGA MENU -->
+            </div>
+        </div>
+        <!-- END HEADER MENU -->
     </div>
 
     <div class="container" ui-view></div>

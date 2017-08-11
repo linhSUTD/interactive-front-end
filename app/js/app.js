@@ -9,8 +9,9 @@ var app = angular.module('mainApp', [
 	'page.forgotPassword',
 	'page.resetPassword',
 	'page.dashboard',
-	'page.courses',
-	'page.firstCourse',
+	'page.course',
+	'page.lesson',
+	'page.user',
 	'service.auth',
 	'ngCookies'
 ]);

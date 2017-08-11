@@ -23,7 +23,9 @@ authServiceModule.factory('authService', function ($http, $q, settings) {
 			console.log("dmdmd");
 			console.log(form_data);
 
-			return $http.post(settings.apiUrl + '/account', form_data, {withCredentials: false});
+			return $http.post(settings.apiUrl + '/account', form_data, {headers: {
+				'Content-Type': undefined
+			}});
 
 		},
 		forgotPassword: function (data) {
@@ -33,6 +35,9 @@ authServiceModule.factory('authService', function ($http, $q, settings) {
 		resetPassword: function (data) {
 
 			return $http.post(settings.apiUrl + '/resetPassword', data);
+		},
+		getCourses: function() {
+			return $http.get(settings.apiUrl + '/course');
 		}
 	}
 })

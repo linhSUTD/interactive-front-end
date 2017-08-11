@@ -1,13 +1,11 @@
 $icon-font-path: "~scss/bootstrap/fonts/";
 
 @import 'fonts/font-awesome';
+@import 'simple-line-icons/simple-line-icons';
 @import 'bootstrap/bootstrap';
-@import 'global/variables';
+@import 'pages/pages';
 @import 'global/components';
 @import 'global/plugins';
-@import "gritter";
-@import 'style';
-@import 'porfolio';
-@import 'style_responsive';
-@import 'theme';
+@import 'layout3/layout';
+@import 'layout3/themes/default';
 @import 'custom';

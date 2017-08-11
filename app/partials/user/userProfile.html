@@ -1,0 +1,81 @@
+<div class="container" style="padding: 15px 15px;">
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a ui-sref="home">Home</a><i class="fa fa-circle"></i>
+        </li>
+        <li class="active">
+            User Profile
+        </li>
+    </ul>
+    <!-- END PAGE BREADCRUMB -->
+    <!-- BEGIN PAGE CONTENT INNER -->
+    <div class="row margin-top-10">
+        <div class="col-md-12">
+            <!-- BEGIN PROFILE SIDEBAR -->
+            <div class="profile-sidebar" style="width: 250px;">
+                <!-- PORTLET MAIN -->
+                <div class="portlet light profile-sidebar-portlet">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="../../img/profile/profile_user.jpg" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            Marcus Doe
+                        </div>
+                        <div class="profile-usertitle-job">
+                            Developer
+                        </div>
+                    </div>
+
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li class="active">
+                                <a ui-sref="user.profile">
+                                    <i class="icon-home"></i>
+                                    Overview </a>
+                            </li>
+                            <li>
+                                <a ui-sref="user.settings">
+                                    <i class="icon-settings"></i>
+                                    Account Settings </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+                <!-- END PORTLET MAIN -->
+            </div>
+
+            <!-- END BEGIN PROFILE SIDEBAR -->
+            <!-- BEGIN PROFILE CONTENT -->
+            <div class="profile-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption caption-md">
+                                    <i class="icon-bar-chart theme-font hide"></i>
+                                    <span class="caption-subject font-blue-madison bold uppercase">Your Activity</span>
+                                    <span class="caption-helper hide">weekly stats...</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                            <input type="radio" name="options" class="toggle" id="option1">Today</label>
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+                                            <input type="radio" name="options" class="toggle" id="option2">Week</label>
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+                                            <input type="radio" name="options" class="toggle" id="option2">Month</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
