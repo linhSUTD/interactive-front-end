@@ -22,13 +22,15 @@ loginModule.controller('loginCtrl', ['$scope', '$http', 'authService', 'settings
 
 		authService.login($scope.user).then(function (response) {
 
-			$cookies.put('token', response.data);
+			$cookies.put('token', response.data.accessToken);
+
+			$cookies.put('expire', response.data.expiration);
 
 			$state.go('dashboard');
 
 		}, function (error) {
 
-			showPopUp(error.data.error);
+			showPopUp(error.data.message);
 
 		})
 	}

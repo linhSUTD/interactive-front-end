@@ -22,10 +22,29 @@ userModule.config(function($stateProvider, $urlRouterProvider){
 		})
 })
 
-userModule.controller('userProfileCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService', function($scope, $stateParams, userService) {
 
+	userService.getUser().then(function(response) {
+
+		console.log(response);
+	})
 }]);
 
 userModule.controller('userSettingsCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
 
+	$scope.updateUser = function() {
+
+	}
+
+	$scope.cancelUpdateUser = function() {
+
+	}
+
+	$scope.resetPassword = function() {
+
+	}
+
+	$scope.cancelResetPassword = function() {
+
+	}
 }]);

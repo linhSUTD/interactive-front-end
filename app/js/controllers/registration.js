@@ -13,28 +13,22 @@ registrationModule.config(function($stateProvider, $urlRouterProvider){
 		})
 });
 
-registrationModule.controller('registrationCtrl', ['$scope', '$http', 'authService', 'settings', '$cookies',
-	function ($scope, $http, authService, settings, $cookies) {
+registrationModule.controller('registrationCtrl', ['$scope', '$http', 'authService', 'settings', '$cookies', '$state',
+	function ($scope, $http, authService, settings, $cookies, $state) {
 
 	$scope.user = {};
-
-	authService.getCourses().then(function(data) {
-		console.log(data);
-	})
 
 	$scope.register = function() {
 
 		authService.register($scope.user).then(function(response) {
 
-			showPopUp("Create account successfully.");
+			$cookies.put('token', response.data);
 
-			setTimeout(function() {
-				$cookies.put('token', response.data.token);
-				window.location = settings.pageUrl.DASH_BOARD;
-			}, 2000);
+			$state.go('dashboard');
 
 		}, function(error) {
-			showPopUp(error.data.error);
+
+			showPopUp("Error! " + error.data.message);
 		})
 	}
 }]);

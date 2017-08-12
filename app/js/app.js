@@ -12,18 +12,19 @@ var app = angular.module('mainApp', [
 	'page.course',
 	'page.lesson',
 	'page.user',
+	'service.user',
 	'service.auth',
 	'ngCookies'
 ]);
 
-app.run(function ($cookies, $state, settings) {
+app.config(['$httpProvider', function($httpProvider) {
 
-	if ($cookies.get('token')) {
-		window.location = settings.webUrl + settings.pageUrl.DASH_BOARD;
+	$httpProvider.defaults.headers.post = {
+		'Content-Type': undefined
 	}
-})
+}]);
 
-app.controller('baseCtrl', ['$scope', '$cookies', 'settings', function ($scope, $cookies, settings) {
+app.controller('baseCtrl', ['$scope', '$cookies', 'settings', '$state', function ($scope, $cookies, settings, $state) {
 
 	$scope.isLoggedIn = false;
 
@@ -34,7 +35,7 @@ app.controller('baseCtrl', ['$scope', '$cookies', 'settings', function ($scope, 
 	$scope.logout = function () {
 		$cookies.put('token', undefined);
 		$scope.isLoggedIn = false;
-		window.location = settings.webUrl + settings.pageUrl.HOME;
+		$state.go('home');
 	}
 
 	$scope.changeLoginState = function (val) {

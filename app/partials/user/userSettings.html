@@ -78,37 +78,36 @@
                                     <div class="tab-pane active" id="tab_1_1">
                                         <form role="form" action="#">
                                             <div class="form-group">
-                                                <label class="control-label">First Name</label>
-                                                <input type="text" placeholder="John" class="form-control"/>
+                                                <label class="control-label">Name <span style="color:red;">*</span></label>
+                                                <input class="form-control" type="text" name="name" placeholder="Name" required ng-model="user.name">
                                             </div>
+
                                             <div class="form-group">
-                                                <label class="control-label">Last Name</label>
-                                                <input type="text" placeholder="Doe" class="form-control"/>
+                                                <label class="control-label">Email <span style="color:red;">*</span></label>
+                                                <input class="form-control" type="email" name="email" placeholder="Email" required ng-model="user.email">
                                             </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label">Password <span style="color:red;">*</span></label>
+                                                <input class="form-control" type="password" name="password" placeholder="Password" required ng-model="user.password">
+                                            </div>
+
                                             <div class="form-group">
                                                 <label class="control-label">Mobile Number</label>
                                                 <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Interests</label>
-                                                <input type="text" placeholder="Design, Web etc." class="form-control"/>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Occupation</label>
                                                 <input type="text" placeholder="Web Developer" class="form-control"/>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">About</label>
-                                                <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="control-label">Website Url</label>
                                                 <input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
                                             </div>
                                             <div class="margiv-top-10">
-                                                <a href="#" class="btn green-haze">
+                                                <a class="btn green-haze" ng-click="updateUser()">
                                                     Save Changes </a>
-                                                <a href="#" class="btn default">
+                                                <a class="btn default" ng-click="cancelUpdateUser()">
                                                     Cancel </a>
                                             </div>
                                         </form>
@@ -120,21 +119,14 @@
                                     <div class="tab-pane" id="tab_1_3">
                                         <form action="#">
                                             <div class="form-group">
-                                                <label class="control-label">Current Password</label>
-                                                <input type="password" class="form-control"/>
+                                                <h4>Enter your email address below and we will send you password reset instructions.</h4>
+                                                <input class="form-control" type="email" name="email" autofocus="autofocus">
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label">New Password</label>
-                                                <input type="password" class="form-control"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Re-type New Password</label>
-                                                <input type="password" class="form-control"/>
-                                            </div>
+
                                             <div class="margin-top-10">
-                                                <a href="#" class="btn green-haze">
+                                                <a class="btn green-haze" ng-click="resetPassword()">
                                                     Change Password </a>
-                                                <a href="#" class="btn default">
+                                                <a class="btn default" ng-click="cancelResetPassword()">
                                                     Cancel </a>
                                             </div>
                                         </form>

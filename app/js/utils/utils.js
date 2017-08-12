@@ -8,3 +8,13 @@ function showPopUp(title, text, time) {
 		time: time || 2000
 	});
 }
+
+function convertToFormData(data) {
+	var form_data = new FormData();
+
+	for (var key in data) {
+		form_data.append(key, data[key]);
+	}
+
+	return form_data;
+}
