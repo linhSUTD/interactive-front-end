@@ -5,31 +5,29 @@
         <hr/>
     </div>
 
-    <div style="margin-top: 20px;">
+    <div class="row" style="margin-top: 20px;">
         <!-- BEGIN SALE PRODUCT -->
         <div class="sale-product">
             <h2>Top Courses</h2>
-            <div class="owl-carousel owl-carousel5">
-                <div ng-repeat="rCourse in recentCourses">
-                    <div class="product-item">
-                        <div class="pi-img-wrapper">
-                            <img ng-src="{{rCourse.coverImageUrl}}" class="img-responsive" alt="Berry Lace Dress">
-                            <div>
-                                <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                            </div>
+            <div class="col-md-3 col-sm-6" ng-repeat="rCourse in recentCourses">
+                <div class="product-item">
+                    <div class="pi-img-wrapper">
+                        <img ng-src="{{rCourse.coverImageUrl}}" class="img-responsive" alt="Berry Lace Dress">
+                        <div>
+                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                         </div>
-                        <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
-                        <div class="pi-price">$29.00</div>
-                        <a href="#" class="btn btn-default add2cart">View Course</a>
-                        <div class="sticker sticker-sale"></div>
                     </div>
+                    <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">View Course</a>
+                    <div class="sticker sticker-sale"></div>
                 </div>
             </div>
         </div>
         <hr/>
     </div>
 
-    <div style="margin-top: 20px;">
+    <div class="row" style="margin-top: 20px;">
         <h2>Beginner</h2>
         <div class="owl-carousel owl-carousel5">
             <div>
@@ -133,5 +131,4 @@
     jQuery(document).ready(function () {
         Layout.initOWL();
     });
-
 </script>
