@@ -1,119 +1,125 @@
 <div class="container" style="padding: 15px 0 15px;">
     <ul class="page-breadcrumb breadcrumb">
         <li>
-            <a ui-sref="">Home</a><i class="fa fa-circle"></i>
+            <a ui-sref="dashboard">Dashboard</a>
         </li>
         <li>
-            <a ui-sref="">Introduction to Machine Learning</a><i class="fa fa-circle"></i>
+            <a ui-sref="course.introduction({courseId: 1})">Introduction to Machine Learning</a>
         </li>
         <li class="active">
             Course Home
         </li>
     </ul>
 
+    <div class="row" style="margin-top: 50px;">
+        <h1>Interactive Machine Learning</h1>
+        <p class="lead">Learn machine learning from scratch with us!</p>
+        <hr/>
+    </div>
 
-
-    <div class="portlet-body">
-        <div class="row">
-            <div class="col-md-3">
-                <ul class="ver-inline-menu tabbable margin-bottom-10">
-                    <li class="active">
-                        <a data-toggle="tab" href="#tab_1">
-                            <i class="fa fa-briefcase"></i> Course Home </a>
-									<span class="after">
-									</span>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#tab_1">
-                            <i class="fa fa-info-circle"></i> Discussion Forum </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#tab_1">
-                            <i class="fa fa-info-circle"></i> Resources </a>
-                    </li>
-                    <li>
-                        <a data-toggle="tab" href="#tab_1">
-                            <i class="fa fa-info-circle"></i> Course Info </a>
-                    </li>
-                </ul>
-
+    <div class="row" style="margin-top: 30px;">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">Syllabus</span>
+                </div>
             </div>
-            <div class="col-md-9">
-                <div class="tab-content">
-                    <div class="row">
-                        <div class="portlet light">
-                            <div class="portlet-title">
-                                <h1>Introduction to Machine Learning</h1>
-                                <h4>Learn machine learning from scratch with us!</h4>
+            <div class="portlet-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div class="accordion-toggle accordion-toggle-styled">
+                                Lesson 1
+                            </div>
+                        </h4>
+
+                        <div class="lesson_progress">
+                                <span class="lesson_progress-percentage">
+                                5%
+                                </span>
+                            <div class="lesson_progress-bar">
+                                <div class="lesson_progress-bar-completed" style="width: 5%;">
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="portlet light">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="fa fa-cogs font-green-sharp"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">Syllabus</span>
+                    <div class="panel-collapse in">
+                        <div class="panel-body">
+                            <button type="button" class="btn red" ui-sref="course.lesson.lecture({courseId: 1, lessonId: 1})">Start Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div class="accordion-toggle accordion-toggle-styled">
+                                Lesson 2 </div>
+                        </h4>
+
+                        <div class="lesson_progress">
+                                <span class="lesson_progress-percentage">
+                                35%
+                                </span>
+                            <div class="lesson_progress-bar">
+                                <div class="lesson_progress-bar-completed" style="width: 35%;">
                                 </div>
                             </div>
-                            <div class="portlet-body">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <div class="accordion-toggle accordion-toggle-styled">
-                                                Lesson 1 </div>
-                                        </h4>
-                                    </div>
-                                    <div class="panel-collapse in">
-                                        <div class="panel-body">
-                                            <button type="button" class="btn red" ui-sref="course.lesson.lecture({courseId: 1, lessonId: 1})">Start Now</button>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="panel-collapse in">
+                        <div class="panel-body">
+                            <button type="button" class="btn red">Start Now</button>
+                        </div>
+                    </div>
+                </div>
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <div class="accordion-toggle accordion-toggle-styled">
-                                                Lesson 2 </div>
-                                        </h4>
-                                    </div>
-                                    <div class="panel-collapse in">
-                                        <div class="panel-body">
-                                            <button type="button" class="btn red">Start Now</button>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div class="accordion-toggle accordion-toggle-styled">
+                                Lesson 3 </div>
+                        </h4>
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <div class="accordion-toggle accordion-toggle-styled">
-                                                Lesson 3 </div>
-                                        </h4>
-                                    </div>
-                                    <div class="panel-collapse in">
-                                        <div class="panel-body">
-                                            <button type="button" class="btn red">Start Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <div class="accordion-toggle accordion-toggle-styled">
-                                                Lesson 4 </div>
-                                        </h4>
-                                    </div>
-                                    <div class="panel-collapse in">
-                                        <div class="panel-body">
-                                            <button type="button" class="btn red">Start Now</button>
-                                        </div>
-                                    </div>
+                        <div class="lesson_progress">
+                                <span class="lesson_progress-percentage">
+                                55%
+                                </span>
+                            <div class="lesson_progress-bar">
+                                <div class="lesson_progress-bar-completed" style="width: 55%;">
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="panel-collapse in">
+                        <div class="panel-body">
+                            <button type="button" class="btn red">Start Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div class="accordion-toggle accordion-toggle-styled">
+                                Lesson 4 </div>
+                        </h4>
+
+                        <div class="lesson_progress">
+                                <span class="lesson_progress-percentage">
+                                75%
+                                </span>
+                            <div class="lesson_progress-bar">
+                                <div class="lesson_progress-bar-completed" style="width: 75%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-collapse in">
+                        <div class="panel-body">
+                            <button type="button" class="btn red">Start Now</button>
                         </div>
                     </div>
                 </div>

@@ -883,12 +883,11 @@ Sidebar
   float: left;
 }
 .sidebar .dropdown.open .dropdown-toggle {
-  background: #fff;
-  color: #3E4D5C;
 }
+
 .sidebar .dropdown.open .dropdown-toggle:hover {
-  color: #E02222;
 }
+
 .sidebar .dropup.open > .dropdown-toggle, .dropdown.open > .dropdown-toggle {
   border-color: none !important;
 }
@@ -1371,15 +1370,11 @@ div.content-form-page .checkbox-list {
   margin-bottom: 0;
 }
 .nav-tabs > li > a, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
-  background: #F4F4F4;
-  color: #647484;
   border-radius: 0;
   padding: 5px 15px 4px;
   border: none !important;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  background: #e6400c;
-  color: #fff;
   padding: 5px 15px 4px;
 }
 .tab-content {
