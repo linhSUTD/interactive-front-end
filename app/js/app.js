@@ -17,23 +17,26 @@ var app = angular.module('mainApp', [
 	'ngCookies'
 ]);
 
-app.config(['$httpProvider', function($httpProvider) {
-
+app.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.defaults.headers.post = {
 		'Content-Type': undefined
 	}
 }]);
 
-app.controller('baseCtrl', ['$scope', '$cookies', 'settings', '$state', function ($scope, $cookies, settings, $state) {
+app.controller('baseCtrl', ['$scope', 'settings', '$state', 'authService', function (
+	$scope, settings, $state, authService) {
 
-	$scope.isLoggedIn = false;
+	$scope.currentUser = null;
 
-	if ($cookies.get('token')) {
-		$scope.isLoggedIn = true;
-	}
+	authService.tryPreviousSession(function (result) {
+		$scope.isLoggedIn = result;
+		if (result) {
+			$scope.currentUser = authService.getCurrentUser();
+		}
+	});
 
 	$scope.logout = function () {
-		$cookies.put('token', undefined);
+		authService.logout();
 		$scope.isLoggedIn = false;
 		$state.go('home');
 	}
@@ -42,4 +45,3 @@ app.controller('baseCtrl', ['$scope', '$cookies', 'settings', '$state', function
 		$scope.isLoggedIn = val;
 	}
 }]);
-

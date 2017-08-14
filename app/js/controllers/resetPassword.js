@@ -1,9 +1,6 @@
-/**
- * Created by nguyenlinh on 7/17/17.
- */
 var resetPasswordModule = angular.module('page.resetPassword', []);
 
-resetPasswordModule.config(function($stateProvider, $urlRouterProvider){
+resetPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('resetPassword', {
@@ -13,19 +10,19 @@ resetPasswordModule.config(function($stateProvider, $urlRouterProvider){
 		})
 });
 
-resetPasswordModule.controller('resetPasswordCtrl', ['$scope', '$http', 'settings', 'authService', '$stateParams',
-	function ($scope, $http, settings, authService, $stateParams) {
+resetPasswordModule.controller('resetPasswordCtrl', ['$scope', '$http', 'settings', 'authService', '$stateParams', function (
+	$scope, $http, settings, authService, $stateParams) {
 
-		$scope.user = {
-			password: "",
-			confirmPassword: "",
-			token: $stateParams.token
-		};
+	$scope.user = {
+		password: "",
+		confirmPassword: "",
+		token: $stateParams.token
+	};
 
-		$scope.reset = function() {
-			authService.resetPassword($scope.user).then(function(response) {
+	$scope.reset = function () {
+		authService.resetPassword($scope.user).then(function (response) {
 
-				console.log(response);
-			})
-		}
-	}]);
+			console.log(response);
+		})
+	}
+}]);

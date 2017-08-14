@@ -3,7 +3,7 @@
  */
 var loginModule = angular.module('page.login', ['ngCookies']);
 
-loginModule.config(function($stateProvider, $urlRouterProvider) {
+loginModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('login', {
@@ -14,25 +14,23 @@ loginModule.config(function($stateProvider, $urlRouterProvider) {
 })
 
 loginModule.controller('loginCtrl', ['$scope', '$http', 'authService', 'settings', '$cookies', '$state',
-			function($scope, $http, authService, settings, $cookies, $state) {
+	function ($scope, $http, authService, settings, $cookies, $state) {
 
-	$scope.user = {};
+		$scope.user = {};
+		$scope.login = function () {
 
-	$scope.login = function() {
+			authService.login($scope.user).then(function (response) {
 
-		authService.login($scope.user).then(function (response) {
+				$cookies.put('token', response.data.accessToken);
 
-			$cookies.put('token', response.data.accessToken);
+				$cookies.put('expire', response.data.expiration);
 
-			$cookies.put('expire', response.data.expiration);
+				$state.go('dashboard');
 
-			$state.go('dashboard');
+			}, function (error) {
 
-		}, function (error) {
+				showPopUp(error.data.message);
 
-			showPopUp(error.data.message);
-
-		})
-	}
-}]);
-
+			})
+		}
+	}]);

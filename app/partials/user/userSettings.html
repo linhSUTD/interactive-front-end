@@ -17,13 +17,13 @@
                 <div class="portlet light profile-sidebar-portlet">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="../../img/profile/profile_user.jpg" class="img-responsive" alt="">
+                        <img ng-src={{user.avatarUrl}} class="img-responsive" alt="">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            Marcus Doe
+                            {{user.name}}
                         </div>
                         <div class="profile-usertitle-job">
                             Developer
@@ -80,8 +80,8 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Email <span style="color:red;">*</span></label>
-                                                <input class="form-control" type="email" name="email" placeholder="Email" required ng-model="user.email">
+                                                <label class="control-label">Email <span style="color:red;"></span></label>
+                                                <input class="form-control" disabled type="email" name="email" placeholder="Email" ng-model="user.email">
                                             </div>
 
                                             <div class="form-group">
@@ -91,15 +91,15 @@
 
                                             <div class="form-group">
                                                 <label class="control-label">Mobile Number</label>
-                                                <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
+                                                <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Occupation</label>
-                                                <input type="text" placeholder="Web Developer" class="form-control"/>
+                                                <input type="text" placeholder="Web Developer" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Website Url</label>
-                                                <input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
+                                                <input type="text" placeholder="http://www.mywebsite.com" class="form-control" />
                                             </div>
                                             <div class="margiv-top-10">
                                                 <a class="btn green-haze" ng-click="updateUser()">

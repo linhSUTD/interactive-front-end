@@ -3,7 +3,7 @@
  */
 var userModule = angular.module('page.user', ['duScroll']);
 
-userModule.config(function($stateProvider, $urlRouterProvider){
+userModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('user', {
@@ -22,29 +22,32 @@ userModule.config(function($stateProvider, $urlRouterProvider){
 		})
 })
 
-userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService', function($scope, $stateParams, userService) {
+userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService', function (
+	$scope, $stateParams, userService) {
 
-	userService.getUser().then(function(response) {
+	$scope.user = userService.getUser();
 
-		console.log(response);
-	})
 }]);
 
-userModule.controller('userSettingsCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+userModule.controller('userSettingsCtrl', ['$scope', '$stateParams', 'userService', function (
+	$scope, $stateParams, userService) {
 
-	$scope.updateUser = function() {
+	$scope.user = userService.getUser();
 
-	}
 
-	$scope.cancelUpdateUser = function() {
-
-	}
-
-	$scope.resetPassword = function() {
+	$scope.updateUser = function () {
 
 	}
 
-	$scope.cancelResetPassword = function() {
+	$scope.cancelUpdateUser = function () {
+
+	}
+
+	$scope.resetPassword = function () {
+
+	}
+
+	$scope.cancelResetPassword = function () {
 
 	}
 }]);
