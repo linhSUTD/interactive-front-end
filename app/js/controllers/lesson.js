@@ -1,9 +1,6 @@
-/**
- * Created by nguyenlinh on 8/10/17.
- */
 var lessonModule = angular.module('page.lesson', []);
 
-lessonModule.config(function($stateProvider, $urlRouterProvider){
+lessonModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('course.lesson', {
@@ -17,9 +14,9 @@ lessonModule.config(function($stateProvider, $urlRouterProvider){
 		})
 })
 
-lessonModule.controller('lessonCtrl', ['$scope', function($scope) {
+lessonModule.controller('lessonCtrl', ['$scope', function ($scope) {
 }]);
 
-lessonModule.controller('exerciseCtrl', ['$scope', function($scope) {
+lessonModule.controller('exerciseCtrl', ['$scope', function ($scope) {
 
 }]);

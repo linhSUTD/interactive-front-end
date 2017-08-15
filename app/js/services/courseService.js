@@ -20,6 +20,10 @@ courseServiceModule.factory('courseService', function ($http, $q, settings) {
 
         getLessons: function (id) {
             return $http.get(settings.apiUrl + "/course/" + id + "/lessons");
+        },
+
+        getReviews: function (id) {
+            return $http.get(settings.apiUrl + "/course/" + id + "/reviews");
         }
     }
 });

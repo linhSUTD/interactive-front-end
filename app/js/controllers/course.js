@@ -25,6 +25,7 @@ courseModule.controller('courseIntroductionCtrl', ['$scope', '$stateParams', 'co
 	$scope.course = null;
 	$scope.author = null;
 	$scope.lessons = [];
+	$scope.reviews = [];
 
 	courseService.get($stateParams.courseId).then(res => {
 		$scope.course = res.data;
@@ -41,8 +42,13 @@ courseModule.controller('courseIntroductionCtrl', ['$scope', '$stateParams', 'co
 	courseService.getLessons($stateParams.courseId).then(res => {
 		$scope.lessons = res.data;
 	});
+
+	courseService.getReviews($stateParams.courseId).then(res => {
+		$scope.reviews = res.data;
+	});
 }]);
 
-courseModule.controller('courseHomePageCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
+courseModule.controller('courseHomePageCtrl', ['$scope', '$stateParams', 'userService', function (
+	$scope, $stateParams, userService) {
 
 }]);
