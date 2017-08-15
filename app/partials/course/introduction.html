@@ -189,12 +189,13 @@
                     </div>
                     <div class="portlet-body">
                         <div class="table-scrollable">
-                            <table class="table table-striped table-advance table-hover" ng-show="">
+                            <table class="table table-striped table-advance table-hover">
                                 <tbody>
                                     <tr ng-repeat="review in reviews">
                                         <td width="15%" style="text-align: center;">
                                             <span class="photo">
-                                                <img ng-src="{{review.user.avatarUrl}}" class="img-circle" alt="{{review.user.name}}">
+                                                <img ng-src="{{review.user.avatarUrl}}" class="img-circle" alt="{{review.user.name}}"
+                                                    style="width:45px;height:45px">
                                             </span>
                                         </td>
                                         <td width="85%">
