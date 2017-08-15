@@ -41,7 +41,8 @@ app.controller('baseCtrl', ['$scope', 'settings', '$state', 'authService', funct
 		$state.go('home');
 	}
 
-	$scope.changeLoginState = function (val) {
-		$scope.isLoggedIn = val;
-	}
+	$scope.$on("user:loggedin", function () {
+		$scope.isLoggedIn = true;
+		$scope.currentUser = authService.getCurrentUser();
+	});
 }]);

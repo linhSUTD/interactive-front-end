@@ -1,9 +1,6 @@
-/**
- * Created by nguyenlinh on 8/9/17.
- */
-var courseModule = angular.module('page.course', ['duScroll']);
+var courseModule = angular.module('page.course', ['duScroll', 'service.course', 'service.auth']);
 
-courseModule.config(function($stateProvider, $urlRouterProvider){
+courseModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('course', {
@@ -19,13 +16,33 @@ courseModule.config(function($stateProvider, $urlRouterProvider){
 			url: '/welcome',
 			controller: 'courseHomePageCtrl',
 			templateUrl: '../../partials/course/courseHomePage.html'
-		})
-})
+		});
+});
 
-courseModule.controller('courseIntroductionCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+courseModule.controller('courseIntroductionCtrl', ['$scope', '$stateParams', 'courseService', 'userService', function (
+	$scope, $stateParams, courseService, userService) {
 
+	$scope.course = null;
+	$scope.author = null;
+	$scope.lessons = [];
+
+	courseService.get($stateParams.courseId).then(res => {
+		$scope.course = res.data;
+
+	}, err => {
+	}).then(_ => {
+		userService.getAuthor($scope.course.authorId).then(r => {
+			$scope.author = r.data;
+		}, errA => {
+
+		});
+	});
+
+	courseService.getLessons($stateParams.courseId).then(res => {
+		$scope.lessons = res.data;
+	});
 }]);
 
-courseModule.controller('courseHomePageCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+courseModule.controller('courseHomePageCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 
 }]);

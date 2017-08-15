@@ -21,5 +21,4 @@ dashboardModule.run(function ($cookies, $state, settings) {
 })
 
 dashboardModule.controller('dashboardCtrl', ['$scope', function ($scope) {
-	$scope.changeLoginState(true);
 }]);

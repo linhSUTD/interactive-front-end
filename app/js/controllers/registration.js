@@ -1,9 +1,9 @@
 /**
  * Created by nguyenlinh on 7/15/17.
  */
-var registrationModule = angular.module('page.registration', ['ngCookies']);
+var registrationModule = angular.module('page.registration', []);
 
-registrationModule.config(function($stateProvider, $urlRouterProvider){
+registrationModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('registration', {
@@ -13,22 +13,16 @@ registrationModule.config(function($stateProvider, $urlRouterProvider){
 		})
 });
 
-registrationModule.controller('registrationCtrl', ['$scope', '$http', 'authService', 'settings', '$cookies', '$state',
-	function ($scope, $http, authService, settings, $cookies, $state) {
+registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'settings', '$state', function (
+	$scope, authService, settings, $state) {
 
 	$scope.user = {};
-
-	$scope.register = function() {
-
-		authService.register($scope.user).then(function(response) {
-
-			$cookies.put('token', response.data);
-
-			$state.go('dashboard');
-
-		}, function(error) {
-
+	$scope.register = function () {
+		authService.register($scope.user).then(function (response) {
+			$scope.$emit("user:loggedin");
+			$state.go('home');
+		}, function (error) {
 			showPopUp("Error! " + error.data.message);
-		})
+		});
 	}
 }]);

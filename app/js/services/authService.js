@@ -13,6 +13,10 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 			logout();
 		},
 		getCurrentUser: function () {
+			if (!currentUser) {
+				return null;
+			}
+
 			if (!currentUser.avatarUrl) {
 				currentUser.avatarUrl = "https://tailuns.com/avatar/no.png";
 			}
@@ -28,35 +32,41 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 			$http.defaults.headers.common['Authorization'] = "Bearer " + token;
 
 			$http.get(settings.apiUrl + '/account/me').then(res => {
-				if (res.status >= 400) {
-					logout();
-					cb(false);
-					return;
-				}
-
 				currentUser = res.data;
 				cb(true);
+			}, rej => {
+				logout();
+				cb(false);
+				return;
 			});
 		},
 		login: function (data) {
+			var defer = $q.defer();
 			var promise = $http.post(settings.apiUrl + '/account/sign-in', convertToFormData(data));
 			promise.then(r => {
-				if (r.status >= 400) {
-					console.warn("login failed");
-					return;
-				}
+				$cookies.put('token', r.data.accessToken);
 				$http.defaults.headers.common['Authorization'] = "Bearer " + r.data.accessToken;
-				$http.get(settings.apiUrl + '/account/me').then(r2 => currentUser = r2.data);
-			});
-			return promise;
+				return $http.get(settings.apiUrl + '/account/me');
+			}, _ => defer.reject()).then(r2 => {
+				currentUser = r2.data;
+				defer.resolve();
+			}, _ => defer.reject());
+
+			return defer.promise;
 		},
 		register: function (data) {
+			var defer = $q.defer();
 			var promise = $http.post(settings.apiUrl + '/account', convertToFormData(data));
 			promise.then(r => {
-				console.log(r);
-				$http.defaults.headers.common['Authorization'] = "Bearer" + r.data.accessToken;
-			});
-			return promise;
+				$cookies.put('token', r.data.accessToken);
+				$http.defaults.headers.common['Authorization'] = "Bearer " + r.data.accessToken;
+				return $http.get(settings.apiUrl + '/account/me');
+			}, _ => defer.reject()).then(r2 => {
+				currentUser = r2.data;
+				defer.resolve();
+			}, _ => defer.reject());
+
+			return defer.promise;
 		},
 		forgotPassword: function (data) {
 			return $http.post(settings.apiUrl + '/forgotPassword', data);

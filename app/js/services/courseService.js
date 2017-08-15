@@ -12,6 +12,14 @@ courseServiceModule.factory('courseService', function ($http, $q, settings) {
                     sort: sort
                 }
             });
+        },
+
+        get: function (id) {
+            return $http.get(settings.apiUrl + '/course/' + id);
+        },
+
+        getLessons: function (id) {
+            return $http.get(settings.apiUrl + "/course/" + id + "/lessons");
         }
     }
 });

@@ -5,6 +5,9 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 	return {
 		getUser: function () {
 			return authService.getCurrentUser();
+		},
+		getAuthor: function (id) {
+			return $http.get(settings.apiUrl + "/user/" + id + "/author");
 		}
 	}
 });
