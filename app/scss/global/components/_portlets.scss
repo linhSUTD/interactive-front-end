@@ -370,11 +370,11 @@ Portlets
 .portlet.box {
     padding:0px !important;
 
-    > .portlet-title {  
-        border-bottom: 0;  
+    > .portlet-title {
+        border-bottom: 0;
         padding: 0 10px;
         margin-bottom: 0;
-        color: #fff;    
+        color: #fff;
 
         > .caption {
             padding: 11px 0 9px 0;
@@ -407,7 +407,7 @@ Portlets
         }
 
         > .actions {
-            padding: 7px 0 5px 0;   
+            padding: 7px 0 5px 0;
         }
     }
 
@@ -418,7 +418,7 @@ Portlets
 
     &.portlet-fullscreen {
         > .portlet-body {
-            padding: 10px; 
+            padding: 10px;
         }
     }
 }
@@ -468,6 +468,7 @@ Portlets
 /* Light Portlet */
 
 .portlet.light {
+    padding: 12px 20px 15px 20px;
     background-color: #fff;
 
     &.bordered {
