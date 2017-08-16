@@ -8,12 +8,12 @@ courseModule.config(function ($stateProvider, $urlRouterProvider) {
 			templateUrl: '../../partials/course/course.html'
 		})
 		.state('course.introduction', {
-			url: '/introduction',
+			url: '/intro',
 			controller: 'courseIntroductionCtrl',
 			templateUrl: '../../partials/course/introduction.html'
 		})
 		.state('course.home', {
-			url: '/welcome',
+			url: '/detail',
 			controller: 'courseHomePageCtrl',
 			templateUrl: '../../partials/course/courseHomePage.html'
 		});

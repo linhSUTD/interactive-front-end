@@ -7,50 +7,50 @@
             <a ui-sref="course.introduction({courseId: course.id})">{{course.title}}</a>
         </li>
         <li class="active">
-            Course Home
+            Trang chủ khóa học
         </li>
     </ul>
 
-    <div class="row" style="margin-top: 35px;">
-        <h1>Interactive Machine Learning</h1>
-        <p class="lead">Learn machine learning from scratch with us!</p>
+    <div class="row" style="margin-top: 35px;" ng-show="!!course">
+        <h2 style="margin-top:0">{{course.title}}</h2>
+        <h6 class="lead" style="font-size:16px">{{course.description}}</h6>
         <hr/>
     </div>
 
     <div class="row" style="margin-top: 20px;">
-        <div class="portlet light">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-cogs font-green-sharp"></i>
-                    <span class="caption-subject font-green-sharp bold uppercase">Syllabus</span>
-                </div>
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs font-green-sharp"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">Danh sách bài</span>
             </div>
-            <div class="portlet-body">
-                <div class="panel panel-default" ng-repeat="lesson in lessons">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <div class="accordion-toggle accordion-toggle-styled">
-                                Lesson {{lesson.index}}
-                            </div>
-                        </h4>
-                        <p>{{lesson.description}}</p>
+            <br/>
+        </div>
+        <div class="portlet-body">
+            <div class="panel panel-default" ng-repeat="lesson in lessons">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <div class="accordion-toggle accordion-toggle-styled">
+                            Lesson {{lesson.index}}
+                        </div>
+                    </h4>
+                    <p>{{lesson.description}}</p>
 
-                        <div class="lesson_progress">
-                            <span class="lesson_progress-percentage">
-                                {{lesson.progress}} %
+                    <div class="lesson_progress">
+                        <span class="lesson_progress-percentage">
+                                {{lesson.progress}}%
                             </span>
-                            <div class="lesson_progress-bar">
-                                <div class="lesson_progress-bar-completed" style="width: 5%;"
-                                    ng-style="{'width':{{lesson.progress}} + '%'}">
-                                </div>
+                        <div class="lesson_progress-bar">
+                            <div class="lesson_progress-bar-completed" style="width: 5%;" ng-style="{'width':{{lesson.progress}} + '%'}">
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="panel-collapse in">
-                        <div class="panel-body">
-                            <button type="button" class="btn red" ui-sref="course.lesson.exercise({courseId: 1, lessonId: 1, exerciseId: 1})">Start Now</button>
-                        </div>
+                <div class="panel-collapse in">
+                    <div class="panel-body">
+                        <a class="btn red" ui-sref="course.lesson.exercise({courseId: course.id, lessonId: lesson.id, exerciseId: 1})">
+                            Vào bài
+                        </a>
                     </div>
                 </div>
             </div>
