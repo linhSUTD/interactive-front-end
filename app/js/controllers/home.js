@@ -1,4 +1,4 @@
-var homeModule = angular.module('page.home', ['service.course']);
+var homeModule = angular.module('page.home', ['service.academic']);
 
 homeModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -14,7 +14,7 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 
 homeModule.controller('homeCtrl', ['$scope', '$http', 'courseService', function ($scope, $http, courseService) {
 
-	courseService.getRecentCourses(null, null, 10, "descending").then(function (response) {
+	courseService.recentCourses(null, null, 10, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
 		}

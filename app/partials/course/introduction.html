@@ -45,15 +45,16 @@
                 </div>
             </div>
 
-            <input type="button" class="btn red btn-block" value="Enroll Now!" ui-sref="course.home({courseId: 1})">
+            <input type="button" class="btn red btn-block" value="{{!registration? 'Enroll Now!' : 'Continue course'}}" ng-click="onEnrollClick()"
+                ng-disabled="enrolling">
         </div>
 
 
         <div class="col-md-9">
             <div class="row">
-                <div class="portlet light">
+                <div class="portlet light" style="padding-top:0">
                     <div class="portlet-title">
-                        <h1>{{course.title}}</h1>
+                        <h1 style="margin-top:0">{{course.title}}</h1>
                         <h5>{{course.description}}</h5>
                     </div>
                 </div>

@@ -30,7 +30,7 @@
             <div class="container">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html"><img src="img/logo-default.png" alt="logo" class="logo-default"></a>
+                    <a href="index.html"><img src="img/fundaml_logo.png" alt="logo" class="logo-default"></a>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -179,7 +179,8 @@
             <div class="container">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html"><img src="img/logo-default.png" alt="logo" class="logo-default"></a>
+                    <a href="index.html"><img style="object-fit:cover"
+                         src="img/fundaml_logo.png" alt="logo" class="logo-default"></a>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -189,14 +190,14 @@
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN NOTIFICATION DROPDOWN -->
-                        <li><a ui-sref="login">Log In</a></li>
+                        <li><a ui-sref="login">Đăng nhập</a></li>
                         <!-- END NOTIFICATION DROPDOWN -->
 
                         <li class="droddown dropdown-separator">
                             <span class="separator"></span>
                         </li>
                         <!-- BEGIN INBOX DROPDOWN -->
-                        <li><a ui-sref="registration">Register</a></li>
+                        <li><a ui-sref="registration">Đăng ký</a></li>
                         <!-- END USER LOGIN DROPDOWN -->
                     </ul>
                 </div>
@@ -268,7 +269,7 @@
         <!-- END HEADER MENU -->
     </div>
 
-    <div class="container" ui-view></div>
+    <div class="container" ui-view ng-show="authReady"></div>
 
     <script src="build/vendor.js"></script>
     <script src="build/main.js"></script>

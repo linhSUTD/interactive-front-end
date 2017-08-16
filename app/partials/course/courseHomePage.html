@@ -3,8 +3,8 @@
         <li>
             <a ui-sref="dashboard">Dashboard</a>
         </li>
-        <li>
-            <a ui-sref="course.introduction({courseId: 1})">Introduction to Machine Learning</a>
+        <li ng-show="course">
+            <a ui-sref="course.introduction({courseId: course.id})">{{course.title}}</a>
         </li>
         <li class="active">
             Course Home
@@ -26,20 +26,22 @@
                 </div>
             </div>
             <div class="portlet-body">
-                <div class="panel panel-default">
+                <div class="panel panel-default" ng-repeat="lesson in lessons">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <div class="accordion-toggle accordion-toggle-styled">
-                                Lesson 1
+                                Lesson {{lesson.index}}
                             </div>
                         </h4>
+                        <p>{{lesson.description}}</p>
 
                         <div class="lesson_progress">
-                                <span class="lesson_progress-percentage">
-                                5%
-                                </span>
+                            <span class="lesson_progress-percentage">
+                                {{lesson.progress}} %
+                            </span>
                             <div class="lesson_progress-bar">
-                                <div class="lesson_progress-bar-completed" style="width: 5%;">
+                                <div class="lesson_progress-bar-completed" style="width: 5%;"
+                                    ng-style="{'width':{{lesson.progress}} + '%'}">
                                 </div>
                             </div>
                         </div>
@@ -48,78 +50,6 @@
                     <div class="panel-collapse in">
                         <div class="panel-body">
                             <button type="button" class="btn red" ui-sref="course.lesson.exercise({courseId: 1, lessonId: 1, exerciseId: 1})">Start Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <div class="accordion-toggle accordion-toggle-styled">
-                                Lesson 2 </div>
-                        </h4>
-
-                        <div class="lesson_progress">
-                                <span class="lesson_progress-percentage">
-                                35%
-                                </span>
-                            <div class="lesson_progress-bar">
-                                <div class="lesson_progress-bar-completed" style="width: 35%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-collapse in">
-                        <div class="panel-body">
-                            <button type="button" class="btn red">Start Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <div class="accordion-toggle accordion-toggle-styled">
-                                Lesson 3 </div>
-                        </h4>
-
-                        <div class="lesson_progress">
-                                <span class="lesson_progress-percentage">
-                                55%
-                                </span>
-                            <div class="lesson_progress-bar">
-                                <div class="lesson_progress-bar-completed" style="width: 55%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-collapse in">
-                        <div class="panel-body">
-                            <button type="button" class="btn red">Start Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <div class="accordion-toggle accordion-toggle-styled">
-                                Lesson 4 </div>
-                        </h4>
-
-                        <div class="lesson_progress">
-                                <span class="lesson_progress-percentage">
-                                75%
-                                </span>
-                            <div class="lesson_progress-bar">
-                                <div class="lesson_progress-bar-completed" style="width: 75%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-collapse in">
-                        <div class="panel-body">
-                            <button type="button" class="btn red">Start Now</button>
                         </div>
                     </div>
                 </div>
