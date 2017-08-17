@@ -24,16 +24,18 @@ app.config(['$httpProvider', function ($httpProvider) {
 	}
 }]);
 
-app.controller('baseCtrl', ['$scope', 'settings', '$state', 'authService', function (
-	$scope, settings, $state, authService) {
+app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (
+	$scope, $rootScope, settings, $state, authService) {
 
 	$scope.currentUser = null;
+	$scope.authReady = false;
 
 	authService.tryPreviousSession(function (result) {
 		$scope.isLoggedIn = result;
 		if (result) {
 			$scope.currentUser = authService.getCurrentUser();
 		}
+		$scope.authReady = true;
 	});
 
 	$scope.logout = function () {
@@ -42,7 +44,8 @@ app.controller('baseCtrl', ['$scope', 'settings', '$state', 'authService', funct
 		$state.go('home');
 	}
 
-	$scope.changeLoginState = function (val) {
-		$scope.isLoggedIn = val;
-	}
+	$scope.$on("user:loggedin", function () {
+		$scope.isLoggedIn = true;
+		$scope.currentUser = authService.getCurrentUser();
+	});
 }]);

@@ -28,7 +28,6 @@ firstCourseModule.run(function ($cookies, $state, settings) {
 })
 
 firstCourseModule.controller('firstCourseCtrl', ['$scope', function ($scope) {
-	$scope.changeLoginState(true);
 }]);
 
 firstCourseModule.controller('firstCourse.Introduction.Ctrl', ['$scope', '$state', function ($scope, $state) {

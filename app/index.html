@@ -11,9 +11,9 @@
 
     <title>Interactive Machine Learning</title>
     <link href="build/main.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <link data-name="vs/editor/editor.main" rel="stylesheet" href="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/editor/editor.main.css">
     <script src="https://microsoft.github.io/monaco-editor/node_modules/monaco-editor/min/vs/loader.js"></script>
@@ -30,7 +30,7 @@
             <div class="container">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html"><img src="img/logo-default.png" alt="logo" class="logo-default"></a>
+                    <a ui-sref="home"><img src="img/fundaml_logo.png" alt="logo" class="logo-default"></a>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -140,7 +140,8 @@
             <div class="container">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html"><img src="img/logo-default.png" alt="logo" class="logo-default"></a>
+                    <a ui-sref="home"><img style="object-fit:cover"
+                         src="img/fundaml_logo.png" alt="logo" class="logo-default"></a>
                 </div>
                 <!-- END LOGO -->
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -150,14 +151,14 @@
                 <div class="top-menu">
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN NOTIFICATION DROPDOWN -->
-                        <li><a ui-sref="login">Log In</a></li>
+                        <li><a ui-sref="login">Đăng nhập</a></li>
                         <!-- END NOTIFICATION DROPDOWN -->
 
                         <li class="droddown dropdown-separator">
                             <span class="separator"></span>
                         </li>
                         <!-- BEGIN INBOX DROPDOWN -->
-                        <li><a ui-sref="registration">Register</a></li>
+                        <li><a ui-sref="registration">Đăng ký</a></li>
                         <!-- END USER LOGIN DROPDOWN -->
                     </ul>
                 </div>
@@ -190,7 +191,7 @@
         <!-- END HEADER MENU -->
     </div>
 
-    <div class="container" ui-view></div>
+    <div class="container" ui-view ng-show="authReady"></div>
 
     <script src="build/vendor.js"></script>
     <script src="build/main.js"></script>

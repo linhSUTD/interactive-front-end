@@ -3,233 +3,108 @@
         <li>
             <a ui-sref="dashboard">Dashboard</a>
         </li>
-        <li>
-            <a ui-sref="course.introduction({courseId: 1})">Introduction to Machine Learning</a>
+        <li ng-show="course">
+            <a ui-sref="course.introduction({courseId: course.id})">{{course.title}}</a>
         </li>
         <li class="active">
-            Course Home
+            Trang chủ khóa học
         </li>
     </ul>
 
-    <div class="row">
-        <div class="sidebar col-md-3" style="margin-left: -15px;">
-            <ul class="list-group margin-bottom-25 sidebar-menu">
-                <li class="list-group-item clearfix"><a href="#syllabus-tab" du-smooth-scroll du-scrollspy><i class="fa fa-angle-right"></i>Syllabus</a></li>
-                <li class="list-group-item clearfix"><a href="#review-tab" du-smooth-scroll du-scrollspy><i class="fa fa-angle-right"></i>Rating and Review</a></li>
-            </ul>
+    <div class="row" style="margin-top: 35px;" ng-show="!!course">
+        <h2 style="margin-top:0">{{course.title}}</h2>
+        <h6 class="lead" style="font-size:16px">{{course.description}}</h6>
+        <hr/>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs font-green-sharp"></i>
+                <span class="caption-subject font-green-sharp bold uppercase">Danh sách bài</span>
+            </div>
+            <br/>
+        </div>
+        <div class="portlet-body">
+            <div class="panel panel-default" ng-repeat="lesson in lessons">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <div class="accordion-toggle accordion-toggle-styled">
+                            Lesson {{lesson.index}}
+                        </div>
+                    </h4>
+                    <p>{{lesson.description}}</p>
+
+                    <div class="lesson_progress">
+                        <span class="lesson_progress-percentage">
+                                {{lesson.progress}}%
+                            </span>
+                        <div class="lesson_progress-bar">
+                            <div class="lesson_progress-bar-completed" style="width: 5%;" ng-style="{'width':{{lesson.progress}} + '%'}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-collapse in">
+                    <div class="panel-body">
+                        <a class="btn red" ui-sref="course.lesson.exercise({courseId: course.id, lessonId: lesson.id, exerciseId: 1})">
+                            Vào bài
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-9">
-            <div class="row">
-                <h1>Interactive Machine Learning</h1>
-                <p class="lead">Learn machine learning from scratch with us!</p>
-                <hr/>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="pricing hover-effect">
-                        <div class="pricing-head">
-                            <h3>Lessons
-                            </h3>
-                            <h4>3
-                                      <span>
-                                         Completed
-                                      </span>
-                            </h4>
-                        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="portlet light">
+                <div class="portlet-title" id="review-tab">
+                    <div class="caption">
+                        <i class="fa fa-cogs font-green-sharp"></i>
+                        <span class="caption-subject font-green-sharp bold uppercase">Your Rating and Review</span>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="pricing hover-effect">
-                        <div class="pricing-head">
-                            <h3>Exercises
-                            </h3>
-                            <h4>10
-                                      <span>
-                                         Completed
-                                      </span>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="pricing hover-effect">
-                        <div class="pricing-head">
-                            <h3>XP
-                            </h3>
-                            <h4>100
-                                      <span>
-                                         Gained
-                                      </span>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" style="margin-top: 30px;">
-                <div class="portlet light">
-                    <div class="portlet-title" id="syllabus-tab">
-                        <div class="caption">
-                            <i class="fa fa-cogs font-green-sharp"></i>
-                            <span class="caption-subject font-green-sharp bold uppercase">Syllabus</span>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <div class="accordion-toggle accordion-toggle-styled">
-                                        Lesson 1
-                                    </div>
-                                </h4>
-
-                                <div class="lesson_progress">
-                                        <span class="lesson_progress-percentage">
-                                        5%
-                                        </span>
-                                    <div class="lesson_progress-bar">
-                                        <div class="lesson_progress-bar-completed" style="width: 5%;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel-collapse in">
-                                <div class="panel-body">
-                                    <button type="button" class="btn red" ui-sref="course.lesson({courseId: 1, lessonId: 1})">Start Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <div class="accordion-toggle accordion-toggle-styled">
-                                        Lesson 2 </div>
-                                </h4>
-
-                                <div class="lesson_progress">
-                                        <span class="lesson_progress-percentage">
-                                        35%
-                                        </span>
-                                    <div class="lesson_progress-bar">
-                                        <div class="lesson_progress-bar-completed" style="width: 35%;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-collapse in">
-                                <div class="panel-body">
-                                    <button type="button" class="btn red">Start Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <div class="accordion-toggle accordion-toggle-styled">
-                                        Lesson 3 </div>
-                                </h4>
-
-                                <div class="lesson_progress">
-                                        <span class="lesson_progress-percentage">
-                                        55%
-                                        </span>
-                                    <div class="lesson_progress-bar">
-                                        <div class="lesson_progress-bar-completed" style="width: 55%;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-collapse in">
-                                <div class="panel-body">
-                                    <button type="button" class="btn red">Start Now</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <div class="accordion-toggle accordion-toggle-styled">
-                                        Lesson 4 </div>
-                                </h4>
-
-                                <div class="lesson_progress">
-                                        <span class="lesson_progress-percentage">
-                                        75%
-                                        </span>
-                                    <div class="lesson_progress-bar">
-                                        <div class="lesson_progress-bar-completed" style="width: 75%;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-collapse in">
-                                <div class="panel-body">
-                                    <button type="button" class="btn red">Start Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" style="margin-top: 20px;">
-                <div class="portlet light">
-                    <div class="portlet-title" id="review-tab">
-                        <div class="caption">
-                            <i class="fa fa-cogs font-green-sharp"></i>
-                            <span class="caption-subject font-green-sharp bold uppercase">Your Rating and Review</span>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="table-scrollable">
-                            <table class="table table-striped table-advance table-hover">
-                                <tbody>
-                                <tr>
-                                    <td width="15%" style="text-align: center;">
+                <div class="portlet-body">
+                    <div class="table-scrollable">
+                        <table class="table table-striped table-advance table-hover">
+                            <tbody>
+                            <tr>
+                                <td width="15%" style="text-align: center;">
                                                         <span class="photo">
                                                             <img src="../../img/avatar2.jpg" class="img-circle" alt="">
                                                         </span>
-                                    </td>
-                                    <td width="70%">
-                                        Wonderful course, which helped me to learn some of the most important skills a learner can acquire: the knowledge how learning works, what influences it, and how to adjust it to achieve the best outcome.
-                                    </td>
-                                    <td width="15%">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <form action="javascript:;">
-                            <div class="form-group">
-                                    <select class="form-control" name="select">
-                                        <option value="">Select Rating</option>
-                                        <option value="1">1 star</option>
-                                        <option value="2">2 star</option>
-                                        <option value="3">3 star</option>
-                                        <option value="4">4 star</option>
-                                        <option value="4">5 star</option>
-                                    </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea class="form-control" rows="3=6" placeholder="Feedback"></textarea>
-                            </div>
-                            <button type="submit" class="btn green">Submit</button>
-                        </form>
+                                </td>
+                                <td width="70%">
+                                    Wonderful course, which helped me to learn some of the most important skills a learner can acquire: the knowledge how learning works, what influences it, and how to adjust it to achieve the best outcome.
+                                </td>
+                                <td width="15%">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+                    <form action="javascript:;">
+                        <div class="form-group">
+                            <select class="form-control" name="select">
+                                <option value="">Select Rating</option>
+                                <option value="1">1 star</option>
+                                <option value="2">2 star</option>
+                                <option value="3">3 star</option>
+                                <option value="4">4 star</option>
+                                <option value="4">5 star</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3=6" placeholder="Feedback"></textarea>
+                        </div>
+                        <button type="submit" class="btn green">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
