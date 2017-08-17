@@ -1,7 +1,7 @@
 /**
  * Created by nguyenlinh on 7/15/17.
  */
-var loginModule = angular.module('page.login', ['ngCookies']);
+var loginModule = angular.module('page.login', []);
 
 loginModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -13,24 +13,16 @@ loginModule.config(function ($stateProvider, $urlRouterProvider) {
 		})
 })
 
-loginModule.controller('loginCtrl', ['$scope', '$http', 'authService', 'settings', '$cookies', '$state',
-	function ($scope, $http, authService, settings, $cookies, $state) {
+loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$state',
+	function ($scope, authService, settings, $state) {
 
 		$scope.user = {};
 		$scope.login = function () {
-
 			authService.login($scope.user).then(function (response) {
-
-				$cookies.put('token', response.data.accessToken);
-
-				$cookies.put('expire', response.data.expiration);
-
-				$state.go('dashboard');
-
+				$scope.$emit("user:loggedin");
+				$state.go('home');
 			}, function (error) {
-
 				showPopUp(error.data.message);
-
 			})
 		}
 	}]);

@@ -13,13 +13,10 @@
                 <div class="product-item">
                     <div class="pi-img-wrapper">
                         <img ng-src="{{rCourse.coverImageUrl}}" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
                     </div>
                     <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
                     <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
+                    <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">View Course</a>
                     <div class="sticker sticker-sale"></div>
                 </div>
             </div>
@@ -131,4 +128,5 @@
     jQuery(document).ready(function () {
         Layout.initOWL();
     });
+
 </script>
