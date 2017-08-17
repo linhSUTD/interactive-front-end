@@ -10,11 +10,6 @@ lessonModule.config(function($stateProvider, $urlRouterProvider){
 			url: '/lesson/:lessonId',
 			templateUrl: '../../partials/lesson/lesson.html'
 		})
-		.state('course.lesson.exercise', {
-			url: '/exercise/:exerciseId',
-			controller: 'exerciseCtrl',
-			templateUrl: '../../partials/lesson/exercise.html'
-		})
 })
 
 lessonModule.controller('lessonCtrl', ['$scope', function($scope) {

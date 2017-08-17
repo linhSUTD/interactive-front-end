@@ -10,6 +10,9 @@ html, body {height: 100%;}
   height: 100%;
 }
 
+.portlet {
+  padding: 0px 0px 0px 0px;
+}
 /***
 Exercise Page
 ***/
@@ -404,4 +407,36 @@ Sidebar
 }
 .breadcrumb > .active {
   color: #e6400c;
+}
+
+/* OWL styles */
+.owl-buttons {
+  position: absolute;
+  top: -40px;
+  right: 10px;
+}
+.owl-buttons div {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin-left: 5px;
+  position: static;
+  border-radius: 26px !important;
+  text-indent: -100000px;
+}
+.owl-buttons .owl-prev {
+  background: #fff url(../img/fa-angles.png) no-repeat 8px 8px;
+}
+.owl-buttons .owl-next {
+  background: #fff url(../img/fa-angles.png) no-repeat -33px 8px;
+}
+.owl-buttons .owl-prev:hover {
+  background: #e84d1c url(../img/fa-angles.png) no-repeat 8px -31px;
+}
+.owl-buttons .owl-next:hover {
+  background: #e84d1c url(../img/fa-angles.png) no-repeat -33px -31px;
+}
+
+.fa-star {
+  color: #d49261
 }
