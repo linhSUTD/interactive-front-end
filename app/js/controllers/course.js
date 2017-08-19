@@ -26,12 +26,31 @@ courseModule.controller('courseIntroductionCtrl', [
 	'courseService',
 	'userService', function ($scope, $stateParams, $state, courseService, userService) {
 
+		function loadReviews() {
+			courseService.reviews($stateParams.courseId).then(res => {
+				$scope.reviews = res.data;
+			});
+		}
+
 		$scope.course = null;
 		$scope.author = null;
 		$scope.reviews = [];
 		$scope.enrolling = false;
 		$scope.lessons = [];
 		$scope.registration = null;
+
+		$scope.review_onSubmit = function () {
+			if (!$scope.reviewScore || !$scope.reviewTitle) {
+				return;
+			}
+
+			courseService.postReview($stateParams.courseId, $scope.reviewTitle, $scope.review, $scope.reviewScore).then(r => {
+				$scope.reviewScore = undefined;
+				$scope.review = null;
+				$scope.reviewTitle = null;
+				loadReviews();
+			});
+		}
 
 		$scope.onEnrollClick = function () {
 			if (user == null) {
@@ -52,6 +71,12 @@ courseModule.controller('courseIntroductionCtrl', [
 			$scope.course = res.data;
 		}, err => {
 		}).then(_ => {
+			userService.author($scope.course.authorId).then(r => {
+				$scope.author = r.data;
+			}, errA => {
+
+			});
+
 			if (!user || !$scope.course) {
 				return;
 			}
@@ -59,22 +84,13 @@ courseModule.controller('courseIntroductionCtrl', [
 			courseService.registration(user.id, $scope.course.id).then(r => {
 				$scope.registration = !r.data ? null : r.data;
 			});
-
-			userService.getAuthor($scope.course.authorId).then(r => {
-				$scope.author = r.data;
-			}, errA => {
-
-			});
 		});
 
 		courseService.lessons($stateParams.courseId).then(res => {
 			$scope.lessons = res.data;
 		});
 
-		courseService.reviews($stateParams.courseId).then(res => {
-			$scope.reviews = res.data;
-		});
-
+		loadReviews();
 
 	}]);
 

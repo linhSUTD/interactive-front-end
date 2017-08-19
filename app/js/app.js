@@ -21,7 +21,11 @@ var app = angular.module('mainApp', [
 app.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.defaults.headers.post = {
 		'Content-Type': undefined
-	}
+	};
+
+	$httpProvider.defaults.headers.put = {
+		'Content-Type': undefined
+	};
 }]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (

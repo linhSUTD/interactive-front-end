@@ -7,7 +7,7 @@ userModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('user', {
-			url: '/user/:userId',
+			url: '/user',
 			templateUrl: '../../partials/user/user.html'
 		})
 		.state('user.profile', {

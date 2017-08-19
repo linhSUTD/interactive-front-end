@@ -25,6 +25,14 @@ academicModule.factory('courseService', function ($http, $q, settings) {
             return $http.get(settings.apiUrl + "/course/" + id + "/reviews");
         },
 
+        postReview: function (id, title, detail, score) {
+            return $http.post(`${settings.apiUrl}/course/${id}/review`, convertToFormData({
+                title: title,
+                detail: detail || "",
+                score: score
+            }));
+        },
+
         registration: function (userId, courseId) {
             return $http.get(settings.apiUrl + "/user/" + userId + "/course/" + courseId);
         },

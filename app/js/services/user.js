@@ -6,8 +6,11 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 		getUser: function () {
 			return authService.getCurrentUser();
 		},
-		getAuthor: function (id) {
+		author: function (id) {
 			return $http.get(settings.apiUrl + "/user/" + id + "/author");
+		},
+		update: function (id, model) {
+			
 		}
 	}
 });

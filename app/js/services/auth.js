@@ -12,6 +12,11 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 		logout: function () {
 			logout();
 		},
+		refresh: function () {
+			return $http.get(settings.apiUrl + '/account/me').then(res => {
+				currentUser = res.data;
+			});
+		},
 		getCurrentUser: function () {
 			if (!currentUser) {
 				return null;

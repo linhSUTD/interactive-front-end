@@ -85,22 +85,15 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Password <span style="color:red;">*</span></label>
-                                                <input class="form-control" type="password" name="password" placeholder="Password" required ng-model="user.password">
+                                                <label class="control-label">Thông tin liên lạc</label>
+                                                <input type="text" placeholder="Cơ quan, địa chỉ..." class="form-control" ng-model="user.contact"/>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Mobile Number</label>
-                                                <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control" />
+                                                <label class="control-label">Giới tính</label>
+                                                <input type="text" placeholder="Nam, nữ..." class="form-control" ng-model="user.gender"/>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Occupation</label>
-                                                <input type="text" placeholder="Web Developer" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Website Url</label>
-                                                <input type="text" placeholder="http://www.mywebsite.com" class="form-control" />
-                                            </div>
+
                                             <div class="margiv-top-10">
                                                 <a class="btn green-haze" ng-click="updateUser()">
                                                     Save Changes </a>
