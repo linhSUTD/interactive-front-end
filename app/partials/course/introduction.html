@@ -2,7 +2,7 @@
 
     <ul class="page-breadcrumb breadcrumb" ng-show="!!course">
         <li>
-            <a href="javascript:void()">Home</a>
+            <a ui-sref="home">Trang chủ</a>
         </li>
         <li class="active">
             {{course.title}}
@@ -85,7 +85,7 @@
                                             <span class="fa fa-gift"> </span> Kiến thức
                                         </td>
                                         <td width="70%">
-                                            Machine Learning, Python...
+                                            {{course.category}}
                                         </td>
                                     </tr>
                                     <tr>

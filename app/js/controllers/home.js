@@ -12,9 +12,9 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 		});
 })
 
-homeModule.controller('homeCtrl', ['$scope', '$http', 'courseService', function ($scope, $http, courseService) {
+homeModule.controller('homeCtrl', ['$scope', '$http', '$course', function ($scope, $http, $course) {
 
-	courseService.recentCourses(null, null, 10, "descending").then(function (response) {
+	$course.recentCourses(null, null, 10, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
 		}

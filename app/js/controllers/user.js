@@ -1,6 +1,3 @@
-/**
- * Created by nguyenlinh on 8/10/17.
- */
 var userModule = angular.module('page.user', ['duScroll']);
 
 userModule.config(function ($stateProvider, $urlRouterProvider) {

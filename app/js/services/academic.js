@@ -1,6 +1,6 @@
 var academicModule = angular.module('service.academic', []);
 
-academicModule.factory('courseService', function ($http, $q, settings) {
+academicModule.factory('$course', function ($http, $q, settings) {
     return {
         recentCourses: function (before, after, limit, sort) {
             return $http.get(settings.apiUrl + '/course', {
@@ -51,4 +51,24 @@ academicModule.factory('courseService', function ($http, $q, settings) {
             });
         }
     }
+});
+
+academicModule.factory('$lesson', function ($http, $q, settings) {
+    return {
+        get: function (id) {
+            return $http.get(`${settings.apiUrl}/lesson/${id}`);
+        },
+
+        exercises: function (id) {
+            return $http.get(`${settings.apiUrl}/lesson/${id}/exercises`);
+        },
+
+        progress: function (userId, id) {
+            return $http.get(`${settings.apiUrl}/lesson/${id}/progress`, {
+                params: {
+                    userId: userId
+                }
+            });
+        }
+    };
 });

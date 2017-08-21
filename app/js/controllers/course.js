@@ -23,11 +23,11 @@ courseModule.controller('courseIntroductionCtrl', [
 	'$scope',
 	'$stateParams',
 	'$state',
-	'courseService',
-	'userService', function ($scope, $stateParams, $state, courseService, userService) {
+	'$course',
+	'userService', function ($scope, $stateParams, $state, $course, userService) {
 
 		function loadReviews() {
-			courseService.reviews($stateParams.courseId).then(res => {
+			$course.reviews($stateParams.courseId).then(res => {
 				$scope.reviews = res.data;
 			});
 		}
@@ -44,7 +44,7 @@ courseModule.controller('courseIntroductionCtrl', [
 				return;
 			}
 
-			courseService.postReview($stateParams.courseId, $scope.reviewTitle, $scope.review, $scope.reviewScore).then(r => {
+			$course.postReview($stateParams.courseId, $scope.reviewTitle, $scope.review, $scope.reviewScore).then(r => {
 				$scope.reviewScore = undefined;
 				$scope.review = null;
 				$scope.reviewTitle = null;
@@ -59,7 +59,7 @@ courseModule.controller('courseIntroductionCtrl', [
 			}
 
 			if (!$scope.registration) {
-				courseService.register(user.id, $scope.course.id);
+				$course.register(user.id, $scope.course.id);
 			}
 
 			$state.go('course.home', { courseId: $scope.course.id });
@@ -67,7 +67,7 @@ courseModule.controller('courseIntroductionCtrl', [
 
 		var user = userService.getUser();
 
-		courseService.get($stateParams.courseId).then(res => {
+		$course.get($stateParams.courseId).then(res => {
 			$scope.course = res.data;
 		}, err => {
 		}).then(_ => {
@@ -81,12 +81,12 @@ courseModule.controller('courseIntroductionCtrl', [
 				return;
 			}
 
-			courseService.registration(user.id, $scope.course.id).then(r => {
+			$course.registration(user.id, $scope.course.id).then(r => {
 				$scope.registration = !r.data ? null : r.data;
 			});
 		});
 
-		courseService.lessons($stateParams.courseId).then(res => {
+		$course.lessons($stateParams.courseId).then(res => {
 			$scope.lessons = res.data;
 		});
 
@@ -100,7 +100,7 @@ courseModule.controller('courseHomePageCtrl', [
 	'$state',
 	'$stateParams',
 	'userService',
-	'courseService', function ($q, $scope, $state, $stateParams, userService, courseService) {
+	'$course', function ($q, $scope, $state, $stateParams, userService, $course) {
 
 		var user = userService.getUser();
 		if (!user) {
@@ -116,11 +116,11 @@ courseModule.controller('courseHomePageCtrl', [
 		function init() {
 			var defer = $q.defer();
 
-			var progressPromise = courseService.progress(user.id, $stateParams.courseId).then(res => {
+			var progressPromise = $course.progress(user.id, $stateParams.courseId).then(res => {
 				progress = res.data;
 			}, errC => defer.reject(errC));
 
-			var lessonPromise = courseService.lessons($stateParams.courseId).then(res => {
+			var lessonPromise = $course.lessons($stateParams.courseId).then(res => {
 				lessons = res.data;
 			}, errL => defer.reject(errL));
 
@@ -146,7 +146,7 @@ courseModule.controller('courseHomePageCtrl', [
 			$scope.lessons = lessons;
 		});
 
-		courseService.get($stateParams.courseId).then(res => {
+		$course.get($stateParams.courseId).then(res => {
 			$scope.course = res.data;
 		});
 	}]);
