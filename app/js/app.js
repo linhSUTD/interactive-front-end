@@ -18,7 +18,7 @@ var app = angular.module('mainApp', [
 	'ngCookies'
 ]);
 
-app.config(['$httpProvider', function ($httpProvider) {
+app.config(['$httpProvider', '$stateProvider', function ($httpProvider, $stateProvider) {
 	$httpProvider.defaults.headers.post = {
 		'Content-Type': undefined
 	};
@@ -26,6 +26,12 @@ app.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.defaults.headers.put = {
 		'Content-Type': undefined
 	};
+
+	$stateProvider
+		.state('default', {
+			url: '/auth',
+			template: '<div></div>'
+		});
 }]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (
@@ -34,19 +40,23 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 	$scope.currentUser = null;
 	$scope.authReady = false;
 
+	console.log($state.current.name);
+
 	authService.tryPreviousSession(function (result) {
 		$scope.isLoggedIn = result;
 		if (result) {
 			$scope.currentUser = authService.getCurrentUser();
 		}
 		$scope.authReady = true;
+
+		$rootScope.$broadcast("auth:ready");
 	});
 
 	$scope.logout = function () {
 		authService.logout();
 		$scope.isLoggedIn = false;
 		$state.go('home');
-	}
+	};
 
 	$scope.$on("user:loggedin", function () {
 		$scope.isLoggedIn = true;

@@ -12,7 +12,23 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 		});
 })
 
-homeModule.controller('homeCtrl', ['$scope', '$http', '$course', function ($scope, $http, $course) {
+homeModule.controller('homeCtrl', ['$scope', '$course', 'userService', '$state', function ($scope, $course, userService, $state) {
+	function checkAuth() {
+		var user = userService.getUser();
+
+		if (!!user) {
+			$state.go('dashboard');
+			return true;
+		}
+
+		return false;
+	}
+
+	if (checkAuth()) {
+		return;
+	}
+
+	$scope.$on("auth:ready", checkAuth);
 
 	$course.recentCourses(null, null, 10, "descending").then(function (response) {
 		if (response.status >= 400) {

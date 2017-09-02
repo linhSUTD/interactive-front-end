@@ -52,59 +52,16 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="courses-in-progress">
-                        <div class="col-md-3 col-sm-6">
+                    <div class="tab-pane active" id="courses-in-progress" >
+                        <div class="col-md-3 col-sm-6" ng-repeat="rCourse in recentCourses">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
+                                    <img ng-src="{{rCourse.coverImageUrl}}" class="img-responsive" alt="Berry Lace Dress">
                                 </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
+                                <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
                                 <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Continue</a>
+                                <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">View Course</a>
                                 <div class="sticker sticker-sale"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Continue</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../img/products/model6.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Continue</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
-                                </div>
-                                <h3><a href="#">Berry Lace Dress4</a></h3>
-                                <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Continue</a>
-                                <div class="sticker sticker-new"></div>
                             </div>
                         </div>
                     </div>

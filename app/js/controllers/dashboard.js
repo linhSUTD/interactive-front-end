@@ -1,8 +1,4 @@
-/**
- * Created by nguyenlinh on 7/18/17.
- */
-
-var dashboardModule = angular.module('page.dashboard', ['ngCookies']);
+var dashboardModule = angular.module('page.dashboard', ['ngCookies', 'service.academic']);
 
 dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -12,13 +8,35 @@ dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 			controller: 'dashboardCtrl',
 			templateUrl: '../../partials/dashboard.html'
 		})
-})
+});
 
-dashboardModule.run(function ($cookies, $state, settings) {
-	//if (!$cookies.get('token')) {
-	//	window.location = settings.webUrl + settings.pageUrl.HOME;
-	//}
-})
+dashboardModule.controller('dashboardCtrl', ['$scope', '$state', '$course', 'userService', function ($scope, $state, $course, userService) {
+	function checkAuth() {
+		var user = userService.getUser();
 
-dashboardModule.controller('dashboardCtrl', ['$scope', function ($scope) {
+		if (!user) {
+			$state.go('home');
+			return false;
+		}
+
+		return true;
+	}
+
+	$scope.$on("auth:ready", checkAuth);
+
+	if (!checkAuth()) {
+		return;
+	}
+
+	$course.recentCourses(null, null, 10, "descending").then(function (response) {
+		if (response.status >= 400) {
+			return;
+		}
+
+		$scope.recentCourses = response.data;
+
+		setTimeout(function () {
+			$('.owl-carousel').trigger('refresh.owl.carousel');
+		}, 1000);
+	});
 }]);
