@@ -52,10 +52,10 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 				$cookies.put('token', r.data.accessToken);
 				$http.defaults.headers.common['Authorization'] = "Bearer " + r.data.accessToken;
 				return $http.get(settings.apiUrl + '/account/me');
-			}, _ => defer.reject()).then(r2 => {
+			}, err => defer.reject(err)).then(r2 => {
 				currentUser = r2.data;
 				defer.resolve();
-			}, _ => defer.reject());
+			}, _ => defer.reject(_));
 
 			return defer.promise;
 		},
