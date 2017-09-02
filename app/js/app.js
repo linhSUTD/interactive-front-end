@@ -4,6 +4,7 @@ var app = angular.module('mainApp', [
 	'config',
 	'ui.router',
 	'page.home',
+	'page.courses',
 	'page.login',
 	'page.registration',
 	'page.forgotPassword',
