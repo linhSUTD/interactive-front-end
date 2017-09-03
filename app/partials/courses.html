@@ -54,8 +54,45 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
+                <div class="row margin-bottom-40" ng-show="state=='searched'">
+
+                    <div class="col-md-4" ng-repeat="rCourse in searchResults">
+                        <div class="pricing hover-effect">
+                            <div class="pricing-head">
+                                <h3> {{rCourse.title}}</h3>
+                                <h5>{{rCourse.description}}</h5>
+                            </div>
+                            <ul class="pricing-content list-unstyled">
+                                <li>
+                                    <i class="fa fa-tags"></i> {{rCourse.level}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-asterisk"></i> 15 lessons
+                                </li>
+                                <li>
+                                    <i class="fa fa-heart"></i> 100 exercises
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i> FREE
+                                </li>
+                            </ul>
+                            <div class="pricing-footer" ng-hide="!rCourse.author">
+                                <div class="row">
+                                    <img ng-src="{{rCourse.author.avatarUrl}}" class="img-circle" alt="" style="float: left;width:45px;height:45px">
+
+                                    <div style="float: left; padding-left: 10px; margin-top: -6px;">
+                                        <h5 class="bold">{{rCourse.author.name}}</h5>
+                                        <h5>{{rCourse.author.title}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
