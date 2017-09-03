@@ -8,6 +8,8 @@
     "angular-markdown-directive": "^0.3.1",
     "angular-sanitize": "^1.6.5",
     "angular-scroll": "^1.0.2",
+    "angular-ui-bootstrap": "^2.5.0",
+    "gulp-concat-css": "^2.3.0",
     "js-angular-markdown": "^1.0.1",
     "node-sass": "^4.5.3",
     "save": "^2.3.1",

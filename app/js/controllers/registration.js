@@ -1,7 +1,7 @@
 /**
  * Created by nguyenlinh on 7/15/17.
  */
-var registrationModule = angular.module('page.registration', []);
+var registrationModule = angular.module('page.registration', ['ui.bootstrap']);
 
 registrationModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -17,12 +17,34 @@ registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'set
 	$scope, authService, settings, $state) {
 
 	$scope.user = {};
+
+	$scope.alerts = {};
+
+	$scope.hasAlert = false;
+
 	$scope.register = function () {
+
+		$scope.user.activationUrl = settings.activationUrl;
+
 		authService.register($scope.user).then(function (response) {
 			$scope.$emit("user:loggedin");
-			$state.go('home');
-		}, function (error) {
-			showPopUp("Error! " + error.data.message);
+			$scope.alert = {
+				type: 'success',
+				msg: 'Đăng ký thành công! Chúng tôi đã gửi email xác nhận cho bạn.'
+			}
+			$scope.hasAlert = true;
+		}, function (error, msg) {
+
+			$scope.alert = {
+				type: 'danger',
+				msg: error.data.message
+			}
+			$scope.hasAlert = true;
 		});
 	}
+
+	$scope.closeAlert = function() {
+		$scope.hasAlert = false;
+		$scope.alert = {};
+	};
 }]);

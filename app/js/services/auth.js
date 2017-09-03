@@ -68,6 +68,13 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 		},
 		resetPassword: function (data) {
 			return $http.post(settings.apiUrl + '/resetPassword', data);
+		},
+		activateAccount: function(data) {
+			console.log(data);
+
+			console.log(convertToFormData(data));
+
+			return $http.post(`${settings.apiUrl}/account/activate`, convertToFormData(data));
 		}
 	}
 });

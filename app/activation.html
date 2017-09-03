@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="build/main.css" rel="stylesheet">
+    <link href="build/vendor.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body ng-app="activationApp" ng-controller="activationCtrl">
+
+    <div class="container" style="padding: 15px 0 15px;">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                    <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="build/vendor.js"></script>
+    <script src="build/main.js"></script>
+</body>
+
+</html>

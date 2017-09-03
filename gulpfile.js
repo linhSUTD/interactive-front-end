@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var cssconcat = require('gulp-concat-css');
 var sass = require('gulp-sass');
 var cssmin = require('gulp-cssmin');
 var gulpif = require('gulp-if');
@@ -20,9 +21,19 @@ gulp.task('vendor', function(){
 		"node_modules/angular-ui-router/release/angular-ui-router.min.js",
 		"node_modules/angular-sanitize/angular-sanitize.min.js",
 		"node_modules/angular-markdown-directive/markdown.js",
-		"node_modules/angular-scroll/angular-scroll.min.js"
+		"node_modules/angular-scroll/angular-scroll.min.js",
+		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js",
+		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"
 	]).pipe(concat('vendor.js'))
 		.pipe(gulpif(production, uglify({mangle:false})))
+		.pipe(gulp.dest('app/build'));
+})
+
+/// Bundle CSS Libraries
+gulp.task('css-vendor', function(){
+	return gulp.src([
+	]).pipe(cssconcat('vendor.css'))
+		.pipe(gulpif(production, cssmin()))
 		.pipe(gulp.dest('app/build'));
 })
 
@@ -42,6 +53,7 @@ gulp.task('scripts', function () {
 	return gulp.src([
 			'app/js/utils/**/*.js',
 			'app/js/config.js',
+			'app/js/activation.js',
 			'app/js/app.js',
 			'app/js/controllers/**/*.js',
 			'app/js/directives/**/*.js',
@@ -63,4 +75,4 @@ gulp.task('styles', function(){
 })
 
 
-gulp.task('default', ['vendor', 'styles', 'scripts', 'serve']);
+gulp.task('default', ['vendor', 'css-vendor', 'styles', 'scripts', 'serve']);
