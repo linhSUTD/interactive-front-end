@@ -36,9 +36,5 @@ homeModule.controller('homeCtrl', ['$scope', '$course', 'userService', '$state',
 		}
 
 		$scope.recentCourses = response.data;
-
-		setTimeout(function () {
-			$('.owl-carousel').trigger('refresh.owl.carousel');
-		}, 1000);
 	});
 }]);

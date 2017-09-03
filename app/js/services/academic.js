@@ -49,6 +49,19 @@ academicModule.factory('$course', function ($http, $q, settings) {
                     userId: userId
                 }
             });
+        },
+
+        search: function (query, categories, levels, before, after, limit) {
+            return $http.get(`${settings.apiUrl}/course/search`, {
+                params: {
+                    query: query,
+                    categories: categories,
+                    levels: levels,
+                    before: before,
+                    after: after,
+                    limit: limit
+                }
+            });
         }
     }
 });

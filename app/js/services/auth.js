@@ -60,18 +60,8 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 			return defer.promise;
 		},
 		register: function (data) {
-			var defer = $q.defer();
 			var promise = $http.post(settings.apiUrl + '/account', convertToFormData(data));
-			promise.then(r => {
-				$cookies.put('token', r.data.accessToken);
-				$http.defaults.headers.common['Authorization'] = "Bearer " + r.data.accessToken;
-				return $http.get(settings.apiUrl + '/account/me');
-			}, _ => defer.reject()).then(r2 => {
-				currentUser = r2.data;
-				defer.resolve();
-			}, _ => defer.reject());
-
-			return defer.promise;
+			return promise;
 		},
 		forgotPassword: function (data) {
 			return $http.post(settings.apiUrl + '/forgotPassword', data);
