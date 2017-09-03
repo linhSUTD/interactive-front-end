@@ -85,3 +85,11 @@ academicModule.factory('$lesson', function ($http, $q, settings) {
         }
     };
 });
+
+academicModule.factory('$exercise', function ($http, $q, settings) {
+    return {
+        get: function (id) {
+            return $http.get(`${settings.apiUrl}/exercise/${id}`);
+        }
+    };
+});

@@ -11,12 +11,14 @@ lessonModule.config(function ($stateProvider, $urlRouterProvider) {
 })
 
 lessonModule.controller('lessonCtrl', [
+	'$timeout',
 	'$state',
 	'$scope',
 	'$stateParams',
 	'$q',
 	'userService',
-	'$lesson', function ($state, $scope, $stateParams, $q, userService, $lesson) {
+	'$exercise',
+	'$lesson', function ($timeout, $state, $scope, $stateParams, $q, userService, $exercise, $lesson) {
 
 		var progress = {};
 		var user = userService.getUser();
@@ -59,13 +61,47 @@ lessonModule.controller('lessonCtrl', [
 			return defer.promise;
 		}
 
+		function initializeExercise() {
+			$("#editor-tab").empty();
+
+			$scope.exercise = null;
+			$scope.output = null;
+			$scope.graphPayload = null;
+
+			var editor = CodeMirror(document.getElementById("editor-tab"), {
+				value: "",
+				fullScreen: false,
+				lineNumbers: true,
+				mode: "python"
+			});
+
+			editor.setSize(null, "100%");
+
+			$exercise.get($scope.selectedModule.data.id).then(res => {
+				if (!res.data) {
+					return;
+				}
+
+				$scope.exercise = res.data;
+				editor.setValue(res.data.sampleCode);
+			});
+		}
+
 		$scope.lesson = null;
 		$scope.outline = [];
 		$scope.exerciseSummaries = [];
 		$scope.selectedModule = null;
 
+		$scope.onItemSelect = function (item) {
+			$('#lesson-outline').modal('toggle');
+			$scope.selectedModule = item;
+
+			if (item.type == "exercise") {
+				$timeout(initializeExercise, 0);
+			}
+		}
+
 		init().then(ol => {
-			console.log(ol);
 			$scope.outline = ol;
 			$scope.selectedModule = $scope.outline[parseInt($stateParams.index)];
 		});

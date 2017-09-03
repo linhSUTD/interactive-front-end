@@ -14,9 +14,11 @@ directiveModule.directive("markdown", function () {
             //DOM manipulation
             $attrs.$observe("ngDataSrc", function (newValue) {
                 $element.html(converter.makeHtml($attrs.ngDataSrc || ""));
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, $element[0]]);
             });
 
             $element.html(converter.makeHtml($attrs.ngDataSrc || ""));
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, $element[0]]);
         }
     };
 });

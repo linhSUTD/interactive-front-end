@@ -21,8 +21,9 @@
     </div>
 
     <div class="row parent_panel" style="margin-top: 90px;" ng-show="!!selectedModule && selectedModule.type=='exercise'">
-        <div class="instruction_panel">
-            <!-- <markdown ng-data-src="dsadsa" /> -->
+        <div class="instruction_panel" style="overflow-y:auto">
+            <h2 style="margin-top:5px">{{exercise.title}}</h2>
+            <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
         </div>
 
         <div class="interactive_panel">
@@ -36,58 +37,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" style="height: 90%; overflow: auto;">
-                                <div class="tab-pane active" id="editor-tab">
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                </div>
+                                <div class="tab-pane active" id="editor-tab"> </div>
                             </div>
                         </div>
                     </div>
@@ -109,72 +59,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content" style="height: 90%; overflow: auto;">
-                                <div class="tab-pane active" id="console-tab">
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
-                                    <p>
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis
-                                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                        consequat.
-                                    </p>
-                                </div>
-                                <div class="tab-pane" id="plots-tab">
-                                    <p>
-                                        Howdy, I'm in Section 2.
-                                    </p>
-                                    <p>
-                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-                                        Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                                    </p>
-                                    <p>
-                                        <a class="btn green" href="ui_tabs_accordions_navs.html#tab_1_1_2" target="_blank">
-                                            Activate this tab via URL </a>
-                                    </p>
-                                </div>
+                                <div class="tab-pane active" id="console-tab"></div>
                             </div>
                         </div>
                     </div>
@@ -208,7 +93,7 @@
                                             </td>
                                             <td width="20%">
                                                 <div class="btn-group btn-group-xs btn-group-solid">
-                                                    <button type="button" ng-class="!lItem.completed? 'btn red': 'btn green'">
+                                                    <button type="button" ng-class="!lItem.completed? 'btn red': 'btn green'" ng-click="onItemSelect(lItem)">
                                                         {{!lItem.completed? 'Begin': 'Retake'}}
                                                     </button>
                                                 </div>
