@@ -21,7 +21,7 @@
     </div>
 
     <div class="row parent_panel" style="margin-top: 90px;" ng-show="!!selectedModule && selectedModule.type=='exercise'">
-        <div class="instruction_panel" style="overflow: scroll;">
+        <div class="instruction_panel" style="overflow-y: auto; overflow-x: hidden;">
             <div class="instruction">
                 <h2 style="margin-top:5px">{{exercise.title}}</h2>
                 <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />

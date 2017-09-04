@@ -32,11 +32,27 @@ Exercise Page
   width: 50%;
   min-width: 35%;
   max-width: 65%;
+
 }
+
+.instruction_panel::-webkit-scrollbar
+{
+  width: 7px;
+  background-color: #F5F5F5;
+}
+
+.instruction_panel::-webkit-scrollbar:horizontal
+{
+  width: 7px;
+  background-color: #F5F5F5;
+}
+
+
 
 .instruction {
   padding: 10px 10px 10px 10px;
   height: 100%;
+  background: #fff;
 }
 
 .interactive_panel {
