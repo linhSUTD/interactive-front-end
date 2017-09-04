@@ -1,5 +1,9 @@
 var academicModule = angular.module('service.academic', []);
 
+academicModule.factory('$datacamp', function () {
+    return new DataCampService();
+});
+
 academicModule.factory('$course', function ($http, $q, settings) {
     return {
         recentCourses: function (before, after, limit, sort) {

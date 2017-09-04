@@ -108,7 +108,7 @@ Lesson Navigation
   transform: none;
   border: 1px solid #7ecce2;
   border-radius: 3px;
-  z-index: 50;
+  //z-index: 50;
   position: absolute;
   left: 50%;
   display: block;
@@ -446,3 +446,18 @@ Sidebar
   top: 11px;
 }
 
+.CodeMirror-fullscreen{
+  z-index: 100 !important;
+}
+
+.console-warning{
+  color: #ff9900;
+}
+
+.console-error{
+  color: #cc3300;
+}
+
+.console-output{
+  color: black;
+}

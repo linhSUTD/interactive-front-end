@@ -32,8 +32,9 @@
                     <div class="portlet-body" style="height: inherit">
                         <div class="tabbable-custom nav-justified" style="height: inherit;">
                             <ul class="nav nav-tabs nav-justified">
-                                <li class="active">
-                                    <a href="#editor-tab" data-toggle="tab" target="_self"> Editor </a>
+                                <li class="active" style="border-bottom:1px solid lightgray">
+                                    <a href="#editor-tab" data-toggle="tab" target="_self"> Editor (nhấn F11 để phóng to) </a>
+                                    <button class="btn green-haze" ng-click="submitcode()">Nộp bài</button>
                                 </li>
                             </ul>
                             <div class="tab-content" style="height: 90%; overflow: auto;">
@@ -58,8 +59,13 @@
                                         Plots </a>
                                 </li>
                             </ul>
-                            <div class="tab-content" style="height: 90%; overflow: auto;">
-                                <div class="tab-pane active" id="console-tab"></div>
+                            <div class="tab-content" id="outputWindow" style="height: 90%; overflow: auto;">
+                                <div class="tab-pane active" id="console-tab">
+                                    <pre ng-class="outputClass(resultType)">{{output}}</pre> 
+                                </div>
+                                <div class="tab-pane" id="plots-tab">
+                                    <img ng-src="{{graphPayload}}" alt="graph" ng-show="!!graphPayload">
+                                </div>
                             </div>
                         </div>
                     </div>
