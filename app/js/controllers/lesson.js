@@ -130,6 +130,8 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	}
 
 	function setResult() {
+		console.log(resultState);
+
 		$scope.output = resultState.outputText;
 		$scope.graphPayload = resultState.outputGraph;
 		$scope.resultType = resultState.type;

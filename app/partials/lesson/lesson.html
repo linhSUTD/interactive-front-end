@@ -61,7 +61,7 @@
                             </ul>
                             <div class="tab-content" id="outputWindow" style="height: 90%; overflow: auto;">
                                 <div class="tab-pane active" id="console-tab">
-                                    <pre ng-class="outputClass(resultType)">{{output}}</pre> 
+                                    <pre ng-show="!!output" ng-class="outputClass(resultType)">{{output}}</pre> 
                                 </div>
                                 <div class="tab-pane" id="plots-tab">
                                     <img ng-src="{{graphPayload}}" alt="graph" ng-show="!!graphPayload">
