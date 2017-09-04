@@ -1,4 +1,4 @@
-<div style="position: relative; height: 100%">
+<div style="position: relative; height: 100%; width: 100%;">
     <div class="row">
         <div class="navigation-buttons-center">
             <a class="navigation-left">
@@ -21,9 +21,11 @@
     </div>
 
     <div class="row parent_panel" style="margin-top: 90px;" ng-show="!!selectedModule && selectedModule.type=='exercise'">
-        <div class="instruction_panel" style="overflow-y:auto">
-            <h2 style="margin-top:5px">{{exercise.title}}</h2>
-            <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
+        <div class="instruction_panel" style="overflow: scroll;">
+            <div class="instruction">
+                <h2 style="margin-top:5px">{{exercise.title}}</h2>
+                <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
+            </div>
         </div>
 
         <div class="interactive_panel">
@@ -33,10 +35,13 @@
                         <div class="tabbable-custom nav-justified" style="height: inherit;">
                             <ul class="nav nav-tabs nav-justified">
                                 <li class="active" style="border-bottom:1px solid lightgray">
-                                    <a href="#editor-tab" data-toggle="tab" target="_self"> Editor (nhấn F11 để phóng to) </a>
-                                    <button class="btn green-haze" ng-click="submitcode()">Nộp bài</button>
+                                    <a href="#editor-tab" data-toggle="tab" target="_self">
+                                        Editor (nhấn F11 để phóng to)
+                                        <button class="btn btn-default btn-sm green-haze" ng-click="submitcode()" style="float: right; margin-top: -4px;">Nộp bài</button>
+                                    </a>
                                 </li>
                             </ul>
+
                             <div class="tab-content" style="height: 90%; overflow: auto;">
                                 <div class="tab-pane active" id="editor-tab"> </div>
                             </div>
@@ -122,10 +127,10 @@
         jQuery(document).ready(function () {
             $(".instruction_panel").resizable();
             $('.instruction_panel').resize(function () {
-                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width());
+                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width() - 10);
             });
             $(window).resize(function () {
-                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width());
+                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width() - 10);
                 $('.instruction_panel').height($(".parent_panel").height());
             });
 

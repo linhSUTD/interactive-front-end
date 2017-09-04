@@ -30,8 +30,13 @@ Exercise Page
   float: left;
   height: 100%;
   width: 50%;
-  min-width: 30%;
-  max-width: 70%;
+  min-width: 35%;
+  max-width: 65%;
+}
+
+.instruction {
+  padding: 10px 10px 10px 10px;
+  height: 100%;
 }
 
 .interactive_panel {

@@ -1,105 +1,107 @@
-<div class="row" style="margin-top: 30px;">
-    <div class="col-md-12">
-        <!-- BEGIN INLINE NOTIFICATIONS PORTLET-->
-        <div class="portlet light">
-            <div class="portlet-body">
+<div class="container" style="padding: 15px 0 15px;">
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-md-12">
+            <!-- BEGIN INLINE NOTIFICATIONS PORTLET-->
+            <div class="portlet light">
+                <div class="portlet-body">
 
-                <div class="row margin-bottom-40">
-                    <div class="col-md-12">
-                        <form role="form" ng-submit="onSearch()">
-                            <div class="form-group" id="search">
-                                <label style="cursor:pointer"><i class="fa fa-search" aria-hidden="true"></i></label>
-                                <input class="form-control" type="text" name="name" placeholder="What do you want to learn?" ng-model="query" style="border: 1px solid #E6EAEB; text-indent: 30px; height: 40px;"
-                                />
-                            </div>
-                        </form>
+                    <div class="row margin-bottom-40">
+                        <div class="col-md-12">
+                            <form role="form" ng-submit="onSearch()">
+                                <div class="form-group" id="search">
+                                    <label style="cursor:pointer"><i class="fa fa-search" aria-hidden="true"></i></label>
+                                    <input class="form-control" type="text" name="name" placeholder="What do you want to learn?" ng-model="query" style="border: 1px solid #E6EAEB; text-indent: 30px; height: 40px;"
+                                    />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row margin-bottom-30" style="text-align: center">
-                    <h1 class="h2 u-text-center mt-md mb-lg">{{header()}}</h1>
-                </div>
+                    <div class="row margin-bottom-30" style="text-align: center">
+                        <h1 class="h2 u-text-center mt-md mb-lg">{{header()}}</h1>
+                    </div>
 
-                <div class="row margin-bottom-40" ng-show="state=='recommended'">
+                    <div class="row margin-bottom-40" ng-show="state=='recommended'">
 
-                    <div class="col-md-4" ng-repeat="rCourse in recommendations">
-                        <div class="pricing hover-effect">
-                            <div class="pricing-head">
-                                <h3> {{rCourse.title}}</h3>
-                                <h5>{{rCourse.description}}</h5>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li>
-                                    <i class="fa fa-tags"></i> {{rCourse.level}}
-                                </li>
-                                <li>
-                                    <i class="fa fa-asterisk"></i> 15 lessons
-                                </li>
-                                <li>
-                                    <i class="fa fa-heart"></i> 100 exercises
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i> FREE
-                                </li>
-                            </ul>
-                            <div class="pricing-footer" ng-hide="!rCourse.author">
-                                <div class="row">
-                                    <img ng-src="{{rCourse.author.avatarUrl}}" class="img-circle" alt="" style="float: left;width:45px;height:45px">
+                        <div class="col-md-4" ng-repeat="rCourse in recommendations">
+                            <div class="pricing hover-effect">
+                                <div class="pricing-head">
+                                    <h3> {{rCourse.title}}</h3>
+                                    <h5>{{rCourse.description}}</h5>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                    <li>
+                                        <i class="fa fa-tags"></i> {{rCourse.level}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-asterisk"></i> 15 lessons
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-heart"></i> 100 exercises
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> FREE
+                                    </li>
+                                </ul>
+                                <div class="pricing-footer" ng-hide="!rCourse.author">
+                                    <div class="row">
+                                        <img ng-src="{{rCourse.author.avatarUrl}}" class="img-circle" alt="" style="float: left;width:45px;height:45px">
 
-                                    <div style="float: left; padding-left: 10px; margin-top: -6px;">
-                                        <h5 class="bold">{{rCourse.author.name}}</h5>
-                                        <h5>{{rCourse.author.title}}</h5>
+                                        <div style="float: left; padding-left: 10px; margin-top: -6px;">
+                                            <h5 class="bold">{{rCourse.author.name}}</h5>
+                                            <h5>{{rCourse.author.title}}</h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-                </div>
+                    <div class="row margin-bottom-40" ng-show="state=='searched'">
 
-                <div class="row margin-bottom-40" ng-show="state=='searched'">
+                        <div class="col-md-4" ng-repeat="rCourse in searchResults">
+                            <div class="pricing hover-effect">
+                                <div class="pricing-head">
+                                    <h3> {{rCourse.title}}</h3>
+                                    <h5>{{rCourse.description}}</h5>
+                                </div>
+                                <ul class="pricing-content list-unstyled">
+                                    <li>
+                                        <i class="fa fa-tags"></i> {{rCourse.level}}
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-asterisk"></i> 15 lessons
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-heart"></i> 100 exercises
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> FREE
+                                    </li>
+                                </ul>
+                                <div class="pricing-footer" ng-hide="!rCourse.author">
+                                    <div class="row">
+                                        <img ng-src="{{rCourse.author.avatarUrl}}" class="img-circle" alt="" style="float: left;width:45px;height:45px">
 
-                    <div class="col-md-4" ng-repeat="rCourse in searchResults">
-                        <div class="pricing hover-effect">
-                            <div class="pricing-head">
-                                <h3> {{rCourse.title}}</h3>
-                                <h5>{{rCourse.description}}</h5>
-                            </div>
-                            <ul class="pricing-content list-unstyled">
-                                <li>
-                                    <i class="fa fa-tags"></i> {{rCourse.level}}
-                                </li>
-                                <li>
-                                    <i class="fa fa-asterisk"></i> 15 lessons
-                                </li>
-                                <li>
-                                    <i class="fa fa-heart"></i> 100 exercises
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i> FREE
-                                </li>
-                            </ul>
-                            <div class="pricing-footer" ng-hide="!rCourse.author">
-                                <div class="row">
-                                    <img ng-src="{{rCourse.author.avatarUrl}}" class="img-circle" alt="" style="float: left;width:45px;height:45px">
-
-                                    <div style="float: left; padding-left: 10px; margin-top: -6px;">
-                                        <h5 class="bold">{{rCourse.author.name}}</h5>
-                                        <h5>{{rCourse.author.title}}</h5>
+                                        <div style="float: left; padding-left: 10px; margin-top: -6px;">
+                                            <h5 class="bold">{{rCourse.author.name}}</h5>
+                                            <h5>{{rCourse.author.title}}</h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row" style="text-align: center;">
-            <button class="btn btn-default btn-lg" type="button" style="border: 1px solid #7ecce2;">
-                See all courses
-            </button>
+            <div class="row" style="text-align: center;">
+                <button class="btn btn-default btn-lg" type="button" style="border: 1px solid #7ecce2;">
+                    See all courses
+                </button>
+            </div>
         </div>
     </div>
 </div>
