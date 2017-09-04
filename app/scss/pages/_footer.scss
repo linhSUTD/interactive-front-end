@@ -1,0 +1,304 @@
+/***
+Pre-Footer and pre-footer elements
+***/
+.pre-footer {
+  background: #313030;
+  color: #b0b0b0;
+}
+.pre-footer h2 {
+  font: 400 21px "PT Sans Narrow", Arial, sans-serif;
+  margin: 0 0 8px;
+  color: #c2c1c1;
+  text-transform: uppercase;
+}
+.pre-footer .container {
+  padding-top: 45px;
+}
+.pre-footer a {
+  color: #57c8eb;
+}
+.pre-footer p {
+  margin-bottom: 20px;
+}
+.pre-footer li {
+  margin-bottom: 6px;
+}
+
+/* pre-footer twitter block */
+.pre-footer dl.f-twitter {
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+.pre-footer dl.f-twitter dt {
+  width: 30px;
+  float: left;
+  text-align: left;
+  padding-top: 2px;
+}
+.pre-footer dl.f-twitter dt i {
+  color: #57c8eb;
+  font-size: 20px;
+}
+.pre-footer dl.f-twitter dd {
+  color: #b0b0b0;
+  margin-left: 30px;
+}
+.pre-footer dl.f-twitter dd span {
+  color: #6b9cab;
+  font-size: 12px;
+  margin: 0 5px;
+}
+.pre-footer address {
+  line-height: 1.7;
+}
+.pre-footer-col {
+  padding-bottom: 22px;
+  padding-right: 50px;
+}
+.pre-footer .top-line {
+  border-top: solid 1px #535353;
+  padding-top: 24px;
+  padding-bottom: 17px;
+}
+.pre-footer .social-icons {
+  padding-top: 5px;
+}
+.pre-footer .social-icons li a,
+.pre-footer a.social-icon {
+  transition: all 0.1s ease-in-out !important;
+  -o-transition: all 0.1s ease-in-out !important;
+  -ms-transition: all 0.1s ease-in-out !important;
+  -moz-transition: all 0.1s ease-in-out !important;
+  -webkit-transition: all 0.1s ease-in-out !important;
+}
+.pre-footer .social-icons li a:hover {
+  opacity: 1;
+}
+
+.pre-footer hr {
+  margin-top: 0;
+  border-color: #404040;
+}
+.pre-footer .form-control,
+.pre-footer .form-control:focus {
+  border: none;
+}
+
+/* subscribe */
+.pre-footer .pre-footer-subscribe-box {
+  padding-bottom: 14px;
+  overflow: hidden;
+  max-width: 300px;
+}
+.pre-footer .pre-footer-subscribe-box p {
+  clear: both;
+}
+.pre-footer-subscribe-box .input-group {
+  border: solid 1px #545454;
+  padding: 1px 1px 0 0;
+}
+.pre-footer-light .pre-footer-subscribe-box .input-group {
+  border: solid 1px #DBDBDB;
+}
+.pre-footer-subscribe-box h2 {
+  padding-top: 7px;
+}
+.pre-footer-subscribe-box input {
+  border-radius: 0;
+  background: #313030;
+  border: solid 1px #313030;
+  color: #909090;
+  font: 13px Arial, sans-serif;
+}
+.pre-footer-subscribe-box input:focus {
+  box-shadow: none;
+  border: solid 1px #313030;
+}
+.pre-footer-subscribe-box .btn-primary {
+  margin-left: 0 !important;
+  border-bottom: none;
+  margin-bottom: 1px;
+}
+
+/* pre-footer photostream */
+.pre-footer .photo-stream li {
+  margin: 4px 5px 4px 0;
+  display: inline-block;
+}
+.pre-footer .photo-stream img {
+  width: 54px;
+  height: 54px;
+  border: solid 2px #9ca5ae;
+}
+.pre-footer .photo-stream img:hover {
+  border-color: #E84D1C;
+  transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+/* light pre-footer */
+.pre-footer-light {
+  background: #F9F9F9;
+  color: #3E4D5C;
+  margin-top: 20px;
+}
+.pre-footer-light .container {
+  background: #fff;
+  padding-top: 25px;
+}
+.pre-footer-light h2 {
+  color: #3E4D5C;
+}
+.pre-footer-light a {
+  color: #3E4D5C;
+}
+.pre-footer-light dl.f-twitter dd {
+  color: #3E4D5C;
+}
+.pre-footer-light dl.f-twitter dd span {
+  color: #99a5b1;
+}
+.pre-footer-light dl.f-twitter dd a {
+  color: #e84d1c;
+}
+
+.pre-footer-light address a {
+  color: #e84d1c;
+}
+
+.pre-footer-light hr {
+  border-color: #e6e6e6;
+}
+
+.pre-footer-light .social-icons li a {
+  opacity: 1;
+}
+.pre-footer-light .social-icons li a:hover {
+  opacity: 0.7;
+}
+
+.pre-footer-light .input-group {
+  border: none;
+  padding: 1px 1px 0 0;
+}
+.pre-footer-light .pre-footer-subscribe-box input {
+  background: #fff;
+  border: none;
+  color: #909090;
+}
+.pre-footer-light .pre-footer-subscribe-box button:hover {
+  color: #fff;
+}
+
+/* light pre-footer */
+.pre-footer-gray {
+  background: #62707F;
+  color: #fff;
+}
+.pre-footer-gray h2 {
+  color: #fff;
+}
+.pre-footer-gray dl.f-twitter dd {
+  color: #fff;
+}
+.pre-footer-gray dl.f-twitter dd span {
+  color: #fff;
+  opacity: 0.5;
+}
+
+.pre-footer-gray hr {
+  border-color: #94a5b6;
+}
+
+.pre-footer-gray .social-icons li a {
+  opacity: 1;
+}
+.pre-footer-gray .social-icons li a:hover {
+  opacity: 0.7;
+}
+
+.pre-footer-gray .pre-footer-subscribe-box fomr {
+  color: #fff;
+}
+.pre-footer-gray .pre-footer-subscribe-box .input-group {
+  border: 1px solid #94a5b6;
+}
+.pre-footer-gray .pre-footer-subscribe-box input {
+  background: #62707F;
+  border: solid 1px #62707F;
+  color: #fff;
+}
+.pre-footer-gray .pre-footer-subscribe-box input:focus {
+  border: solid 1px #62707F;
+}
+.pre-footer-gray ::-webkit-input-placeholder { /* WebKit browsers */
+  color: #fff;
+}
+.pre-footer-gray :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+}
+.pre-footer-gray ::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #fff;
+}
+.pre-footer-gray :-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #fff;
+}
+
+/* footer */
+.footer {
+  background: #272626;
+  color: #fff;
+  font-size: 12px;
+  padding: 15px 0;
+}
+.footer-light {
+  background: #F9F9F9;
+  color: #3e4d5c;
+}
+.footer-gray {
+  background: #4A5866;
+}
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+.footer a:hover {
+  text-decoration: none;
+}
+.footer-light a {
+  color: inherit;
+}
+.footer .padding-top-10 {
+  opacity: 0.5;
+}
+.footer .list-inline > li:last-child {
+  padding-right: 0;
+}
+.footer ul {
+  margin: 0;
+  padding: 0;
+}
+.footer ul.social-footer {
+  font-size: 18px;
+  padding-top: 5px;
+}
+.footer .social-icons li {
+  float: right;
+  margin: 0 0 0 5px
+}
+.copyright {
+  padding-top: 7px;
+}
+@-moz-document url-prefix() {
+  .copyright {
+    padding-top: 6px;
+  }
+}
+.footer ul.social-icons li a {
+  opacity: 0.5;
+}
+.footer ul.social-icons li:hover a {
+  opacity: 1 !important;
+}

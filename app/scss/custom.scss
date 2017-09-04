@@ -13,6 +13,222 @@ html, body {height: 100%;}
 .portlet {
   padding: 0px 0px 0px 0px;
 }
+
+/***
+Content
+***/
+.content-center {
+  text-align: center;
+}
+
+/* h1-h6 */
+.content h1, .content h2 {
+  font: 400 37px "PT Sans Narrow", Arial, sans-serif;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.content h1:after, .content h2:after {
+  z-index: 2;
+  content: " ";
+  display: block;
+  padding-top: 7px;
+  border-bottom: 2px solid #b7bbbf;
+  width: 73px;
+  margin: 0 auto;
+}
+.content h3, .content h4, .content h5, .content h6 {
+  font: 300 18px "Open Sans", Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.content h1 strong,
+.content h2 strong,
+.content h3 strong,
+.content h4 strong {
+  color: #e54a1a;
+  font-weight: 300;
+}
+.content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.content h4 {
+  font-size: 18px;
+}
+.content h5 {
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+.content h6 {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+
+/* Services block */
+.services-block {
+  background: #f6f6f6;
+  padding: 60px 0 70px;
+}
+.services-block .row {
+  padding-top: 44px;
+}
+.services-block .item {
+  border-right: solid 1px #e8e7e7;
+  padding-top: 9px;
+}
+.services-block .col-md-3:last-child {
+  border-right: none;
+}
+.services-block .fa {
+  background: #e85425;
+  color: #fff;
+  width: 99px;
+  height: 99px;
+  line-height: 1;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 29px;
+}
+.services-block .fa:after {
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  left: 50%;
+  margin-left: -9px;
+  z-index: 2;
+  content: " ";
+  display: block;
+  position: absolute;
+  border-top: 9px solid #e85425;
+  border-right: 9px solid transparent;
+  border-left: 9px solid transparent;
+}
+
+.services-block .fa {
+  font-size: 38px;
+  padding: 35px 0 0;
+}
+
+.services-block p {
+  margin-bottom: 5px;
+}
+
+/* content block */
+.content-block {
+  padding-top: 60px;
+}
+.content-block h4 {
+  margin-bottom: 57px;
+}
+.content-block .carousel {
+  width: 62%;
+  margin: 0 auto;
+}
+.content-block blockquote {
+  border: none;
+  font: italic 300 23px/1.3 "Open Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #66717c;
+}
+.content-name {
+  font: italic 300 23px/1.3 "Open Sans", Arial, sans-serif;
+  color: #2dafe5;
+}
+
+/* Testimonials block */
+.testimonials-block {
+  padding-top: 60px;
+}
+.testimonials-block h4 {
+  margin-bottom: 57px;
+}
+.testimonials-block .carousel {
+  width: 62%;
+  margin: 0 auto;
+}
+.testimonials-block blockquote {
+  border: none;
+  font: italic 300 23px/1.3 "Open Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #66717c;
+}
+.testimonials-name {
+  font: italic 300 23px/1.3 "Open Sans", Arial, sans-serif;
+  color: #2dafe5;
+}
+.carousel-indicators {
+  position: static;
+  margin: 27px 0 0;
+  width: 100%;
+}
+.carousel-indicators li {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: #dce0e2;
+  position: relative;
+  margin: 0 3px !important;
+  border: none;
+}
+.carousel-indicators li.active {
+  background: #e6400c;
+}
+
+/* Facts block */
+.facts-block {
+  position: relative;
+  min-height: 470px;
+  height: auto;
+  padding: 57px 0 0;
+  z-index: 0;
+  background: #fff url(../img/facts.jpg) no-repeat fixed;
+  position: relative;
+  color: #fff;
+}
+.facts-block h2 {
+  background: rgba(0,0,0,0.29);
+  line-height: 37px;
+  padding: 14px 0 15px;
+  margin-bottom: 71px;
+}
+.facts-block h2:after {
+  display: none;
+}
+.facts-block .item {
+  background: rgba(255,99,77,0.92);
+  font: 400 20px "Pathway Gothic One", Arial, sans-serif;
+  text-transform: uppercase;
+  width: 198px;
+  height: 198px;
+  border-radius: 50% !important;
+  padding: 33px 0 0;
+  margin: 0 auto;
+}
+@-moz-document url-prefix() {
+  .facts-block .item {
+    padding: 31px 0 0;
+  }
+}
+.ie8 .facts-block .item {
+  background: #e54a1a;
+}
+.facts-block .item strong {
+  display: block;
+  font-size: 80px;
+  text-transform: none;
+  margin-bottom: 4px;
+}
+
 /***
 Exercise Page
 ***/

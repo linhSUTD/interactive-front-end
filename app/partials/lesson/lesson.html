@@ -127,10 +127,10 @@
         jQuery(document).ready(function () {
             $(".instruction_panel").resizable();
             $('.instruction_panel').resize(function () {
-                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width() - 10);
+                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width() - 3);
             });
             $(window).resize(function () {
-                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width() - 10);
+                $('.interactive_panel').width($(".parent_panel").width() - $(".instruction_panel").width() - 3);
                 $('.instruction_panel').height($(".parent_panel").height());
             });
 

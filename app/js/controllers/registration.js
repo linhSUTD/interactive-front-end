@@ -18,7 +18,7 @@ registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'set
 
 	$scope.user = {};
 
-	$scope.alerts = {};
+	$scope.alert = {};
 
 	$scope.hasAlert = false;
 

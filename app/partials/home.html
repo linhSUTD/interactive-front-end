@@ -1,132 +1,170 @@
-<div class="container" style="padding: 15px 0 15px; margin-top: 30px;">
-    <div>
-        <h1>Interactive Machine Learning</h1>
-        <p class="lead">Learn machine learning from scratch with us!</p>
-        <hr/>
-    </div>
+<div class="row" style="margin-bottom: 65px;">
+    <div class="content-block content content-center">
+        <div class="container">
+            <h2>Bạn đang muốn tìm hiểu về <strong>machine learning</strong>?</h2>
+            <div style="margin-top: 20px;">
+                <h4>
+                    Chúng tôi cung cấp kiến thức và khoá học về <strong>machine learning</strong> từ cơ bản đến nâng cao.
+                </h4>
+            </div>
 
-    <div class="row" style="margin-top: 20px;">
-        <!-- BEGIN SALE PRODUCT -->
-        <div class="sale-product">
-            <h2>Top Courses</h2>
-            <div class="col-md-3 col-sm-6" ng-repeat="rCourse in recentCourses">
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img ng-src="{{rCourse.coverImageUrl}}" class="img-responsive" alt="Berry Lace Dress">
-                    </div>
-                    <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">View Course</a>
-                    <div class="sticker sticker-sale"></div>
-                </div>
+            <div class="btn-group">
+                <a class="btn blue btn-lg" type="button" ui-sref="courses">
+                    Tham Gia Ngay
+                </a>
             </div>
         </div>
-        <hr/>
     </div>
+</div>
 
-    <div class="row" style="margin-top: 20px;">
-        <h2>Beginner</h2>
-        <div class="owl-carousel owl-carousel5">
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
-                    <div class="sticker sticker-sale"></div>
+<!-- Facts block BEGIN -->
+<div class="facts-block content content-center" id="facts-block">
+    <h2>Về Chúng Tôi</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="item">
+                    <strong>10</strong>
+                    Khoá Học
                 </div>
             </div>
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="item">
+                    <strong>500</strong>
+                    Bài Tập
                 </div>
             </div>
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model6.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="item">
+                    <strong>20</strong>
+                    Giờ Học
                 </div>
             </div>
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="#">Berry Lace Dress4</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
-                    <div class="sticker sticker-new"></div>
-                </div>
-            </div>
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model5.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="shop-item.html">Berry Lace Dress5</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
-                </div>
-            </div>
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model3.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
-                </div>
-            </div>
-            <div>
-                <div class="product-item">
-                    <div class="pi-img-wrapper">
-                        <img src="../img/products/model7.jpg" class="img-responsive" alt="Berry Lace Dress">
-                        <div>
-                            <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                        </div>
-                    </div>
-                    <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-                    <div class="pi-price">$29.00</div>
-                    <a href="#" class="btn btn-default add2cart">View Course</a>
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <div class="item">
+                    <strong>1400</strong>
+                    Thành Viên
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        Layout.initOWL();
-    });
+<div class="testimonials-block content content-center margin-bottom-65">
+    <div class="container">
+        <h2>Người Dùng Nói Về <strong>Sản Phẩm</strong></h2>
+        <h4></h4>
 
-</script>
+        <div class="carousel slide" data-ride="carousel" id="testimonials-block">
+            <div class="carousel-inner">
+                <div class="active item">
+                    <blockquote style="margin-bottom: 30px;"><p>Tôi đã thành thạo sử dụng và lập trình ngôn ngữ Python sau 5 ngày tham gia khoá .</p></blockquote>
+                    <span class="testimonials-name">Linh Nguyễn</span>
+                </div>
+                <div class="item">
+                    <blockquote style="margin-bottom: 30px;"><p>Khoá học vô cùng dễ hiểu và chi tiết, tôi sẽ giới thiệu khoá học cho các bạn bè của .</p></blockquote>
+                    <span class="testimonials-name">Huy Hoàng</span>
+                </div>
+            </div>
+
+            <ol class="carousel-indicators">
+                <li data-target="#testimonials-block" data-slide-to="0" class="active"></li>
+                <li data-target="#testimonials-block" data-slide-to="1"></li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 65px;">
+    <div class="services-block content content-center">
+        <div class="container">
+            <h2>Liên Hệ <strong>Chúng Tôi</strong></h2>
+
+            <div class="col-md-6 col-md-offset-3">
+                <div class="space20">
+                </div>
+                <form action="javascript:;" name="feedbackForm">
+                    <div style="margin-top: 20px;">
+                        <h4 style="margin-bottom: 30px;">
+                            Chúng tôi lắng nghe mọi ý kiến góp ý và phản hồi từ người dùng.
+                            <br/>
+                            Cám ơn rất nhiều!
+                        </h4>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tiêu Đề" ng-required="true">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3=6" placeholder="Nội Dung" ng-required="true"></textarea>
+                    </div>
+                    <button type="submit" class="btn green" ng-disabled="feedbackForm.$invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="pre-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 pre-footer-col">
+                    <h2>FundaML</h2>
+                    <p>Cung cấp các kiến thức và khoá học Machine Learning bằng Tiếng Việt!</p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 pre-footer-col">
+                    <h2 class="margin-bottom-0">Đường Dẫn</h2>
+                    <p>
+                        <a href="javascript:;">FAQs</a>
+                    </p>
+                    <p>
+                        <a href="javascript:;">Career</a>
+                    </p>
+                    <p>
+                        <a href="javascript:;">Community</a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 pre-footer-col">
+                    <h2>Liên Hệ</h2>
+                    <address class="margin-bottom-20">
+                        251 Lester, Waterloo<br>
+                        Ontario, Canada<br>
+                        Phone: 226 792 0891<br>
+                        Email: <a href="mailto:info@passcareer.io">info@fundaml.com</a><br>
+                    </address>
+
+                    <div class="pre-footer-subscribe-box">
+                        <h2>Newsletter</h2>
+                        <form action="javascript:void(0);">
+                            <div class="input-group">
+                                <input type="text" placeholder="youremail@mail.com" class="form-control">
+                            <span class="input-group-btn">
+                              <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="copyright">2017 © FundaML. ALL Rights Reserved.</div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 pull-right">
+                    <ul class="social-icons">
+                        <li><a class="facebook" data-original-title="facebook" href="javascript:void(0);"></a></li>
+                        <li><a class="twitter" data-original-title="twitter" href="javascript:void(0);"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,13 +16,32 @@ loginModule.config(function ($stateProvider, $urlRouterProvider) {
 loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$state',
 	function ($scope, authService, settings, $state) {
 
+		$scope.alert = {};
+
+		$scope.hasAlert = false;
+
 		$scope.user = {};
+
 		$scope.login = function () {
 			authService.login($scope.user).then(function (response) {
+
 				$scope.$emit("user:loggedin");
+
 				$state.go('home');
+
 			}, function (error) {
-				showPopUp(error.data.message);
+
+				$scope.alert = {
+					type: 'danger',
+					msg: error.data.message
+				}
+				$scope.hasAlert = true;
+
 			})
 		}
+
+		$scope.closeAlert = function() {
+			$scope.hasAlert = false;
+			$scope.alert = {};
+		};
 	}]);
