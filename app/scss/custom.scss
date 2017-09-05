@@ -14,6 +14,42 @@ html, body {height: 100%;}
   padding: 0px 0px 0px 0px;
 }
 
+.fa-check-success {
+  color: red;
+}
+
+.lesson_exercise {
+  display: flex;
+  align-items: center;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.lesson_exercise_link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  color: #3d4251;
+  border: 0;
+  padding: 10px 20px;
+}
+
+.lesson_exercise_title {
+  font-size: 1.5rem;
+  margin-left: 8px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: inherit;
+}
+
+.lesson_exercise_xp {
+  font-weight: bold;
+  margin-left: auto;
+  padding-left: 20px;
+  flex-shrink: 0;
+}
+
 /***
 Content
 ***/

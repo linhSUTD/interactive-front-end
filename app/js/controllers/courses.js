@@ -16,7 +16,7 @@ coursesModule.config(function ($stateProvider, $urlRouterProvider) {
 })
 
 const headerStateMap = {
-	"recommended": "Đề xuất",
+	"recommended": "Khoá Học Hot",
 	"searching": "Xin đợi",
 	"searched": "Kết quả tìm kiếm",
 	"searchFailed": "Đã có lỗi xảy ra, hãy thử tìm kiếm lại"

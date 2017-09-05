@@ -1,60 +1,141 @@
-<div class="container" style="padding: 15px 0 15px;">
-    <ul class="page-breadcrumb breadcrumb">
-        <li>
-            <a ui-sref="dashboard">Dashboard</a>
-        </li>
-        <li ng-show="course">
-            <a ui-sref="course.introduction({courseId: course.id})">{{course.title}}</a>
-        </li>
-        <li class="active">
-            Trang chủ khóa học
-        </li>
-    </ul>
+<div class="container">
+    <div class="container" style="padding: 15px 0 15px;">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a ui-sref="dashboard">Trang chủ</a>
+            </li>
+            <li ng-show="course">
+                <a ui-sref="course.introduction({courseId: course.id})">{{course.title}}</a>
+            </li>
+            <li class="active">
+                Trang chủ khóa học
+            </li>
+        </ul>
 
-    <div class="row" style="margin-top: 35px;" ng-show="!!course">
-        <h2 style="margin-top:0">{{course.title}}</h2>
-        <h6 class="lead" style="font-size:16px">{{course.description}}</h6>
-        <hr/>
-    </div>
+        <div class="row">
+            <div class="col-md-9" style="padding-left: 0px;">
+                <div class="row" style="margin-top: 35px;" ng-show="!!course">
+                    <h2 style="margin-top:0">{{course.title}}</h2>
+                    <h6 class="lead" style="font-size:16px">{{course.description}}</h6>
+                    <hr/>
+                </div>
 
-    <div class="row" style="margin-top: 20px;">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-cogs font-green-sharp"></i>
-                <span class="caption-subject font-green-sharp bold uppercase">Danh sách bài</span>
-            </div>
-            <br/>
-        </div>
-        <div class="portlet-body">
-            <div class="panel panel-default" ng-repeat="lesson in lessons">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <div class="accordion-toggle accordion-toggle-styled">
-                            Lesson {{lesson.index}}
+                <div class="row" style="margin-top: 20px;">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">Danh sách bài</span>
                         </div>
-                    </h4>
-                    <p>{{lesson.description}}</p>
+                        <br/>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="panel panel-default" ng-repeat="lesson in lessons">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <div class="accordion-toggle accordion-toggle-styled">
+                                        Lesson {{lesson.index}}: {{lesson.description}}
+                                    </div>
+                                </h4>
 
-                    <div class="lesson_progress">
-                        <span class="lesson_progress-percentage">
-                                {{lesson.progress}}%
-                            </span>
-                        <div class="lesson_progress-bar">
-                            <div class="lesson_progress-bar-completed" style="width: 5%;" ng-style="{'width':{{lesson.progress}} + '%'}">
+                                <div class="lesson_progress">
+                                    <span class="lesson_progress-percentage">
+                                        {{lesson.progress}}%
+                                    </span>
+                                    <div class="lesson_progress-bar">
+                                        <div class="lesson_progress-bar-completed" style="width: 5%;" ng-style="{'width':{{lesson.progress}} + '%'}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <ul style="list-style: none; margin-bottom: 26px; margin-top: 30px; margin-left: -57px;">
+                                            <li class="lesson_exercise">
+                                                <a class="lesson_exercise_link" style="text-decoration: none;" href="https://campus.datacamp.com/courses/deep-learning-in-python/building-deep-learning-models-with-keras?ex=6">
+                                                    <span class="lesson_exercise_icon">
+                                                        <img width="23" height="23" src="https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg" alt="Icon exercise interactive">
+                                                    </span>
+
+                                                    <h5 class="lesson_exercise_title" title="Fitting the model">Fitting the model</h5>
+
+                                                    <span class="lesson_exercise_xp">
+                                                        100 xp
+                                                    </span>
+
+                                                    <span style="margin-left: 20px">
+                                                        <i class="fa fa-check fa-check-success"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li class="lesson_exercise">
+                                                <a class="lesson_exercise_link" style="text-decoration: none;" href="https://campus.datacamp.com/courses/deep-learning-in-python/building-deep-learning-models-with-keras?ex=6">
+                                                    <img width="23" height="23" src="https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg" alt="Icon exercise video">
+
+                                                    <h5 class="lesson_exercise_title" title="Fitting the model">Creating a keras model</h5>
+
+                                                    <span class="lesson_exercise_xp">
+                                                        50 xp
+                                                    </span>
+
+                                                    <span style="margin-left: 20px">
+                                                        <i class="fa fa-check"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li class="lesson_exercise">
+                                                <a class="lesson_exercise_link" style="text-decoration: none;" href="https://campus.datacamp.com/courses/deep-learning-in-python/building-deep-learning-models-with-keras?ex=6">
+                                                    <span class="lesson_exercise_icon">
+                                                        <img width="23" height="23" src="https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg" alt="Icon exercise interactive">
+                                                    </span>
+
+                                                    <h5 class="lesson_exercise_title" title="Fitting the model">Calculate model errors</h5>
+
+                                                    <span class="lesson_exercise_xp">
+                                                        100 xp
+                                                    </span>
+
+                                                    <span style="margin-left: 20px">
+                                                        <i class="fa fa-check"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-collapse in">
+                                <div class="panel-body" style="background: #ebf4f7;">
+                                    <a class="content" style="float: left; text-decoration: none; color: #33aacc; margin-top: 6px;" ng-click="showLessonInDetail()">
+                                        <h4>Xem Bài Giảng Chi Tiết <i class="fa fa-angle-down"></i></h4>
+                                    </a>
+                                    <a class="btn red" style="float: right" ui-sref="course.lesson({courseId: course.id, lessonId: lesson.id, index:0})">
+                                        Vào bài
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="panel-collapse in">
-                    <div class="panel-body">
-                        <a class="btn red" ui-sref="course.lesson({courseId: course.id, lessonId: lesson.id, index:0})">
-                            Vào bài
-                        </a>
+            <div class="col-md-3">
+                <div class="team-block content content-center margin-bottom-40" id="team">
+                    <div class="row item">
+                        <img src="../img/img6-large.jpg" alt="Marcus Doe" class="img-responsive">
+                        <h3 style="margin-top: 15px;">Tiep Vu</h3>
+                        <em>Admin</em>
+                        <p>Phd student at Pennsylvania State University</p>
+                        <div class="tb-socio">
+                            <a href="javascript:void(0);" class="fa fa-facebook"></a>
+                            <a href="javascript:void(0);" class="fa fa-twitter"></a>
+                            <a href="javascript:void(0);" class="fa fa-google-plus"></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

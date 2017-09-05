@@ -1,29 +1,23 @@
-<div class="container">
 
-</div>
 <div class="container" style="padding: 15px 0 15px;">
     <ul class="page-breadcrumb breadcrumb">
         <li>
-            <a ui-sref="home">Home</a>
+            <a ui-sref="home">Trang Chủ</a>
         </li>
         <li class="active">
-            User Profile
+            Thông Tin Tài Khoản
         </li>
     </ul>
-    <!-- END PAGE BREADCRUMB -->
-    <!-- BEGIN PAGE CONTENT INNER -->
+
     <div class="row margin-top-10">
         <div class="col-md-12">
-            <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar" style="width: 250px; margin-left: -15px;">
-                <!-- PORTLET MAIN -->
                 <div class="portlet light profile-sidebar-portlet">
-                    <!-- SIDEBAR USERPIC -->
+
                     <div class="profile-userpic">
                         <img ng-src={{user.avatarUrl}} class="img-responsive" alt="">
                     </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
+
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
                             {{user.name}}
@@ -38,22 +32,19 @@
                             <li class="active">
                                 <a ui-sref="user.profile">
                                     <i class="icon-home"></i>
-                                    Overview </a>
+                                    Thông Tin Tài Khoản </a>
                             </li>
                             <li>
                                 <a ui-sref="user.settings">
                                     <i class="icon-settings"></i>
-                                    Account Settings </a>
+                                    Cập Nhật Thông Tin
+                                </a>
                             </li>
                         </ul>
                     </div>
-                    <!-- END MENU -->
                 </div>
-                <!-- END PORTLET MAIN -->
             </div>
 
-            <!-- END BEGIN PROFILE SIDEBAR -->
-            <!-- BEGIN PROFILE CONTENT -->
             <div class="profile-content">
                 <div class="row">
                     <div class="col-md-12">
@@ -61,18 +52,7 @@
                             <div class="portlet-title">
                                 <div class="caption caption-md">
                                     <i class="icon-bar-chart theme-font hide"></i>
-                                    <span class="caption-subject font-blue-madison bold uppercase">Your Activity</span>
-                                    <span class="caption-helper hide">weekly stats...</span>
-                                </div>
-                                <div class="actions">
-                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
-                                            <input type="radio" name="options" class="toggle">Today</label>
-                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-                                            <input type="radio" name="options" class="toggle">Week</label>
-                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
-                                            <input type="radio" name="options" class="toggle">Month</label>
-                                    </div>
+                                    <span class="caption-subject font-blue-madison bold uppercase">Tóm Tắt Chung</span>
                                 </div>
                             </div>
                         </div>
@@ -84,11 +64,11 @@
                         <div class="col-md-3">
                             <div class="pricing hover-effect">
                                 <div class="pricing-head">
-                                    <h3>Courses
+                                    <h3>Khoá Học
                                     </h3>
                                     <h4>5
                                   <span>
-                                     Completed
+                                     Đã Hoàn Thành
                                   </span>
                                     </h4>
                                 </div>
@@ -98,11 +78,11 @@
                         <div class="col-md-3">
                             <div class="pricing hover-effect">
                                 <div class="pricing-head">
-                                    <h3>Lessons
+                                    <h3>Bài Giảng
                                     </h3>
                                     <h4>30
                                       <span>
-                                         Completed
+                                         Đã Hoàn Thành
                                       </span>
                                     </h4>
                                 </div>
@@ -112,11 +92,11 @@
                         <div class="col-md-3">
                             <div class="pricing hover-effect">
                                 <div class="pricing-head">
-                                    <h3>Exercises
+                                    <h3>Bài Tập
                                     </h3>
                                     <h4>100
                                       <span>
-                                         Completed
+                                         Đã Hoàn Thành
                                       </span>
                                     </h4>
                                 </div>
@@ -126,11 +106,11 @@
                         <div class="col-md-3">
                             <div class="pricing hover-effect">
                                 <div class="pricing-head">
-                                    <h3>XP
+                                    <h3>Điểm XP
                                     </h3>
                                     <h4>100
                                       <span>
-                                         Gained
+                                         Tích Luỹ
                                       </span>
                                     </h4>
                                 </div>
@@ -147,8 +127,7 @@
                             <div class="portlet-title">
                                 <div class="caption caption-md">
                                     <i class="icon-bar-chart theme-font hide"></i>
-                                    <span class="caption-subject font-blue-madison bold uppercase">Completed Courses</span>
-                                    <span class="caption-helper hide">weekly stats...</span>
+                                    <span class="caption-subject font-blue-madison bold uppercase">Khoá Học Đã Hoàn Thành</span>
                                 </div>
                             </div>
                         </div>
@@ -161,13 +140,10 @@
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
                                     <img src="../../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
                                 </div>
                                 <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
                                 <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Review</a>
+                                <a href="#" class="btn btn-default add2cart">Xem Lại</a>
                                 <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
@@ -175,26 +151,20 @@
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
                                     <img src="../../img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
                                 </div>
                                 <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
                                 <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Review</a>
+                                <a href="#" class="btn btn-default add2cart">Xem Lại</a>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
                                     <img src="../../img/products/model6.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
                                 </div>
                                 <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
                                 <div class="pi-price">$29.00</div>
-                                <a href="#" class="btn btn-default add2cart">Review</a>
+                                <a href="#" class="btn btn-default add2cart">Xem Lại</a>
                             </div>
                         </div>
                     </div>
