@@ -26,14 +26,14 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="courses-in-progress" >
-                            <div class="col-md-3 col-sm-6" ng-repeat="rCourse in recentCourses">
+                            <div class="col-md-3 col-sm-6" ng-repeat="reg in registrations" style="margin-bottom:30px">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
                                         <img ng-src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     </div>
-                                    <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
-                                    <div class="pi-price">{{rCourse.level}}</div>
-                                    <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Tiếp Tục</a>
+                                    <h3><a href="shop-item.html">{{reg.course.title}}</a></h3>
+                                    <div class="pi-price">{{reg.course.level}}</div>
+                                    <a ui-sref="course.introduction({courseId: reg.course.id})" class="btn btn-default add2cart">Tiếp Tục</a>
                                     <div class="sticker sticker-sale"></div>
                                 </div>
                             </div>

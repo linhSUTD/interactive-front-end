@@ -41,6 +41,17 @@ academicModule.factory('$course', function ($http, $q, settings) {
             return $http.get(settings.apiUrl + "/user/" + userId + "/course/" + courseId);
         },
 
+        registrations: function (userId, before, after, limit, sort) {
+            return $http.get(`${settings.apiUrl}/user/${userId}/courses`, {
+                params: {
+                    before: before,
+                    after: after,
+                    limit: limit,
+                    sort: sort
+                }
+            });
+        },
+
         register: function (userId, courseId) {
             return $http.post(settings.apiUrl + "/user/" + userId + "/register", convertToFormData({
                 courseId: courseId

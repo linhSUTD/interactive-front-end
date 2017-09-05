@@ -17,12 +17,12 @@ function dashboardCtrlFunc($scope, $state, $course, userService) {
 		return;
 	}
 
-	$course.recentCourses(null, null, 10, "descending").then(function (response) {
+	$course.registrations(user.id, null, null, 10, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
 		}
 
-		$scope.recentCourses = response.data;
+		$scope.registrations = response.data;
 
 		setTimeout(function () {
 			$('.owl-carousel').trigger('refresh.owl.carousel');
