@@ -35,7 +35,7 @@ registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'set
 
 			$scope.alert = {
 				type: 'danger',
-				msg: error.data.message
+				msg: error.data.errors[0]
 			}
 			$scope.hasAlert = true;
 		});

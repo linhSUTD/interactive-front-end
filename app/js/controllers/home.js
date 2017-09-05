@@ -12,23 +12,13 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 		});
 })
 
-homeModule.controller('homeCtrl', ['$scope', '$course', 'userService', '$state', function ($scope, $course, userService, $state) {
-	function checkAuth() {
-		var user = userService.getUser();
+function homeCtrlFunc($scope, $course, userService, $state) {
+	var user = userService.getUser();
 
-		if (!!user) {
-			$state.go('dashboard');
-			return true;
-		}
-
-		return false;
-	}
-
-	if (checkAuth()) {
+	if (!!user) {
+		$state.go('dashboard');
 		return;
 	}
-
-	$scope.$on("auth:ready", checkAuth);
 
 	$course.recentCourses(null, null, 10, "descending").then(function (response) {
 		if (response.status >= 400) {
@@ -37,4 +27,17 @@ homeModule.controller('homeCtrl', ['$scope', '$course', 'userService', '$state',
 
 		$scope.recentCourses = response.data;
 	});
-}]);
+}
+
+homeModule.controller('homeCtrl', [
+	'$scope',
+	'$course',
+	'userService',
+	'$state', function ($scope, $course, userService, $state) {
+		if ($scope.authReady) {
+			homeCtrlFunc($scope, $course, userService, $state);
+			return;
+		}
+
+		$scope.$on("auth:ready", _ => homeCtrlFunc($scope, $course, userService, $state));
+	}]);

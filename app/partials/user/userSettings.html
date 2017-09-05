@@ -79,7 +79,7 @@
 
                                             <div class="form-group">
                                                 <label class="control-label">Tên Đầy Đủ <span style="color:red;">*</span></label>
-                                                <input class="form-control" type="text" name="name" placeholder="Name" ng-required="true" ng-model="user.name">
+                                                <input class="form-control" type="text" name="name" placeholder="Name" required ng-model="user.name">
                                             </div>
 
                                             <div class="form-group">
@@ -88,13 +88,13 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Số Điện  <span style="color:red;">*</span></label>
-                                                <input type="text" placeholder="Cơ quan, địa chỉ..." class="form-control" ng-required="true" ng-model="user.contact"/>
+                                                <label class="control-label">Số Điện thoại </label>
+                                                <input type="text" placeholder="Cơ quan, địa chỉ..." class="form-control" ng-model="user.contact"/>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="control-label">Công Việc Hiện Tại <span style="color:red;">*</span></label>
-                                                <input type="text" placeholder="Lập trình web..." class="form-control" ng-required="true" ng-model="user.work"/>
+                                                <label class="control-label">Công Việc Hiện Tại </label>
+                                                <input type="text" placeholder="Lập trình web..." class="form-control" ng-model="user.work"/>
                                             </div>
 
                                             <div class="form-group">
@@ -103,7 +103,7 @@
                                             </div>
 
                                             <div class="margiv-top-10">
-                                                <button type="submit" class="btn green-haze" ng-disabled="userForm.$invalid">
+                                                <button type="submit" class="btn green-haze">
                                                     Cập Nhật
                                                 </button>
                                                 <a class="btn default" ng-click="cancelUpdateUser()">

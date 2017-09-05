@@ -10,7 +10,7 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 			return $http.get(settings.apiUrl + "/user/" + id + "/author");
 		},
 		update: function (id, model) {
-			
+			return $http.put(settings.apiUrl + "/account/" + id, convertToFormData(model));
 		}
 	}
 });

@@ -11,7 +11,7 @@ function convertToFormData(data) {
 
 	for (var key in data) {
 		var value = data[key];
-		if (value.constructor === Array) {
+		if (!!value && value.constructor === Array) {
 			for (var i = 0; i < value.length; i++) {
 				form_data.append(key, value[i]);
 			}

@@ -94,6 +94,56 @@ courseModule.controller('courseIntroductionCtrl', [
 
 	}]);
 
+function courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $course) {
+	var user = userService.getUser();
+	if (!user) {
+		$state.go('registration');
+		return;
+	}
+
+	$scope.lessons = [];
+	$scope.course = null;
+	var progress = null;
+	var lessons = [];
+
+	function init() {
+		var defer = $q.defer();
+
+		var progressPromise = $course.progress(user.id, $stateParams.courseId).then(res => {
+			progress = res.data;
+		}, errC => defer.reject(errC));
+
+		var lessonPromise = $course.lessons($stateParams.courseId).then(res => {
+			lessons = res.data;
+		}, errL => defer.reject(errL));
+
+		$q.all([progressPromise, lessonPromise]).then(_ => {
+			defer.resolve();
+		});
+
+		return defer.promise;
+	}
+
+	init().then(_ => {
+		if (!lessons || lessons.length == 0) { return; }
+		if (!progress) { progress = {}; }
+
+		for (var i = 0; i < lessons.length; i++) {
+			if (progress[lessons[i].id] === null || progress[lessons[i].id] === undefined) {
+				continue;
+			}
+
+			lessons[i].progress = Math.round(progress[lessons[i].id] * 100);
+		}
+
+		$scope.lessons = lessons;
+	});
+
+	$course.get($stateParams.courseId).then(res => {
+		$scope.course = res.data;
+	});
+}
+
 courseModule.controller('courseHomePageCtrl', [
 	'$q',
 	'$scope',
@@ -102,51 +152,10 @@ courseModule.controller('courseHomePageCtrl', [
 	'userService',
 	'$course', function ($q, $scope, $state, $stateParams, userService, $course) {
 
-		var user = userService.getUser();
-		if (!user) {
-			$state.go('registration');
+		if ($scope.authReady) {
+			courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $course);
 			return;
 		}
 
-		$scope.lessons = [];
-		$scope.course = null;
-		var progress = null;
-		var lessons = [];
-
-		function init() {
-			var defer = $q.defer();
-
-			var progressPromise = $course.progress(user.id, $stateParams.courseId).then(res => {
-				progress = res.data;
-			}, errC => defer.reject(errC));
-
-			var lessonPromise = $course.lessons($stateParams.courseId).then(res => {
-				lessons = res.data;
-			}, errL => defer.reject(errL));
-
-			$q.all([progressPromise, lessonPromise]).then(_ => {
-				defer.resolve();
-			});
-
-			return defer.promise;
-		}
-
-		init().then(_ => {
-			if (!lessons || lessons.length == 0) { return; }
-			if (!progress) { progress = {}; }
-
-			for (var i = 0; i < lessons.length; i++) {
-				if (progress[lessons[i].id] === null || progress[lessons[i].id] === undefined) {
-					continue;
-				}
-
-				lessons[i].progress = Math.round(progress[lessons[i].id] * 100);
-			}
-
-			$scope.lessons = lessons;
-		});
-
-		$course.get($stateParams.courseId).then(res => {
-			$scope.course = res.data;
-		});
+		$scope.$on("auth:ready", _ => courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $course));
 	}]);

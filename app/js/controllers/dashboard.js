@@ -36,6 +36,5 @@ dashboardModule.controller('dashboardCtrl', ['$scope', '$state', '$course', 'use
 		return;
 	}
 
-	$scope.$on("auth:ready",
-		_ => dashboardCtrlFunc($scope, $state, $course, userService));
+	$scope.$on("auth:ready", _ => dashboardCtrlFunc($scope, $state, $course, userService));
 }]);
