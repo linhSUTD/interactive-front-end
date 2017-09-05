@@ -10,21 +10,10 @@ dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 		})
 });
 
-dashboardModule.controller('dashboardCtrl', ['$scope', '$state', '$course', 'userService', function ($scope, $state, $course, userService) {
-	function checkAuth() {
-		var user = userService.getUser();
-
-		if (!user) {
-			$state.go('home');
-			return false;
-		}
-
-		return true;
-	}
-
-	$scope.$on("auth:ready", checkAuth);
-
-	if (!checkAuth()) {
+function dashboardCtrlFunc($scope, $state, $course, userService) {
+	var user = userService.getUser();
+	if (!user) {
+		$state.go('home');
 		return;
 	}
 
@@ -39,4 +28,14 @@ dashboardModule.controller('dashboardCtrl', ['$scope', '$state', '$course', 'use
 			$('.owl-carousel').trigger('refresh.owl.carousel');
 		}, 1000);
 	});
+}
+
+dashboardModule.controller('dashboardCtrl', ['$scope', '$state', '$course', 'userService', function ($scope, $state, $course, userService) {
+	if ($scope.authReady) {
+		dashboardCtrlFunc($scope, $state, $course, userService);
+		return;
+	}
+
+	$scope.$on("auth:ready",
+		_ => dashboardCtrlFunc($scope, $state, $course, userService));
 }]);

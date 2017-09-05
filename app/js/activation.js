@@ -4,6 +4,12 @@
 
 var activation = angular.module('activationApp', ['ngCookies', 'service.auth', 'config', 'ui.router', 'ui.bootstrap']);
 
+activation.config(['$httpProvider', function ($httpProvider) {
+	$httpProvider.defaults.headers.post = {
+		'Content-Type': undefined
+	};
+}]);
+
 activation.controller('activationCtrl', ['$scope', 'authService', 'settings', '$state', '$stateParams', '$http', '$cookies',
 	function ($scope, authService, settings, $state, $stateParams, $http, $cookies) {
 

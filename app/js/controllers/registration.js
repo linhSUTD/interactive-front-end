@@ -23,11 +23,9 @@ registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'set
 	$scope.hasAlert = false;
 
 	$scope.register = function () {
-
 		$scope.user.activationUrl = settings.activationUrl;
 
 		authService.register($scope.user).then(function (response) {
-			$scope.$emit("user:loggedin");
 			$scope.alert = {
 				type: 'success',
 				msg: 'Đăng ký thành công! Chúng tôi đã gửi email xác nhận cho bạn.'

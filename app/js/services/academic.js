@@ -94,6 +94,22 @@ academicModule.factory('$exercise', function ($http, $q, settings) {
     return {
         get: function (id) {
             return $http.get(`${settings.apiUrl}/exercise/${id}`);
+        },
+
+        progress: function (id, userId) {
+            return $http.get(`${settings.apiUrl}/user/${userId}/exercise-progress`, {
+                params: {
+                    exerciseId: id
+                }
+            });
+        },
+
+        saveProgress: function (id, userId, content, output) {
+            return $http.post(`${settings.apiUrl}/user/${userId}/exercise-progress`, convertToFormData({
+                exerciseId: id,
+                content: content,
+                output: output
+            }));
         }
     };
 });

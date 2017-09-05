@@ -20,7 +20,9 @@ loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$stat
 
 		$scope.hasAlert = false;
 
-		$scope.user = {};
+		$scope.user = {
+			activationUrl: settings.activationUrl
+		};
 
 		$scope.login = function () {
 			authService.login($scope.user).then(function (response) {

@@ -4,6 +4,7 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 	var currentUser = null;
 
 	function logout() {
+		currentUser = null;
 		$cookies.put('token', undefined);
 		$http.defaults.headers.common['Authorization'] = undefined;
 	}

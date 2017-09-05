@@ -1,5 +1,7 @@
 var lessonModule = angular.module('page.lesson', ["directives", "service.academic", 'service.user']);
 
+const SAVE_SOLUTION_INTERVAL = 5000;
+
 lessonModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
@@ -54,6 +56,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	var user = userService.getUser();
 	var editor = null;
 	var resultState = {};
+	var saveInterval = 0;
 
 	if (user == null) {
 		$state.go('login');
@@ -125,7 +128,12 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 			}
 
 			$scope.exercise = res.data;
-			editor.setValue(res.data.sampleCode);
+		}).then(_ => $exercise.progress($scope.selectedModule.data.id, user.id)).then(res => {
+			if (!res.data) {
+				editor.setValue($scope.exercise.sampleCode);
+				return;
+			}
+			editor.setValue(res.data.currentSolution);
 		});
 	}
 
@@ -135,6 +143,21 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		$scope.output = resultState.outputText;
 		$scope.graphPayload = resultState.outputGraph;
 		$scope.resultType = resultState.type;
+
+		if (!editor) {
+			return;
+		}
+
+		if (resultState.type == "script-output" || resultState.type == "output") {
+			$exercise.saveProgress($scope.selectedModule.data.id, user.id, editor.getValue(), resultState.outputText).then(r => {
+				if (!r.data) {
+					alert("wrong answer");
+				} else {
+					alert("right answer");
+					//move on to the next exercise
+				}
+			});
+		}
 	}
 
 	$scope.lesson = null;
