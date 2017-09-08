@@ -6,6 +6,14 @@ academicModule.factory('$datacamp', function () {
 
 academicModule.factory('$course', function ($http, $q, settings) {
     return {
+        count: function (activeOnly = true) {
+            return $http.get(`${settings.apiUrl}/course/count`, {
+                params: {
+                    activeOnly: activeOnly
+                }
+            });
+        },
+
         recentCourses: function (before, after, limit, sort) {
             return $http.get(settings.apiUrl + '/course', {
                 params: {
@@ -83,6 +91,14 @@ academicModule.factory('$course', function ($http, $q, settings) {
 
 academicModule.factory('$lesson', function ($http, $q, settings) {
     return {
+        count: function (activeOnly = true) {
+            return $http.get(`${settings.apiUrl}/lesson/count`, {
+                params: {
+                    activeOnly: activeOnly
+                }
+            });
+        },
+
         get: function (id) {
             return $http.get(`${settings.apiUrl}/lesson/${id}`);
         },
@@ -103,6 +119,14 @@ academicModule.factory('$lesson', function ($http, $q, settings) {
 
 academicModule.factory('$exercise', function ($http, $q, settings) {
     return {
+        count: function (activeOnly = true) {
+            return $http.get(`${settings.apiUrl}/exercise/count`, {
+                params: {
+                    activeOnly: activeOnly
+                }
+            });
+        },
+
         get: function (id) {
             return $http.get(`${settings.apiUrl}/exercise/${id}`);
         },

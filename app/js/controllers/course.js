@@ -59,7 +59,11 @@ courseModule.controller('courseIntroductionCtrl', [
 			}
 
 			if (!$scope.registration) {
-				$course.register(user.id, $scope.course.id);
+				$course.register(user.id, $scope.course.id).then(res => {
+					$state.go('course.home', { courseId: $scope.course.id });
+				});
+
+				return;
 			}
 
 			$state.go('course.home', { courseId: $scope.course.id });

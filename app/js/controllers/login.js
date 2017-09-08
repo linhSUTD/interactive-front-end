@@ -35,7 +35,7 @@ loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$stat
 
 				$scope.alert = {
 					type: 'danger',
-					msg: error.data.message
+					msg: error.data.errors[0]
 				}
 				$scope.hasAlert = true;
 

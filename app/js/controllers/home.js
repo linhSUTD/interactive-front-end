@@ -12,7 +12,35 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 		});
 })
 
-function homeCtrlFunc($scope, $course, userService, $state) {
+function getSummaries($course, $lesson, $exercise, userService, $q) {
+	var defer = $q.defer();
+
+	var courseCount = 0, lessonCount = 0, exerciseCount = 0, userCount = 0;
+	var err = null;
+
+	var coursePromise = $course.count().then(res => courseCount = res.data, e => err = e);
+	var lessonPromise = $lesson.count().then(res => lessonCount = res.data, e => err = e);
+	var exercisePromise = $exercise.count().then(res => exerciseCount = res.data, e => err = e);
+	var userPromise = userService.count().then(res => userCount = res.data, e => err = e);
+
+	$q.all([coursePromise, lessonPromise, exercisePromise, userPromise]).then(_ => {
+		if (!!err) {
+			defer.reject(err);
+			return;
+		}
+
+		defer.resolve({
+			courseCount: courseCount,
+			lessonCount: lessonCount,
+			exerciseCount: exerciseCount,
+			userCount: userCount
+		});
+	});
+
+	return defer.promise;
+}
+
+function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state) {
 	var user = userService.getUser();
 
 	if (!!user) {
@@ -27,17 +55,25 @@ function homeCtrlFunc($scope, $course, userService, $state) {
 
 		$scope.recentCourses = response.data;
 	});
+
+	getSummaries($course, $lesson, $exercise, userService, $q).then(res => {
+		$scope.summaries = res;
+		console.log(res);
+	});
 }
 
 homeModule.controller('homeCtrl', [
+	'$q',
 	'$scope',
 	'$course',
+	'$lesson',
+	'$exercise',
 	'userService',
-	'$state', function ($scope, $course, userService, $state) {
+	'$state', function ($q, $scope, $course, $lesson, $exercise, userService, $state) {
 		if ($scope.authReady) {
-			homeCtrlFunc($scope, $course, userService, $state);
+			homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state);
 			return;
 		}
 
-		$scope.$on("auth:ready", _ => homeCtrlFunc($scope, $course, userService, $state));
+		$scope.$on("auth:ready", _ => homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state));
 	}]);

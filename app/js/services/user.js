@@ -3,6 +3,13 @@ var userServiceModule = angular.module('service.user', ['ngCookies', 'service.au
 userServiceModule.factory('userService', function ($http, $q, settings, $cookies, authService) {
 
 	return {
+		count: function (activeOnly = true) {
+            return $http.get(`${settings.apiUrl}/user/count`, {
+                params: {
+                    activeOnly: activeOnly
+                }
+            });
+        },
 		getUser: function () {
 			return authService.getCurrentUser();
 		},
