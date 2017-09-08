@@ -63,39 +63,6 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		return;
 	}
 
-	function init() {
-		var defer = $q.defer();
-		var lessonPromise = $lesson.get($stateParams.lessonId).then(res => {
-			if (!res.data) { return; }
-			$scope.lesson = res.data;
-		});
-		var exercisePromise = $lesson.exercises($stateParams.lessonId).then(res => {
-			$scope.exerciseSummaries = res.data;
-		});
-		var progressPromise = $lesson.progress(user.id, $stateParams.lessonId).then(res => {
-			progress = res.data || {};
-		});
-
-		$q.all([lessonPromise, exercisePromise]).then(_ => {
-			var outline = [{
-				type: "lesson",
-				data: $scope.lesson
-			}];
-
-			outline = outline.concat($scope.exerciseSummaries.map(es => {
-				es.completed = !!progress[es.id];
-				return {
-					type: "exercise",
-					data: es
-				};
-			}));
-
-			defer.resolve(outline);
-		});
-
-		return defer.promise;
-	}
-
 	function initializeExercise() {
 		$("#editor-tab").empty();
 		var outputWindow = document.getElementById("outputWindow");
@@ -137,9 +104,14 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		});
 	}
 
-	function setResult() {
-		console.log(resultState);
+	function setModule(moduleItem) {
+		$scope.selectedModule = moduleItem;
+		if (moduleItem.type == "exercise") {
+			$timeout(initializeExercise, 0);
+		}
+	}
 
+	function setResult() {
 		$scope.output = resultState.outputText;
 		$scope.graphPayload = resultState.outputGraph;
 		$scope.resultType = resultState.type;
@@ -167,11 +139,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 
 	$scope.onItemSelect = function (item) {
 		$('#lesson-outline').modal('toggle');
-		$scope.selectedModule = item;
-
-		if (item.type == "exercise") {
-			$timeout(initializeExercise, 0);
-		}
+		setModule(item);
 	};
 
 	$scope.submitcode = function () {
@@ -195,9 +163,9 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		return outputTypeToClassMap[type];
 	}
 
-	init().then(ol => {
+	$lesson.outline($stateParams.lessonId, user.id).then(ol => {
 		$scope.outline = ol;
-		$scope.selectedModule = $scope.outline[parseInt($stateParams.index)];
+		setModule($scope.outline[parseInt($stateParams.index)]);
 	});
 
 	$datacamp.addBackendListener(rp => {

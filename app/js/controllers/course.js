@@ -98,13 +98,14 @@ courseModule.controller('courseIntroductionCtrl', [
 
 	}]);
 
-function courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $course) {
+function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course) {
 	var user = userService.getUser();
 	if (!user) {
 		$state.go('registration');
 		return;
 	}
 
+	var outlines = {};
 	$scope.lessons = [];
 	$scope.course = null;
 	var progress = null;
@@ -128,6 +129,26 @@ function courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $
 		return defer.promise;
 	}
 
+	$scope.showLessonInDetail = function (lesson, index) {
+		if (!!lesson.outline) {
+			lesson.outline = null;
+			$scope.lessons[index] = lesson;
+			return;
+		}
+
+		if (!!outlines[lesson.id]) {
+			lesson.outline = outlines[lesson.id];
+			// $timeout(_ => $scope.lessons[index] = lesson, 0);
+			return;
+		}
+
+		$lesson.outline(lesson.id, user.id).then(res => {
+			outlines[lesson.id] = res;
+			lesson.outline = res;
+			// $timeout(_ => $scope.lessons[index] = lesson, 0);
+		});
+	}
+
 	init().then(_ => {
 		if (!lessons || lessons.length == 0) { return; }
 		if (!progress) { progress = {}; }
@@ -149,17 +170,19 @@ function courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $
 }
 
 courseModule.controller('courseHomePageCtrl', [
+	'$timeout',
 	'$q',
 	'$scope',
 	'$state',
 	'$stateParams',
 	'userService',
-	'$course', function ($q, $scope, $state, $stateParams, userService, $course) {
+	'$lesson',
+	'$course', function ($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course) {
 
 		if ($scope.authReady) {
-			courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $course);
+			courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course);
 			return;
 		}
 
-		$scope.$on("auth:ready", _ => courseHomePageCtrlFunc($q, $scope, $state, $stateParams, userService, $course));
+		$scope.$on("auth:ready", _ => courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course));
 	}]);

@@ -90,6 +90,22 @@ academicModule.factory('$course', function ($http, $q, settings) {
 });
 
 academicModule.factory('$lesson', function ($http, $q, settings) {
+    function getLesson(id) {
+        return $http.get(`${settings.apiUrl}/lesson/${id}`);
+    }
+
+    function getExercises(id) {
+        return $http.get(`${settings.apiUrl}/lesson/${id}/exercises`);
+    }
+
+    function getProgress(id, userId) {
+        return $http.get(`${settings.apiUrl}/lesson/${id}/progress`, {
+            params: {
+                userId: userId
+            }
+        });
+    }
+
     return {
         count: function (activeOnly = true) {
             return $http.get(`${settings.apiUrl}/lesson/count`, {
@@ -99,20 +115,49 @@ academicModule.factory('$lesson', function ($http, $q, settings) {
             });
         },
 
-        get: function (id) {
-            return $http.get(`${settings.apiUrl}/lesson/${id}`);
-        },
+        get: getLesson,
 
-        exercises: function (id) {
-            return $http.get(`${settings.apiUrl}/lesson/${id}/exercises`);
-        },
+        exercises: getExercises,
 
-        progress: function (userId, id) {
-            return $http.get(`${settings.apiUrl}/lesson/${id}/progress`, {
-                params: {
-                    userId: userId
-                }
+        progress: getProgress,
+
+        outline: function (id, userId) {
+            var defer = $q.defer();
+            var lesson = null;
+            var exerciseSummaries = null;
+            var progress = null;
+
+            var lessonPromise = getLesson(id).then(res => {
+                if (!res.data) { return; }
+                lesson = res.data;
             });
+
+            var exercisePromise = getExercises(id).then(res => {
+                exerciseSummaries = res.data;
+            });
+
+            var progressPromise = getProgress(id, userId).then(res => {
+                progress = res.data || {};
+            });
+
+            $q.all([lessonPromise, exercisePromise, progressPromise]).then(_ => {
+                var outline = [{
+                    type: "lesson",
+                    data: lesson
+                }];
+
+                outline = outline.concat(exerciseSummaries.map(es => {
+                    es.completed = !!progress[es.id];
+                    return {
+                        type: "exercise",
+                        data: es
+                    };
+                }));
+
+                defer.resolve(outline);
+            });
+
+            return defer.promise;
         }
     };
 });
