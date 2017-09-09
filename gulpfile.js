@@ -54,6 +54,7 @@ gulp.task('scripts', function () {
 			'app/js/utils/**/*.js',
 			'app/js/config.js',
 			'app/js/activation.js',
+			'app/js/resetPassword.js',
 			'app/js/app.js',
 			'app/js/controllers/**/*.js',
 			'app/js/directives/**/*.js',

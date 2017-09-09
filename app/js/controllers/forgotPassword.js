@@ -1,7 +1,4 @@
-/**
- * Created by nguyenlinh on 7/17/17.
- */
-var forgotPasswordModule = angular.module('page.forgotPassword', []);
+var forgotPasswordModule = angular.module('page.forgotPassword', ['service.auth', 'config']);
 
 forgotPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -10,10 +7,15 @@ forgotPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 			url: '/forgotPassword',
 			controller: 'forgotPasswordCtrl',
 			templateUrl: '../partials/forgotPassword.html'
-		})
+		});
 });
 
-forgotPasswordModule.controller('forgotPasswordCtrl', ['$scope', '$http', 'settings', 'authService', function ($scope, $http, settings, authService) {
+function forgotPasswordCtrlFunc($state, $scope, $http, settings, authService) {
+	var currentUser = authService.getCurrentUser();
+	if (!!currentUser) {
+		$state.go('dashboard');
+		return;
+	}
 
 	$scope.alert = {};
 
@@ -23,23 +25,31 @@ forgotPasswordModule.controller('forgotPasswordCtrl', ['$scope', '$http', 'setti
 		email: ""
 	};
 
-	$scope.forgot = function () {
-
-		authService.forgotPassword($scope.user).then(function (response) {
-
+	$scope.onSubmit = function () {
+		authService.requestResetPassword($scope.user.email).then(res => {
 			$scope.alert = {
 				type: 'success',
 				msg: 'Chúng tôi đã gửi email thay đổi mật khẩu cho bạn.'
 			}
 			$scope.hasAlert = true;
-
 		}, function (error) {
-
 			$scope.alert = {
 				type: 'danger',
 				msg: error.data.errors[0]
 			}
 			$scope.hasAlert = true;
-		})
+
+		});
 	}
-}]);
+}
+
+forgotPasswordModule.controller('forgotPasswordCtrl', ['$state', '$scope', '$http', 'settings', 'authService',
+	function ($state, $scope, $http, settings, authService) {
+		if ($scope.authReady) {
+			forgotPasswordCtrlFunc($state, $scope, $http, settings, authService);
+			return;
+		}
+
+		$scope.$on("auth:ready",
+			_ => forgotPasswordCtrlFunc($state, $scope, $http, settings, authService));
+	}]);

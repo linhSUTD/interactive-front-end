@@ -1,4 +1,4 @@
-var userModule = angular.module('page.user', ['duScroll']);
+var userModule = angular.module('page.user', ['duScroll', 'service.auth']);
 
 userModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -36,13 +36,29 @@ userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService
 	$scope.$on("auth:ready", _ => userProfileCtrlFunc($scope, $stateParams, userService));
 }]);
 
-function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
+function userSettingsCtrlFunc($state, $scope, $stateParams, userService, authService) {
+	$scope.avatarInput = document.getElementById('avatar_input');
+	$scope.newAvatarImg = document.getElementById('new_avatar');
+	$scope.newAvatarImg.src = 'https://sg-avatars.b0.upaiyun.com/talent_blank.jpg-200w';
+
+	var fr = new FileReader();
+	fr.onload = function (e) {
+		$scope.newAvatarImg.src = this.result;
+	}
+
+	$scope.avatarInput.addEventListener("change", function () {
+		fr.readAsDataURL($scope.avatarInput.files[0]);
+	});
+
+	$scope.updateAvatar = function () {
+		$scope.avatarInput.click();
+	}
 
 	$scope.alert = {};
 
 	$scope.hasAlert = false;
 
-	$scope.closeAlert = function() {
+	$scope.closeAlert = function () {
 		$scope.hasAlert = false;
 		$scope.alert = {};
 	};
@@ -67,7 +83,7 @@ function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
 			}
 			$scope.hasAlert = true;
 			$scope.user = userService.getUser();
-		}, function(error) {
+		}, function (error) {
 			$scope.alert = {
 				type: 'danger',
 				msg: error.data.errors[0]
@@ -81,7 +97,9 @@ function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
 	}
 
 	$scope.resetPassword = function () {
-
+		authService.requestResetPassword($scope.requestPasswordEmail).then(res => {
+			console.log("a reset password email has been sent");
+		});
 	}
 
 	$scope.cancelResetPassword = function () {
@@ -89,30 +107,12 @@ function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
 	}
 }
 
-userModule.controller('userSettingsCtrl', ['$state', '$scope', '$stateParams', 'userService', function (
-	$state, $scope, $stateParams, userService) {
+userModule.controller('userSettingsCtrl', ['$state', '$scope', '$stateParams', 'userService', 'authService',
+	function ($state, $scope, $stateParams, userService, authService) {
+		if ($scope.authReady) {
+			userSettingsCtrlFunc($state, $scope, $stateParams, userService, authService);
+			return;
+		}
 
-	$scope.avatarInput = document.getElementById('avatar_input');
-	$scope.newAvatarImg = document.getElementById('new_avatar');
-	$scope.newAvatarImg.src = 'https://sg-avatars.b0.upaiyun.com/talent_blank.jpg-200w';
-
-	var fr = new FileReader();
-	fr.onload = function (e) {
-		$scope.newAvatarImg.src = this.result;
-	}
-
-	$scope.avatarInput.addEventListener("change", function () {
-		fr.readAsDataURL($scope.avatarInput.files[0]);
-	});
-
-	$scope.updateAvatar = function () {
-		$scope.avatarInput.click();
-	}
-
-	if ($scope.authReady) {
-		userSettingsCtrlFunc($state, $scope, $stateParams, userService);
-		return;
-	}
-
-	$scope.$on("auth:ready", _ => userSettingsCtrlFunc($state, $scope, $stateParams, userService));
-}]);
+		$scope.$on("auth:ready", _ => userSettingsCtrlFunc($state, $scope, $stateParams, userService, authService));
+	}]);

@@ -122,10 +122,10 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 			$scope.exercise = res.data;
 		}).then(_ => $exercise.progress($scope.selectedModule.data.id, user.id)).then(res => {
 			if (!res.data) {
-				editor.setValue($scope.exercise.sampleCode);
+				editor.setValue($scope.exercise.sampleCode || "");
 				return;
 			}
-			editor.setValue(res.data.currentSolution);
+			editor.setValue(res.data.currentSolution || "");
 		});
 	}
 

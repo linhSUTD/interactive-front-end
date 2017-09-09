@@ -1,44 +1,57 @@
-var resetPassword = angular.module('resetPasswordApp', ['ngCookies', 'service.auth', 'config', 'ui.router', 'ui.bootstrap']);
+var resetPasswordApp = angular.module('resetPasswordApp', ['service.auth', 'config', 'ui.router', 'ui.bootstrap']);
 
-resetPassword.config(['$httpProvider', function ($httpProvider) {
+resetPasswordApp.config(['$httpProvider', function ($httpProvider) {
 	$httpProvider.defaults.headers.post = {
+		'Content-Type': undefined
+	};
+
+	$httpProvider.defaults.headers.put = {
 		'Content-Type': undefined
 	};
 }]);
 
-resetPassword.config(function ($stateProvider, $urlRouterProvider) {
-	$httpProvider.defaults.headers.post = {
-		'Content-Type': undefined
-	};
-});
+const PasswordErrors = {
+	"unmatch": "Mật khẩu không trùng khớp"
+};
 
-resetPassword.controller('resetPasswordCtrl', ['$scope', '$http', 'settings', 'authService', '$stateParams', function (
-	$scope, $http, settings, authService, $stateParams) {
+resetPasswordApp.controller('resetPasswordCtrl', ['$timeout', '$scope', 'authService', 'settings',
+	function ($timeout, $scope, authService, settings) {
 
-	$scope.alert = {};
+		$scope.password = "";
+		$scope.confirmPassword = "";
+		var param = window.location.search.substring(1);
 
-	$scope.hasAlert = false;
-
-	$scope.user = {
-		password: "",
-		confirmPassword: "",
-		token: $stateParams.token
-	};
-
-	$scope.reset = function () {
-		authService.resetPassword($scope.user).then(function (response) {
-			$scope.alert = {
-				type: 'success',
-				msg: 'Thay đổi mật khẩu thành công.'
-			}
-			$scope.hasAlert = true;
-
-		}, function(error){
+		if (param == null || param == "" || param == undefined || param.split("=")[0] != 'code') {
 			$scope.alert = {
 				type: 'danger',
-				msg: error.data.errors[0]
+				msg: "Mã xác nhận không hợp lệ."
 			}
 			$scope.hasAlert = true;
-		})
-	}
-}]);
+			return;
+		}
+
+		var code = param.split("=")[1];
+
+		$scope.onSubmit = function () {
+			var confirmPasswordElement = document.getElementById("confirmPassword");
+
+			if ($scope.password !== $scope.confirmPassword) {
+				$scope.alert = {
+					type: 'danger',
+					msg: "Mật khẩu không trùng khớp"
+				}
+				$scope.hasAlert = true;
+				return;
+			}
+
+			authService.resetPassword(code, $scope.password).then(res => {
+				location.href = settings.webUrl;
+			}, err => {
+				$scope.alert = {
+					type: 'danger',
+					msg: err.data.errors[0]
+				}
+				$scope.hasAlert = true;
+			});
+		}
+	}]);

@@ -7,15 +7,16 @@ config.constant('settings', {
 	apiUrl: 'http://localhost:5000/api',
 	webUrl: 'http://localhost:3000/#!',
 	activationUrl: 'http://localhost:3000/activation.html',
+	resetPasswordUrl: 'http://localhost:3000/resetPassword.html',
 	userRole: {
 		PUBLIC: "Public",
 		ADMIN: "Admin"
 	},
 	pageUrl: {
-		HOME:           	'/home',
-		LOGIN:              '/login',
-		REGISTRATION: 		'/registration',
-		FORGOT_PASSWORD: 	'/forgotPassword',
-		DASH_BOARD:			'/dashboard'
+		HOME: '/home',
+		LOGIN: '/login',
+		REGISTRATION: '/registration',
+		FORGOT_PASSWORD: '/forgotPassword',
+		DASH_BOARD: '/dashboard'
 	}
 });

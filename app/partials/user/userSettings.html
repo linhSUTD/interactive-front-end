@@ -122,7 +122,7 @@
                                         <form name="passwordForm" ng-submit="resetPassword()">
                                             <div class="form-group">
                                                 <h4>Cung cấp địa chỉ email của bạn và chúng tôi sẽ gửi hướng dẫn đổi mật khẩu mới.</h4>
-                                                <input class="form-control" type="email" name="email" autofocus="autofocus" placeholder="linh@fundaml.com" ng-required="true">
+                                                <input class="form-control" type="email" name="email" ng-model="requestPasswordEmail" placeholder="linh@fundaml.com" required>
                                             </div>
 
                                             <div class="margin-top-10">

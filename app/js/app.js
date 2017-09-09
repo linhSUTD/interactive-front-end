@@ -8,7 +8,6 @@ var app = angular.module('mainApp', [
 	'page.login',
 	'page.registration',
 	'page.forgotPassword',
-	'page.resetPassword',
 	'page.dashboard',
 	'page.contactUs',
 	'page.course',
@@ -38,6 +37,8 @@ app.config(['$httpProvider', '$stateProvider', '$locationProvider', function ($h
 		enabled: false,
 		requireBase: false
 	});
+
+	$locationProvider.hashPrefix('');
 }]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (

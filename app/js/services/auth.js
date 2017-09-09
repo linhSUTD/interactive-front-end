@@ -64,17 +64,19 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 			var promise = $http.post(settings.apiUrl + '/account', convertToFormData(data));
 			return promise;
 		},
-		forgotPassword: function (data) {
-			return $http.post(settings.apiUrl + '/forgotPassword', data);
+		requestResetPassword: function (email) {
+			return $http.post(`${settings.apiUrl}/account/password`, convertToFormData({
+				email: email,
+				url: settings.resetPasswordUrl
+			}));
 		},
-		resetPassword: function (data) {
-			return $http.post(settings.apiUrl + '/resetPassword', data);
+		resetPassword: function (code, newPassword) {
+			return $http.put(`${settings.apiUrl}/account/password`, convertToFormData({
+				code: code,
+				newPassword: newPassword
+			}));
 		},
-		activateAccount: function(data) {
-			console.log(data);
-
-			console.log(convertToFormData(data));
-
+		activateAccount: function (data) {
 			return $http.post(`${settings.apiUrl}/account/activate`, convertToFormData(data));
 		}
 	}

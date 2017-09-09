@@ -1,7 +1,3 @@
-/**
- * Created by nguyenlinh on 9/3/17.
- */
-
 var activation = angular.module('activationApp', ['ngCookies', 'service.auth', 'config', 'ui.router', 'ui.bootstrap']);
 
 activation.config(['$httpProvider', function ($httpProvider) {
