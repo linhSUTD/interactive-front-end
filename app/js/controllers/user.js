@@ -37,6 +37,16 @@ userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService
 }]);
 
 function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
+
+	$scope.alert = {};
+
+	$scope.hasAlert = false;
+
+	$scope.closeAlert = function() {
+		$scope.hasAlert = false;
+		$scope.alert = {};
+	};
+
 	$scope.user = userService.getUser();
 	if (!$scope.user) {
 		$state.go('login');
@@ -48,9 +58,15 @@ function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
 			name: $scope.user.name,
 			contact: $scope.user.contact,
 			gender: $scope.user.gender,
-			workInfo: $scope.user.work
+			workInfo: $scope.user.work,
+			avatar: $scope.avatarInput.files[0]
 		}).then(res => {
-			alert("updated");
+		}, function(error) {
+			$scope.alert = {
+				type: 'danger',
+				msg: error.data.errors[0]
+			}
+			$scope.hasAlert = true;
 		});
 	}
 
@@ -69,6 +85,23 @@ function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
 
 userModule.controller('userSettingsCtrl', ['$state', '$scope', '$stateParams', 'userService', function (
 	$state, $scope, $stateParams, userService) {
+
+	$scope.avatarInput = document.getElementById('avatar_input');
+	$scope.newAvatarImg = document.getElementById('new_avatar');
+	$scope.newAvatarImg.src = 'https://sg-avatars.b0.upaiyun.com/talent_blank.jpg-200w';
+
+	var fr = new FileReader();
+	fr.onload = function (e) {
+		$scope.newAvatarImg.src = this.result;
+	}
+
+	$scope.avatarInput.addEventListener("change", function () {
+		fr.readAsDataURL($scope.avatarInput.files[0]);
+	});
+
+	$scope.updateAvatar = function () {
+		$scope.avatarInput.click();
+	}
 
 	if ($scope.authReady) {
 		userSettingsCtrlFunc($state, $scope, $stateParams, userService);
