@@ -15,6 +15,10 @@ forgotPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 
 forgotPasswordModule.controller('forgotPasswordCtrl', ['$scope', '$http', 'settings', 'authService', function ($scope, $http, settings, authService) {
 
+	$scope.alert = {};
+
+	$scope.hasAlert = false;
+
 	$scope.user = {
 		email: ""
 	};
@@ -23,11 +27,19 @@ forgotPasswordModule.controller('forgotPasswordCtrl', ['$scope', '$http', 'setti
 
 		authService.forgotPassword($scope.user).then(function (response) {
 
-			showPopUp("We have sent you password reset instructions.");
+			$scope.alert = {
+				type: 'success',
+				msg: 'Chúng tôi đã gửi email thay đổi mật khẩu cho bạn.'
+			}
+			$scope.hasAlert = true;
 
 		}, function (error) {
 
-			showPopUp(error.data.error);
+			$scope.alert = {
+				type: 'danger',
+				msg: error.data.errors[0]
+			}
+			$scope.hasAlert = true;
 		})
 	}
 }]);

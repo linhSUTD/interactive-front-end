@@ -61,6 +61,12 @@ function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {
 			workInfo: $scope.user.work,
 			avatar: $scope.avatarInput.files[0]
 		}).then(res => {
+			$scope.alert = {
+				type: 'success',
+				msg: 'Cập nhật thành công.'
+			}
+			$scope.hasAlert = true;
+			$scope.user = userService.getUser();
 		}, function(error) {
 			$scope.alert = {
 				type: 'danger',
