@@ -164,9 +164,12 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 		$scope.lessons = lessons;
 	});
 
-	$course.get($stateParams.courseId).then(res => {
-		$scope.course = res.data;
-	});
+	$course.get($stateParams.courseId)
+		.then(res => {
+			$scope.course = res.data;
+		})
+		.then(_ => userService.author($scope.course.authorId))
+		.then(r => $scope.author = r.data);
 }
 
 courseModule.controller('courseHomePageCtrl', [

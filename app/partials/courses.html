@@ -43,35 +43,17 @@
                     <div class="row margin-bottom-40" ng-show="state=='searched'">
 
                         <div class="col-md-4" ng-repeat="rCourse in searchResults">
-                            <div class="pricing hover-effect">
-                                <div class="pricing-head">
-                                    <h3> {{rCourse.title}}</h3>
-                                    <h5>{{rCourse.description}}</h5>
-                                </div>
-                                <ul class="pricing-content list-unstyled">
-                                    <li>
-                                        <i class="fa fa-tags"></i> {{rCourse.level}}
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-asterisk"></i> 15 lessons
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-heart"></i> 100 exercises
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-star"></i> FREE
-                                    </li>
-                                </ul>
-                                <div class="pricing-footer" ng-hide="!rCourse.author">
-                                    <div class="row">
-                                        <img ng-src="{{rCourse.author.avatarUrl}}" class="img-circle" alt="" style="float: left;width:45px;height:45px">
-
-                                        <div style="float: left; padding-left: 10px; margin-top: -6px;">
-                                            <h5 class="bold">{{rCourse.author.name}}</h5>
-                                            <h5>{{rCourse.author.title}}</h5>
-                                        </div>
+                            <div class="product-item">
+                                <div class="pi-img-wrapper">
+                                    <img src="../../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <div>
+                                        <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default fancybox-fast-view">View</a>
                                     </div>
                                 </div>
+                                <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
+                                <div class="pi-price">{{rCourse.level}}</div>
+                                <a href="#" class="btn btn-default add2cart">Review</a>
+                                <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
 

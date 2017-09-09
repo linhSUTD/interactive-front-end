@@ -19,11 +19,21 @@ userModule.config(function ($stateProvider, $urlRouterProvider) {
 		})
 })
 
-userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService', function (
-	$scope, $stateParams, userService) {
-
+function userProfileCtrlFunc($scope, $stateParams, userService) {
 	$scope.user = userService.getUser();
 
+	userService.achievements($scope.user.id).then(res => {
+		$scope.achievements = res.data;
+	});
+}
+
+userModule.controller('userProfileCtrl', ['$scope', '$stateParams', 'userService', function ($scope, $stateParams, userService) {
+	if ($scope.authReady) {
+		userProfileCtrlFunc($scope, $stateParams, userService);
+		return;
+	}
+
+	$scope.$on("auth:ready", _ => userProfileCtrlFunc($scope, $stateParams, userService));
 }]);
 
 function userSettingsCtrlFunc($state, $scope, $stateParams, userService) {

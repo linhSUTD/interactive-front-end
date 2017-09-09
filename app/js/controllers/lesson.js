@@ -63,6 +63,31 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		return;
 	}
 
+	function isLessonComplete() {
+		var defer = $q.defer();
+		$lesson.progress($stateParams.lessonId, user.id).then(res => {
+			defer.resolve(!!res.data);
+		}, _ => defer.resolve(false));
+
+		return defer.promise;
+	}
+
+	function checkLessonComplete() {
+		isLessonComplete().then(res => {
+			if (res) {
+				$state.go('course.home', { courseId: $scope.outline[0].data.courseId });
+				return;
+			}
+
+			//move on to the next exercise
+			var selectedIndex = $scope.outline.indexOf($scope.selectedModule);
+			if (selectedIndex < 0) {
+				return;
+			}
+			setModule($scope.outline[(selectedIndex + 1) % $scope.outline.length]);
+		});
+	}
+
 	function initializeExercise() {
 		$("#editor-tab").empty();
 		var outputWindow = document.getElementById("outputWindow");
@@ -126,13 +151,12 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 					alert("wrong answer");
 				} else {
 					alert("right answer");
-					//move on to the next exercise
+					checkLessonComplete();
 				}
 			});
 		}
 	}
 
-	$scope.lesson = null;
 	$scope.outline = [];
 	$scope.exerciseSummaries = [];
 	$scope.selectedModule = null;
@@ -148,7 +172,6 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		}
 
 		var code = editor.getValue();
-		console.log(code);
 		if (!code.trim()) {
 			return;
 		}
@@ -176,7 +199,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 
 		switch (rp.type) {
 			default:
-				break;
+				return;
 			case "script-output":
 				resultState.outputText = rp.payload["output"];
 				break;

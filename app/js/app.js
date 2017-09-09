@@ -19,7 +19,7 @@ var app = angular.module('mainApp', [
 	'ngCookies'
 ]);
 
-app.config(['$httpProvider', '$stateProvider', function ($httpProvider, $stateProvider) {
+app.config(['$httpProvider', '$stateProvider', '$locationProvider', function ($httpProvider, $stateProvider, $locationProvider) {
 	$httpProvider.defaults.headers.post = {
 		'Content-Type': undefined
 	};
@@ -33,6 +33,11 @@ app.config(['$httpProvider', '$stateProvider', function ($httpProvider, $statePr
 			url: '/auth',
 			template: '<div></div>'
 		});
+
+	$locationProvider.html5Mode({
+		enabled: false,
+		requireBase: false
+	});
 }]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (

@@ -4,12 +4,12 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 
 	return {
 		count: function (activeOnly = true) {
-            return $http.get(`${settings.apiUrl}/user/count`, {
-                params: {
-                    activeOnly: activeOnly
-                }
-            });
-        },
+			return $http.get(`${settings.apiUrl}/user/count`, {
+				params: {
+					activeOnly: activeOnly
+				}
+			});
+		},
 		getUser: function () {
 			return authService.getCurrentUser();
 		},
@@ -18,6 +18,9 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 		},
 		update: function (id, model) {
 			return $http.put(settings.apiUrl + "/account/" + id, convertToFormData(model));
+		},
+		achievements: function (id) {
+			return $http.get(`${settings.apiUrl}/user/${id}/achievements`);
 		}
 	}
 });

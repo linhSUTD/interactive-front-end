@@ -31,16 +31,17 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <div class="accordion-toggle accordion-toggle-styled">
-                                        Lesson {{lesson.index}}: {{lesson.description}}
+                                        Lesson {{lesson.index}}: {{lesson.title}}
                                     </div>
                                 </h4>
+                                <h5>{{lesson.description}}</h6>
 
                                 <div class="lesson_progress">
                                     <span class="lesson_progress-percentage">
                                         {{lesson.progress}}%
                                     </span>
                                     <div class="lesson_progress-bar">
-                                        <div class="lesson_progress-bar-completed" style="width: 5%;" ng-style="{'width':{{lesson.progress}} + '%'}">
+                                        <div class="lesson_progress-bar-completed" ng-style="{'width':{{lesson.progress}} + '%'}">
                                         </div>
                                     </div>
                                 </div>
@@ -49,8 +50,7 @@
                                     <div class="col-md-7">
                                         <ul ng-show="!!lesson.outline" style="list-style: none; margin-bottom: 26px; margin-top: 30px; margin-left: -57px;">
                                             <li class="lesson_exercise" ng-repeat="item in lesson.outline">
-                                                <a class="lesson_exercise_link" style="text-decoration: none;" 
-                                                    ui-sref="course.lesson({courseId: course.id, lessonId: lesson.id, index:$index})">
+                                                <a class="lesson_exercise_link" style="text-decoration: none;" ui-sref="course.lesson({courseId: course.id, lessonId: lesson.id, index:$index})">
                                                     <span class="lesson_exercise_icon">
                                                         <img width="23" height="23" alt="Icon exercise interactive"
                                                             ng-src="{{item.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">
@@ -84,12 +84,12 @@
             </div>
 
             <div class="col-md-3">
-                <div class="team-block content content-center margin-bottom-40" id="team">
+                <div class="team-block content content-center margin-bottom-40" id="team" ng-show="!!author">
                     <div class="row item">
-                        <img src="../img/img6-large.jpg" alt="Marcus Doe" class="img-responsive">
-                        <h3 style="margin-top: 15px;">Tiep Vu</h3>
-                        <em>Admin</em>
-                        <p>Phd student at Pennsylvania State University</p>
+                        <img ng-src={{author.avatarUrl}} alt="{{author.name}}" class="img-responsive">
+                        <h3 style="margin-top: 15px;">{{author.name}}</h3>
+                        <em>{{author.title}}</em>
+                        <p>{{author.description}}</p>
                         <div class="tb-socio">
                             <a href="javascript:void(0);" class="fa fa-facebook"></a>
                             <a href="javascript:void(0);" class="fa fa-twitter"></a>
