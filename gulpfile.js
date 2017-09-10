@@ -11,6 +11,10 @@ var browserSync = require('browser-sync').create();
 
 var production = process.env.NODE_ENV === 'production';
 
+gulp.task('set-production', function () {
+	return production = 'development';
+});
+
 /// Bundle Libraries
 gulp.task('vendor', function () {
 	return gulp.src([
@@ -77,3 +81,4 @@ gulp.task('styles', function () {
 
 
 gulp.task('default', ['vendor', 'css-vendor', 'styles', 'scripts', 'serve']);
+gulp.task('build:prod', ['set-production', 'vendor', 'css-vendor', 'styles', 'scripts']);
