@@ -1,6 +1,3 @@
-/**
- * Created by nguyenlinh on 7/15/17.
- */
 var loginModule = angular.module('page.login', []);
 
 loginModule.config(function ($stateProvider, $urlRouterProvider) {
@@ -25,7 +22,7 @@ function loginCtrlFunc($scope, authService, settings, $state) {
 	$scope.alert = {};
 	$scope.hasAlert = false;
 	$scope.user = {
-		activationUrl: settings.activationUrl
+		activationUrl: `${location.protocol}//${location.protocol}//${location.host}${settings.activationUrl}`
 	};
 
 	$scope.login = function () {

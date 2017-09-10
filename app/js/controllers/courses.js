@@ -50,7 +50,7 @@ coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function
 	/**
 	 * Load all recommended courses
 	 */
-	$course.recentCourses(null, null, 3, "descending").then(function (response) {
+	$course.recentCourses(null, null, 50, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
 		}

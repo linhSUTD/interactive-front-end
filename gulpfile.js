@@ -12,7 +12,7 @@ var browserSync = require('browser-sync').create();
 var production = process.env.NODE_ENV === 'production';
 
 /// Bundle Libraries
-gulp.task('vendor', function(){
+gulp.task('vendor', function () {
 	return gulp.src([
 		"node_modules/bootstrap/dist/js/bootstrap.min.js",
 		"node_modules/angular/angular.min.js",
@@ -25,12 +25,12 @@ gulp.task('vendor', function(){
 		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js",
 		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"
 	]).pipe(concat('vendor.js'))
-		.pipe(gulpif(production, uglify({mangle:false})))
+		.pipe(gulpif(production, uglify({ mangle: false })))
 		.pipe(gulp.dest('app/build'));
 })
 
 /// Bundle CSS Libraries
-gulp.task('css-vendor', function(){
+gulp.task('css-vendor', function () {
 	return gulp.src([
 	]).pipe(cssconcat('vendor.css'))
 		.pipe(gulpif(production, cssmin()))
@@ -51,22 +51,22 @@ gulp.task('serve', ['styles', 'scripts'], function () {
 
 gulp.task('scripts', function () {
 	return gulp.src([
-			'app/js/utils/**/*.js',
-			'app/js/config.js',
-			'app/js/activation.js',
-			'app/js/resetPassword.js',
-			'app/js/app.js',
-			'app/js/controllers/**/*.js',
-			'app/js/directives/**/*.js',
-			'app/js/filters/**/*.js',
-			'app/js/services/**/*.js',
-			'app/js/directives/**/*.js'
+		'app/js/utils/**/*.js',
+		production ? 'app/js/config.production.js' : 'app/js/config.js',
+		'app/js/activation.js',
+		'app/js/resetPassword.js',
+		'app/js/app.js',
+		'app/js/controllers/**/*.js',
+		'app/js/directives/**/*.js',
+		'app/js/filters/**/*.js',
+		'app/js/services/**/*.js',
+		'app/js/directives/**/*.js'
 	]).pipe(concat('main.js'))
-		.pipe(gulpif(production, uglify({mangle:false})))
+		.pipe(gulpif(production, uglify({ mangle: false })))
 		.pipe(gulp.dest('./app/build'));
 });
 
-gulp.task('styles', function(){
+gulp.task('styles', function () {
 	return gulp.src('app/scss/*.scss')
 		.pipe(plumber())
 		.pipe(sass())

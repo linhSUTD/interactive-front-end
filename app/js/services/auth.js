@@ -80,7 +80,7 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 		requestResetPassword: function (email) {
 			return $http.post(`${settings.apiUrl}/account/password`, convertToFormData({
 				email: email,
-				url: settings.resetPasswordUrl
+				url: `${location.protocol}//${location.host}${settings.resetPasswordUrl}`
 			}));
 		},
 		resetPassword: function (code, newPassword) {

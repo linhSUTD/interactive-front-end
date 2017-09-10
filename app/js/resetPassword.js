@@ -47,7 +47,7 @@ resetPasswordApp.controller('resetPasswordCtrl', ['$timeout', '$scope', 'authSer
 				}
 				$scope.hasAlert = true;
 				$scope.isSuccess = true;
-				$scope.homePageUrl = `${settings.webUrl}/home`;
+				$scope.homePageUrl = `${location.protocol}//${location.host}/home`;
 
 			}, err => {
 

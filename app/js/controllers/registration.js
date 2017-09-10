@@ -1,6 +1,3 @@
-/**
- * Created by nguyenlinh on 7/15/17.
- */
 var registrationModule = angular.module('page.registration', ['ui.bootstrap']);
 
 registrationModule.config(function ($stateProvider, $urlRouterProvider) {
@@ -23,7 +20,7 @@ function registrationCtrlFunc($scope, authService, settings, $state) {
 	}
 
 	$scope.user = {
-		activationUrl: settings.activationUrl
+		activationUrl: `${location.protocol}//${location.host}${settings.activationUrl}`
 	};
 	$scope.alert = {};
 	$scope.hasAlert = false;
