@@ -4,13 +4,12 @@
             <a ui-sref="home">Trang Chủ</a>
         </li>
         <li class="active">
-            Cập Nhật Thông Tin
+            Cập Nhật Tài Khoản
         </li>
     </ul>
 
     <div class="row">
         <div class="col-md-12">
-            <!-- BEGIN PROFILE SIDEBAR -->
             <div class="profile-sidebar" style="width: 250px; margin-left: -15px;">
                 <div class="portlet light profile-sidebar-portlet">
 
@@ -23,7 +22,7 @@
                             {{user.name}}
                         </div>
                         <div class="profile-usertitle-job">
-                            {{user.work}}
+                            {{user.workInfo}}
                         </div>
                     </div>
 
@@ -32,12 +31,13 @@
                             <li>
                                 <a ui-sref="user.profile">
                                     <i class="icon-home"></i>
-                                    Thông Tin Tài Khoản </a>
+                                    Thông Tin Chung
+                                </a>
                             </li>
                             <li class="active">
                                 <a ui-sref="user.settings">
                                     <i class="icon-settings"></i>
-                                    Cập Nhật Thông Tin
+                                    Cập Nhật Tài Khoản
                                 </a>
                             </li>
                         </ul>
@@ -49,6 +49,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet light">
+
                             <div class="portlet-title tabbable-line">
                                 <div class="caption caption-md">
                                     <i class="icon-globe theme-font hide"></i>
@@ -63,10 +64,13 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="portlet-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="info_tab">
+
                                         <form role="form" name="userForm" ng-submit="updateUser()">
+
                                             <div class="form-group">
                                                 <div class="row">
                                                     <img alt="Talent blank" id="new_avatar" class="border" width="120" height="120" style="border: 1px dashed #dedede; float: left">
@@ -80,7 +84,7 @@
 
                                             <div class="form-group">
                                                 <label class="control-label">Tên Đầy Đủ <span style="color:red;">*</span></label>
-                                                <input class="form-control" type="text" name="name" placeholder="Name" required ng-model="user.name">
+                                                <input class="form-control" type="text" name="name" placeholder="Name" ng-required="true" ng-model="user.name">
                                             </div>
 
                                             <div class="form-group">
@@ -90,12 +94,12 @@
 
                                             <div class="form-group">
                                                 <label class="control-label">Số Điện thoại </label>
-                                                <input type="text" placeholder="Cơ quan, địa chỉ..." class="form-control" ng-model="user.contact"/>
+                                                <input type="text" placeholder="091 234 5678" class="form-control" ng-model="user.contact"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="control-label">Công Việc Hiện Tại </label>
-                                                <input type="text" placeholder="Lập trình web..." class="form-control" ng-model="user.work"/>
+                                                <input type="text" placeholder="Lập trình web..." class="form-control" ng-model="user.workInfo"/>
                                             </div>
 
                                             <div class="form-group">
@@ -122,16 +126,17 @@
                                         <form name="passwordForm" ng-submit="resetPassword()">
                                             <div class="form-group">
                                                 <h4>Cung cấp địa chỉ email của bạn và chúng tôi sẽ gửi hướng dẫn đổi mật khẩu mới.</h4>
-                                                <input class="form-control" type="email" name="email" ng-model="requestPasswordEmail" placeholder="linh@fundaml.com" required>
+                                                <input class="form-control" type="email" name="email" ng-model="requestPasswordEmail" placeholder="linh@fundaml.com" ng-required="true">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
                                             </div>
 
                                             <div class="margin-top-10">
-                                                <button type="submit" class="btn green-haze" ng-disabled="passwordForm.$invalid">
+                                                <button type="submit" class="btn green-haze">
                                                     Gửi Email
                                                 </button>
-                                                <a class="btn default" ng-click="cancelResetPassword()">
-                                                    Huỷ Bỏ
-                                                </a>
                                             </div>
                                         </form>
                                     </div>
@@ -141,8 +146,6 @@
                     </div>
                 </div>
             </div>
-            <!-- END PROFILE CONTENT -->
         </div>
     </div>
-    <!-- END PAGE CONTENT INNER -->
 </div>

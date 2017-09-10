@@ -14,25 +14,30 @@ registrationModule.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 function registrationCtrlFunc($scope, authService, settings, $state) {
+
 	var currentUser = authService.getCurrentUser();
+
 	if (!!currentUser) {
 		$state.go("dashboard");
 		return;
 	}
 
-	$scope.user = {};
+	$scope.user = {
+		activationUrl: settings.activationUrl
+	};
 	$scope.alert = {};
 	$scope.hasAlert = false;
 
 	$scope.register = function () {
-		$scope.user.activationUrl = settings.activationUrl;
 
 		authService.register($scope.user).then(function (response) {
+
 			$scope.alert = {
 				type: 'success',
 				msg: 'Đăng ký thành công! Chúng tôi đã gửi email xác nhận cho bạn.'
 			}
 			$scope.hasAlert = true;
+
 		}, function (error, msg) {
 
 			$scope.alert = {
@@ -40,6 +45,7 @@ function registrationCtrlFunc($scope, authService, settings, $state) {
 				msg: error.data.errors[0]
 			}
 			$scope.hasAlert = true;
+
 		});
 	}
 
@@ -51,10 +57,12 @@ function registrationCtrlFunc($scope, authService, settings, $state) {
 
 registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'settings', '$state',
 	function ($scope, authService, settings, $state) {
+
 		if ($scope.authReady) {
 			registrationCtrlFunc($scope, authService, settings, $state);
 			return;
 		}
 
 		$scope.$on("auth:ready", _ => registrationCtrlFunc($scope, authService, settings, $state));
-	}]);
+	}
+]);

@@ -12,49 +12,45 @@
             </ul>
 
             <div>
-
-                <div>
-                    <h1>Đăng nhập với chúng tôi</h1>
-                    <hr/>
-                </div>
-
-                <div>
-                    <form class="form-horizontal" role="form" ng-submit="login()" name="loginForm">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Địa Chỉ Email <span style="color:red;">*</span></label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="email" placeholder="linh@fundaml.com" ng-required="true" ng-model="user.email">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Mật Khẩu <span style="color:red;">*</span></label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="password" name="password" placeholder="Password" ng-required="true" ng-model="user.password">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-7 col-sm-offset-3">
-                                <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-7">
-                                <button class="col-sm-3 btn btn-primary" type="submit" ng-disabled="loginForm.$invalid"> Đăng nhập </button>
-                                <a class="btn btn-link" ui-sref="forgotPassword">Quên mật khẩu?</a>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-7">
-                                <hr/>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <h1>Đăng nhập với chúng tôi</h1>
+                <hr/>
             </div>
+
+            <form class="form-horizontal" role="form" ng-submit="login()" name="loginForm">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Địa Chỉ Email <span style="color:red;">*</span></label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="email" placeholder="linh@fundaml.com" ng-required="true" ng-model="user.email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mật Khẩu <span style="color:red;">*</span></label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="password" name="password" placeholder="Password" ng-required="true" ng-model="user.password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-7 col-sm-offset-3">
+                        <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-7">
+                        <button class="col-sm-3 btn btn-primary" type="submit"> Đăng nhập </button>
+                        <a class="btn btn-link" ui-sref="forgotPassword">Quên mật khẩu?</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-7">
+                        <hr/>
+                    </div>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

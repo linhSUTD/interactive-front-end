@@ -23,6 +23,7 @@ const headerStateMap = {
 };
 
 coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function ($scope, $course, $state) {
+
 	$scope.searchResults = [];
 	$scope.state = "recommended";
 	$scope.recommendations = [];
@@ -32,8 +33,12 @@ coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function
 		return headerStateMap[$scope.state];
 	}
 
+	/**
+	 * Search courses
+	 */
 	$scope.onSearch = function () {
 		$scope.state = "searching";
+
 		$course.search($scope.query, null, null, null, null, 10).then(res => {
 			$scope.searchResults = res.data;
 			$scope.state = "searched";
@@ -42,6 +47,9 @@ coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function
 		});
 	}
 
+	/**
+	 * Load all recommended courses
+	 */
 	$course.recentCourses(null, null, 3, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;

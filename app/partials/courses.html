@@ -25,14 +25,11 @@
                                 <div class="col-md-4 col-sm-6" ng-repeat="rCourse in recommendations">
                                     <div class="product-item">
                                         <div class="pi-img-wrapper">
-                                            <img src="../../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                            <div>
-                                                <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default fancybox-fast-view">View</a>
-                                            </div>
+                                            <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
                                         </div>
                                         <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
                                         <div class="pi-price">{{rCourse.level}}</div>
-                                        <a href="#" class="btn btn-default add2cart">Review</a>
+                                        <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
                                         <div class="sticker sticker-sale"></div>
                                     </div>
                                 </div>
@@ -45,25 +42,15 @@
                         <div class="col-md-4" ng-repeat="rCourse in searchResults">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="../../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    <div>
-                                        <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default fancybox-fast-view">View</a>
-                                    </div>
+                                    <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
                                 </div>
                                 <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
                                 <div class="pi-price">{{rCourse.level}}</div>
-                                <a href="#" class="btn btn-default add2cart">Review</a>
+                                <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
                                 <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
-
                     </div>
-                </div>
-
-                <div class="row" style="text-align: center; margin-top: 20px;">
-                    <button class="btn btn-default btn-lg" type="button" style="border: 1px solid #7ecce2;">
-                        See all courses
-                    </button>
                 </div>
             </div>
         </div>

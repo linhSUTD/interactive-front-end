@@ -34,14 +34,14 @@
                                         Lesson {{lesson.index}}: {{lesson.title}}
                                     </div>
                                 </h4>
-                                <h5>{{lesson.description}}</h6>
+                                <h6>{{lesson.description}}</h6>
 
                                 <div class="lesson_progress">
                                     <span class="lesson_progress-percentage">
                                         {{lesson.progress}}%
                                     </span>
                                     <div class="lesson_progress-bar">
-                                        <div class="lesson_progress-bar-completed" ng-style="{'width':{{lesson.progress}} + '%'}">
+                                        <div class="lesson_progress-bar-completed" ng-style="{'width': lesson.progress + '%'}">
                                         </div>
                                     </div>
                                 </div>
@@ -90,11 +90,6 @@
                         <h3 style="margin-top: 15px;">{{author.name}}</h3>
                         <em>{{author.title}}</em>
                         <p>{{author.description}}</p>
-                        <div class="tb-socio">
-                            <a href="javascript:void(0);" class="fa fa-facebook"></a>
-                            <a href="javascript:void(0);" class="fa fa-twitter"></a>
-                            <a href="javascript:void(0);" class="fa fa-google-plus"></a>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,9 @@
 var authServiceModule = angular.module('service.auth', ['ngCookies']);
 
 authServiceModule.factory('authService', function ($http, $cookies, $q, settings) {
-	var currentUser = null;
 
 	function logout() {
-		currentUser = null;
+		$cookies.put('currentUser', undefined);
 		$cookies.put('token', undefined);
 		$http.defaults.headers.common['Authorization'] = undefined;
 	}
@@ -15,20 +14,24 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 		},
 		refresh: function () {
 			return $http.get(settings.apiUrl + '/account/me').then(res => {
-				currentUser = res.data;
+				$cookies.put('currentUser', JSON.stringify(res.data));
 			});
 		},
 		getCurrentUser: function () {
-			if (!currentUser) {
+			if ($cookies.get('currentUser') == "" || $cookies.get('currentUser') == undefined || $cookies.get('currentUser') == null) {
 				return null;
 			}
+
+			var currentUser = JSON.parse($cookies.get('currentUser'));
 
 			if (!currentUser.avatarUrl) {
 				currentUser.avatarUrl = "https://tailuns.com/avatar/no.png";
 			}
+
 			return currentUser;
 		},
 		tryPreviousSession: function (cb) {
+
 			var token = $cookies.get('token');
 			if (!token) {
 				cb(false);
@@ -38,24 +41,34 @@ authServiceModule.factory('authService', function ($http, $cookies, $q, settings
 			$http.defaults.headers.common['Authorization'] = "Bearer " + token;
 
 			$http.get(settings.apiUrl + '/account/me').then(res => {
-				currentUser = res.data;
+
+				$cookies.put('currentUser', JSON.stringify(res.data));
 				cb(true);
+
 			}, rej => {
+
 				logout();
 				cb(false);
 				return;
+
 			});
 		},
 		login: function (data) {
 			var defer = $q.defer();
+
 			var promise = $http.post(settings.apiUrl + '/account/sign-in', convertToFormData(data));
+
 			promise.then(r => {
+
 				$cookies.put('token', r.data.accessToken);
 				$http.defaults.headers.common['Authorization'] = "Bearer " + r.data.accessToken;
 				return $http.get(settings.apiUrl + '/account/me');
+
 			}, err => defer.reject(err)).then(r2 => {
-				currentUser = r2.data;
+
+				$cookies.put('currentUser', JSON.stringify(r2.data));
 				defer.resolve();
+
 			}, _ => defer.reject(_));
 
 			return defer.promise;

@@ -13,8 +13,10 @@ lessonModule.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 function getGraphSrc(payload) {
+
 	function hexToBase64(str) {
-		//Generate hex array from hex string
+
+		// Generate hex array from hex string
 		var hexArray = str.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ');
 
 		var CHUNK_SIZE = 0x8000; //Arbitrary number
@@ -22,23 +24,27 @@ function getGraphSrc(payload) {
 		var length = hexArray.length;
 		var result = '';
 		var slice;
-		//Passing too many arguments into fromCharCode gives `Maximum call stack size exceeded`.
-		//We divide the hex array into pieces and pass these.
+
+		// Passing too many arguments into fromCharCode gives `Maximum call stack size exceeded`.
+		// We divide the hex array into pieces and pass these.
 		while (index < length) {
 			slice = hexArray.slice(index, index + CHUNK_SIZE);
 			result += String.fromCharCode.apply(null, slice);
 			index += CHUNK_SIZE;
 		}
+
 		return btoa(result);
 	}
 
 	if (payload.lastIndexOf("http", 0) === 0) {
 		return payload;
 	}
+
 	// New SVGs (from Python) com in base64 - they always start with PD94
 	if (payload.startsWith('PD94')) {
 		return 'data:image/svg+xml;base64,' + payload;
 	}
+
 	// PNGs (from R) come in hex; need to convert to base 64
 	return 'data:image/png;base64,' + hexToBase64(payload);
 }
@@ -52,6 +58,7 @@ const outputTypeToClassMap = {
 };
 
 function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService, $exercise, $datacamp, $lesson) {
+
 	var progress = {};
 	var user = userService.getUser();
 	var editor = null;
@@ -97,6 +104,8 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		$scope.output = "";
 		$scope.graphPayload = "";
 		$scope.resultType = "";
+		$scope.hasAlert = false;
+		$scope.alert = {};
 
 		editor = CodeMirror(document.getElementById("editor-tab"), {
 			value: "",
@@ -115,28 +124,35 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		editor.setSize(null, "100%");
 
 		$exercise.get($scope.selectedModule.data.id).then(res => {
+
 			if (!res.data) {
 				return;
 			}
 
 			$scope.exercise = res.data;
+
 		}).then(_ => $exercise.progress($scope.selectedModule.data.id, user.id)).then(res => {
+
 			if (!res.data) {
 				editor.setValue($scope.exercise.sampleCode || "");
 				return;
 			}
+
 			editor.setValue(res.data.currentSolution || "");
 		});
 	}
 
 	function setModule(moduleItem) {
+
 		$scope.selectedModule = moduleItem;
+
 		if (moduleItem.type == "exercise") {
 			$timeout(initializeExercise, 0);
 		}
 	}
 
 	function setResult() {
+
 		$scope.output = resultState.outputText;
 		$scope.graphPayload = resultState.outputGraph;
 		$scope.resultType = resultState.type;
@@ -148,9 +164,17 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		if (resultState.type == "script-output" || resultState.type == "output") {
 			$exercise.saveProgress($scope.selectedModule.data.id, user.id, editor.getValue(), resultState.outputText).then(r => {
 				if (!r.data) {
-					alert("wrong answer");
+					$scope.alert = {
+						type: 'danger',
+						msg: 'Kết quả không chính xác.'
+					}
+					$scope.hasAlert = true;
 				} else {
-					alert("right answer");
+					$scope.alert = {
+						type: 'success',
+						msg: 'Kết quả chính xác.'
+					}
+					$scope.hasAlert = true;
 					checkLessonComplete();
 				}
 			});
@@ -221,6 +245,31 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 
 		$timeout(setResult, 0);
 	});
+
+
+	$scope.goPrevious = function() {
+		//move on to the next exercise
+		var selectedIndex = $scope.outline.indexOf($scope.selectedModule);
+		if (selectedIndex == 0) {
+			setModule($scope.outline[0]);
+			return;
+		}
+		setModule($scope.outline[(selectedIndex - 1) % $scope.outline.length]);
+	}
+
+	$scope.goForward = function() {
+		//move on to the next exercise
+		var selectedIndex = $scope.outline.indexOf($scope.selectedModule);
+		if (selectedIndex < 0) {
+			return;
+		}
+		setModule($scope.outline[(selectedIndex + 1) % $scope.outline.length]);
+	}
+
+	$scope.closeAlert = function () {
+		$scope.hasAlert = false;
+		$scope.alert = {};
+	};
 }
 
 lessonModule.controller('lessonCtrl', [

@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="container" style="padding: 15px 0 15px;">
         <div>
@@ -29,7 +28,7 @@
                             <div class="col-md-3 col-sm-6" ng-repeat="reg in ongoingCourses" style="margin-bottom:30px">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
-                                        <img ng-src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                        <img ng-src="../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     </div>
                                     <h3><a href="shop-item.html">{{reg.course.title}}</a></h3>
                                     <div class="pi-price">{{reg.course.level}}</div>
@@ -43,7 +42,7 @@
                             <div class="col-md-3 col-sm-6" ng-repeat="reg in finishedCourses" style="margin-bottom:30px">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
-                                        <img ng-src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                        <img ng-src="../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     </div>
                                     <h3><a href="shop-item.html">{{reg.course.title}}</a></h3>
                                     <div class="pi-price">{{reg.course.level}}</div>

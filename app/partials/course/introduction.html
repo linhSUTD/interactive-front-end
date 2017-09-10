@@ -123,21 +123,18 @@
                             </div>
                         </div>
                         <div class="portlet-body">
+                            <ul style="list-style: none; margin-bottom: 26px; margin-left: -45px;">
+                                <li class="lesson_exercise" ng-repeat="lesson in lessons">
+                                    <a class="lesson_exercise_link" style="text-decoration: none;">
+                                        <span class="lesson_exercise_icon">
+                                            <img width="23" height="23" alt="Icon exercise interactive"
+                                                 ng-src="{{item.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">
+                                        </span>
 
-                            <div class="table-scrollable">
-                                <table class="table table-striped table-bordered table-advance table-hover">
-                                    <tbody>
-                                    <tr ng-repeat="lesson in lessons">
-                                        <td width="20%">
-                                            <span class="fa fa-university"> </span> Bài {{lesson.index}}
-                                        </td>
-                                        <td width="80%">
-                                            {{lesson.description}}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        <h5 class="lesson_exercise_title" title="Fitting the model">Bài {{lesson.index}}: {{lesson.description}}</h5>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -151,36 +148,11 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <div class="panel-group accordion" id="accordion3">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a class="accordion-toggle accordion-toggle-styled" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_1"
-                                               target="_self">
-                                                Câu Hỏi #1
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse_3_1" class="panel-collapse in">
-                                        <div class="panel-body">
-                                        </div>
-                                    </div>
+                            <uib-accordion>
+                                <div uib-accordion-group class="panel-default accordion-toggle accordion-toggle-styled" heading="{{question.title}}" is-open="true"  ng-repeat="question in questions">
+                                    {{question.answer}}
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_2"
-                                               target="_self">
-                                                Câu Hỏi #2
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse_3_2" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </uib-accordion>
                         </div>
                     </div>
                 </div>

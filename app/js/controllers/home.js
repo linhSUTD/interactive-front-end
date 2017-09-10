@@ -13,6 +13,7 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 })
 
 function getSummaries($course, $lesson, $exercise, userService, $q) {
+
 	var defer = $q.defer();
 
 	var courseCount = 0, lessonCount = 0, exerciseCount = 0, userCount = 0;
@@ -24,6 +25,7 @@ function getSummaries($course, $lesson, $exercise, userService, $q) {
 	var userPromise = userService.count().then(res => userCount = res.data, e => err = e);
 
 	$q.all([coursePromise, lessonPromise, exercisePromise, userPromise]).then(_ => {
+
 		if (!!err) {
 			defer.reject(err);
 			return;
@@ -35,12 +37,14 @@ function getSummaries($course, $lesson, $exercise, userService, $q) {
 			exerciseCount: exerciseCount,
 			userCount: userCount
 		});
+
 	});
 
 	return defer.promise;
 }
 
 function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state) {
+
 	var user = userService.getUser();
 
 	if (!!user) {
@@ -49,16 +53,16 @@ function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $sta
 	}
 
 	$course.recentCourses(null, null, 10, "descending").then(function (response) {
+
 		if (response.status >= 400) {
 			return;
 		}
-
 		$scope.recentCourses = response.data;
+
 	});
 
 	getSummaries($course, $lesson, $exercise, userService, $q).then(res => {
 		$scope.summaries = res;
-		console.log(res);
 	});
 }
 
@@ -70,10 +74,13 @@ homeModule.controller('homeCtrl', [
 	'$exercise',
 	'userService',
 	'$state', function ($q, $scope, $course, $lesson, $exercise, userService, $state) {
+
 		if ($scope.authReady) {
 			homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state);
 			return;
 		}
 
 		$scope.$on("auth:ready", _ => homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state));
-	}]);
+
+	}
+]);

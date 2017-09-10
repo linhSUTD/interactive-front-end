@@ -1,4 +1,4 @@
-var courseModule = angular.module('page.course', ['duScroll', 'service.academic', 'service.user']);
+var courseModule = angular.module('page.course', ['duScroll', 'service.academic', 'service.user', 'ui.bootstrap']);
 
 courseModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -19,18 +19,15 @@ courseModule.config(function ($stateProvider, $urlRouterProvider) {
 		});
 });
 
+/**
+ * Couse Introduction Page
+ */
 courseModule.controller('courseIntroductionCtrl', [
 	'$scope',
 	'$stateParams',
 	'$state',
 	'$course',
 	'userService', function ($scope, $stateParams, $state, $course, userService) {
-
-		function loadReviews() {
-			$course.reviews($stateParams.courseId).then(res => {
-				$scope.reviews = res.data;
-			});
-		}
 
 		$scope.course = null;
 		$scope.author = null;
@@ -39,6 +36,18 @@ courseModule.controller('courseIntroductionCtrl', [
 		$scope.lessons = [];
 		$scope.registration = null;
 
+		/**
+		 * Load course reviews
+		 */
+		function loadReviews() {
+			$course.reviews($stateParams.courseId).then(res => {
+				$scope.reviews = res.data;
+			});
+		}
+
+		/**
+		 * Handle submitting course reviews
+		 */
 		$scope.review_onSubmit = function () {
 			if (!$scope.reviewScore || !$scope.reviewTitle) {
 				return;
@@ -52,6 +61,9 @@ courseModule.controller('courseIntroductionCtrl', [
 			});
 		}
 
+		/**
+		 * Handle course enrolment
+		 */
 		$scope.onEnrollClick = function () {
 			if (user == null) {
 				$state.go('registration');
@@ -69,16 +81,19 @@ courseModule.controller('courseIntroductionCtrl', [
 			$state.go('course.home', { courseId: $scope.course.id });
 		}
 
+		/**
+		 * Load required information
+		 */
 		var user = userService.getUser();
 
 		$course.get($stateParams.courseId).then(res => {
+
 			$scope.course = res.data;
-		}, err => {
+
 		}).then(_ => {
+
 			userService.author($scope.course.authorId).then(r => {
 				$scope.author = r.data;
-			}, errA => {
-
 			});
 
 			if (!user || !$scope.course) {
@@ -88,6 +103,7 @@ courseModule.controller('courseIntroductionCtrl', [
 			$course.subscription(user.id, $scope.course.id).then(r => {
 				$scope.registration = !r.data ? null : r.data;
 			});
+
 		});
 
 		$course.lessons($stateParams.courseId).then(res => {
@@ -96,12 +112,25 @@ courseModule.controller('courseIntroductionCtrl', [
 
 		loadReviews();
 
-	}]);
+	}
+]);
 
+/**
+ * Course Home Page
+ * @param $timeout
+ * @param $q
+ * @param $scope
+ * @param $state
+ * @param $stateParams
+ * @param userService
+ * @param $lesson
+ * @param $course
+ */
 function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course) {
+
 	var user = userService.getUser();
 	if (!user) {
-		$state.go('registration');
+		$state.go('login');
 		return;
 	}
 
@@ -111,6 +140,9 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 	var progress = null;
 	var lessons = [];
 
+	/**
+	 * Query required information
+	 */
 	function init() {
 		var defer = $q.defer();
 
@@ -136,6 +168,9 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 		return defer.promise;
 	}
 
+	/**
+	 * Query lesson details
+	 */
 	$scope.showLessonInDetail = function (lesson, index) {
 		if (!!lesson.outline) {
 			lesson.outline = null;
@@ -145,19 +180,18 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 
 		if (!!outlines[lesson.id]) {
 			lesson.outline = outlines[lesson.id];
-			// $timeout(_ => $scope.lessons[index] = lesson, 0);
 			return;
 		}
 
 		$lesson.outline(lesson.id, user.id).then(res => {
 			outlines[lesson.id] = res;
 			lesson.outline = res;
-			// $timeout(_ => $scope.lessons[index] = lesson, 0);
 		});
 	}
 
 	init().then(_ => {
 		if (!lessons || lessons.length == 0) { return; }
+
 		if (!progress) { progress = {}; }
 
 		for (var i = 0; i < lessons.length; i++) {
@@ -169,12 +203,16 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 		}
 
 		$scope.lessons = lessons;
+
 	}, err => {
 		if (err == "NoSub") {
 			$state.go('course.introduction', { courseId: $stateParams.courseId });
 		}
 	});
 
+	/**
+	 * Query course information
+	 */
 	$course.get($stateParams.courseId)
 		.then(res => {
 			$scope.course = res.data;
@@ -199,4 +237,5 @@ courseModule.controller('courseHomePageCtrl', [
 		}
 
 		$scope.$on("auth:ready", _ => courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course));
-	}]);
+	}
+]);

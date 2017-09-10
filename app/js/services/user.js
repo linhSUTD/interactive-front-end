@@ -24,6 +24,9 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 		},
 		achievements: function (id) {
 			return $http.get(`${settings.apiUrl}/user/${id}/achievements`);
+		},
+		queryUser: function () {
+			return $http.get(settings.apiUrl + '/account/me');
 		}
 	}
 });

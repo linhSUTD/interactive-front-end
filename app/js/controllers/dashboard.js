@@ -10,16 +10,27 @@ dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 		})
 });
 
+/**
+ * Dashboard Page
+ * @param $scope
+ * @param $state
+ * @param $course
+ * @param userService
+ */
 function dashboardCtrlFunc($scope, $state, $course, userService) {
-	var user = userService.getUser();
-	$scope.finishedCourses = [];
-	$scope.ongoingCourses = [];
 
+	var user = userService.getUser();
 	if (!user) {
 		$state.go('home');
 		return;
 	}
 
+	$scope.finishedCourses = [];
+	$scope.ongoingCourses = [];
+
+	/**
+	 * Query course subscriptions
+	 */
 	$course.subscriptions(user.id, null, null, 100, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
@@ -31,10 +42,12 @@ function dashboardCtrlFunc($scope, $state, $course, userService) {
 }
 
 dashboardModule.controller('dashboardCtrl', ['$scope', '$state', '$course', 'userService', function ($scope, $state, $course, userService) {
+
 	if ($scope.authReady) {
 		dashboardCtrlFunc($scope, $state, $course, userService);
 		return;
 	}
 
 	$scope.$on("auth:ready", _ => dashboardCtrlFunc($scope, $state, $course, userService));
+
 }]);
