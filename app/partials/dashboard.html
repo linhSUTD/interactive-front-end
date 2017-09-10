@@ -26,7 +26,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="courses-in-progress" >
-                            <div class="col-md-3 col-sm-6" ng-repeat="reg in registrations" style="margin-bottom:30px">
+                            <div class="col-md-3 col-sm-6" ng-repeat="reg in ongoingCourses" style="margin-bottom:30px">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
                                         <img ng-src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
@@ -40,25 +40,15 @@
                         </div>
 
                         <div class="tab-pane" id="courses-completed">
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-3 col-sm-6" ng-repeat="reg in finishedCourses" style="margin-bottom:30px">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
-                                        <img src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                        <img ng-src="../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     </div>
-                                    <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                                    <div class="pi-price">$29.00</div>
-                                    <a href="#" class="btn btn-default add2cart">Xem Lại</a>
+                                    <h3><a href="shop-item.html">{{reg.course.title}}</a></h3>
+                                    <div class="pi-price">{{reg.course.level}}</div>
+                                    <a ui-sref="course.introduction({courseId: reg.course.id})" class="btn btn-default add2cart">Tiếp Tục</a>
                                     <div class="sticker sticker-sale"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-img-wrapper">
-                                        <img src="../img/products/model2.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                    </div>
-                                    <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-                                    <div class="pi-price">$29.00</div>
-                                    <a href="#" class="btn btn-default add2cart">Xem Lại</a>
                                 </div>
                             </div>
                         </div>

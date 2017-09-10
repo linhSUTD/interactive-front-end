@@ -10,6 +10,9 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 				}
 			});
 		},
+		subscription: function (userId, courseId) {
+			return $http.get(`${settings.apiUrl}/user/${userId}/course/${courseId}`);
+		},
 		getUser: function () {
 			return authService.getCurrentUser();
 		},

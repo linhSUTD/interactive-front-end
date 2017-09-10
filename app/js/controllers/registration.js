@@ -13,13 +13,15 @@ registrationModule.config(function ($stateProvider, $urlRouterProvider) {
 		})
 });
 
-registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'settings', '$state', function (
-	$scope, authService, settings, $state) {
+function registrationCtrlFunc($scope, authService, settings, $state) {
+	var currentUser = authService.getCurrentUser();
+	if (!!currentUser) {
+		$state.go("dashboard");
+		return;
+	}
 
 	$scope.user = {};
-
 	$scope.alert = {};
-
 	$scope.hasAlert = false;
 
 	$scope.register = function () {
@@ -41,8 +43,18 @@ registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'set
 		});
 	}
 
-	$scope.closeAlert = function() {
+	$scope.closeAlert = function () {
 		$scope.hasAlert = false;
 		$scope.alert = {};
 	};
-}]);
+}
+
+registrationModule.controller('registrationCtrl', ['$scope', 'authService', 'settings', '$state',
+	function ($scope, authService, settings, $state) {
+		if ($scope.authReady) {
+			registrationCtrlFunc($scope, authService, settings, $state);
+			return;
+		}
+
+		$scope.$on("auth:ready", _ => registrationCtrlFunc($scope, authService, settings, $state));
+	}]);
