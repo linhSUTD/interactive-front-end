@@ -19,7 +19,7 @@ activation.controller('activationCtrl', ['$scope', 'authService', 'settings', '$
 
 		$cookies.put('token', response.data.accessToken);
 		$http.defaults.headers.common['Authorization'] = "Bearer " + response.data.accessToken;
-		window.location = `${settings.webUrl}/home`;
+		window.location.href = "/";
 
 	}, function(error) {
 
