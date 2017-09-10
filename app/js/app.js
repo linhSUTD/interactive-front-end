@@ -47,7 +47,9 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 	$scope.currentUser = null;
 	$scope.authReady = false;
 
-	console.log($state.current.name);
+	if (!supportsES6()) {
+		alert("Trình duyệt của bạn đã lỗi thời và nhiều tính năng có thể không hoạt động.\n Hãy nâng cấp trình duyệt của mình nếu có thể");
+	}
 
 	authService.tryPreviousSession(function (result) {
 		$scope.isLoggedIn = result;
@@ -68,5 +70,17 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 	$scope.$on("user:loggedin", function () {
 		$scope.isLoggedIn = true;
 		$scope.currentUser = authService.getCurrentUser();
+	});
+
+	$scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+		const affectedModule = "lesson";
+
+		if (toState.name.toLowerCase().indexOf(affectedModule) < 0) {
+			return;
+		}
+
+		if (!supportsES6()) {
+			alert("Trình duyệt của bạn không hỗ trợ tính năng code trực tiếp. Vui lòng nâng cấp");
+		}
 	});
 }]);

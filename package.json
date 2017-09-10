@@ -20,16 +20,20 @@
     "angular-cookies": "^1.6.5",
     "angular-route": "^1.2.32",
     "angular-ui-router": "^0.3.1",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "bootstrap": "*",
     "browser-sync": "^2.7.6",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.3.1",
+    "gulp-babel": "^7.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-if": "^1.2.5",
     "gulp-plumber": "^1.0.1",
     "gulp-sass": "^2.0.1",
     "gulp-uglify": "^1.2.0",
-    "jquery": "*"
+    "jquery": "*",
+    "lodash": "^4.17.4"
   }
 }

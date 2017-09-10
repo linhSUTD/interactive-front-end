@@ -23,3 +23,13 @@ function convertToFormData(data) {
 
 	return form_data;
 }
+
+function supportsES6() {
+	try {
+		new Function("(a = 0) => a");
+		return true;
+	}
+	catch (err) {
+		return false;
+	}
+}

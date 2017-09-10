@@ -8,6 +8,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
+var babel = require('gulp-babel');
 
 var production = process.env.NODE_ENV === 'production';
 
@@ -39,7 +40,7 @@ gulp.task('css-vendor', function () {
 	]).pipe(cssconcat('vendor.css'))
 		.pipe(gulpif(production, cssmin()))
 		.pipe(gulp.dest('app/build'));
-})
+});
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['styles', 'scripts'], function () {
@@ -54,7 +55,7 @@ gulp.task('serve', ['styles', 'scripts'], function () {
 });
 
 gulp.task('scripts', function () {
-	return gulp.src([
+	var pipe = gulp.src([
 		'app/js/utils/**/*.js',
 		production ? 'app/js/config.production.js' : 'app/js/config.js',
 		'app/js/activation.js',
@@ -65,9 +66,24 @@ gulp.task('scripts', function () {
 		'app/js/filters/**/*.js',
 		'app/js/services/**/*.js',
 		'app/js/directives/**/*.js'
-	]).pipe(concat('main.js'))
+	]);
+
+	if (production) {
+		pipe = pipe.pipe(babel({
+			presets: ['env']
+		}));
+	} else {
+		// pipe = pipe.pipe(babel({
+		// 	presets: ['env']
+		// }));
+	}
+
+
+	pipe = pipe.pipe(concat('main.js'))
 		.pipe(gulpif(production, uglify({ mangle: false })))
 		.pipe(gulp.dest('./app/build'));
+
+	return pipe;
 });
 
 gulp.task('styles', function () {
