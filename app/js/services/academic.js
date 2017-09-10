@@ -45,11 +45,11 @@ academicModule.factory('$course', function ($http, $q, settings) {
             }));
         },
 
-        registration: function (userId, courseId) {
+        subscription: function (userId, courseId) {
             return $http.get(settings.apiUrl + "/user/" + userId + "/course/" + courseId);
         },
 
-        registrations: function (userId, before, after, limit, sort) {
+        subscriptions: function (userId, before, after, limit, sort) {
             return $http.get(`${settings.apiUrl}/user/${userId}/courses`, {
                 params: {
                     before: before,

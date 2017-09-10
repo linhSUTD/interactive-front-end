@@ -85,7 +85,7 @@ courseModule.controller('courseIntroductionCtrl', [
 				return;
 			}
 
-			$course.registration(user.id, $scope.course.id).then(r => {
+			$course.subscription(user.id, $scope.course.id).then(r => {
 				$scope.registration = !r.data ? null : r.data;
 			});
 		});
@@ -114,6 +114,13 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 	function init() {
 		var defer = $q.defer();
 
+		var subPromise = userService.subscription(user.id, $stateParams.courseId).then(res => {
+			if (!res.data) {
+				defer.reject("NoSub");
+				return;
+			}
+		}, err => defer.reject(err));
+
 		var progressPromise = $course.progress(user.id, $stateParams.courseId).then(res => {
 			progress = res.data;
 		}, errC => defer.reject(errC));
@@ -122,7 +129,7 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 			lessons = res.data;
 		}, errL => defer.reject(errL));
 
-		$q.all([progressPromise, lessonPromise]).then(_ => {
+		$q.all([subPromise, progressPromise, lessonPromise]).then(_ => {
 			defer.resolve();
 		});
 
@@ -162,6 +169,10 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 		}
 
 		$scope.lessons = lessons;
+	}, err => {
+		if (err == "NoSub") {
+			$state.go('course.introduction', { courseId: $stateParams.courseId });
+		}
 	});
 
 	$course.get($stateParams.courseId)

@@ -12,21 +12,21 @@ dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 
 function dashboardCtrlFunc($scope, $state, $course, userService) {
 	var user = userService.getUser();
+	$scope.finishedCourses = [];
+	$scope.ongoingCourses = [];
+
 	if (!user) {
 		$state.go('home');
 		return;
 	}
 
-	$course.registrations(user.id, null, null, 10, "descending").then(function (response) {
+	$course.subscriptions(user.id, null, null, 100, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
 		}
 
-		$scope.registrations = response.data;
-
-		setTimeout(function () {
-			$('.owl-carousel').trigger('refresh.owl.carousel');
-		}, 1000);
+		$scope.ongoingCourses = response.data.filter(c => !c.completed);
+		$scope.finishedCourses = response.data.filter(c => c.completed);
 	});
 }
 
