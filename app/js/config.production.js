@@ -1,9 +1,9 @@
 var config = angular.module('config', []);
 
 config.constant('settings', {
-	apiUrl: 'http://localhost:5000/api',
-	activationUrl: '/activation.html',
-	resetPasswordUrl: '/resetPassword.html',
+	apiUrl: '/api',
+	activationUrl: '/activation',
+	resetPasswordUrl: '/resetPassword',
 	userRole: {
 		PUBLIC: "Public",
 		ADMIN: "Admin"

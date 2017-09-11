@@ -37,6 +37,10 @@ academicModule.factory('$course', function ($http, $q, settings) {
             return $http.get(settings.apiUrl + "/course/" + id + "/reviews");
         },
 
+        rating: function (id) {
+            return $http.get(settings.apiUrl + "/course/" + id + "/rating");
+        },
+
         postReview: function (id, title, detail, score) {
             return $http.post(`${settings.apiUrl}/course/${id}/review`, convertToFormData({
                 title: title,

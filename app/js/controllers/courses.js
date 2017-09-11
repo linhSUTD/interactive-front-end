@@ -1,6 +1,3 @@
-/**
- * Created by nguyenlinh on 9/2/17.
- */
 var coursesModule = angular.module('page.courses', []);
 
 coursesModule.config(function ($stateProvider, $urlRouterProvider) {
@@ -50,7 +47,7 @@ coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function
 	/**
 	 * Load all recommended courses
 	 */
-	$course.recentCourses(null, null, 3, "descending").then(function (response) {
+	$course.recentCourses(null, null, 50, "descending").then(function (response) {
 		if (response.status >= 400) {
 			return;
 		}

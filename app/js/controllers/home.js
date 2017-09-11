@@ -6,7 +6,7 @@ homeModule.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 		.state('home', {
-			url: '/home',
+			url: '/',
 			controller: 'homeCtrl',
 			templateUrl: '../partials/home.html'
 		});

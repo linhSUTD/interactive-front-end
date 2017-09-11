@@ -18,28 +18,25 @@ var app = angular.module('mainApp', [
 	'ngCookies'
 ]);
 
-app.config(['$httpProvider', '$stateProvider', '$locationProvider', function ($httpProvider, $stateProvider, $locationProvider) {
-	$httpProvider.defaults.headers.post = {
-		'Content-Type': undefined
-	};
+app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider',
+	function ($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('/');
 
-	$httpProvider.defaults.headers.put = {
-		'Content-Type': undefined
-	};
+		$httpProvider.defaults.headers.post = {
+			'Content-Type': undefined
+		};
 
-	$stateProvider
-		.state('default', {
-			url: '/auth',
-			template: '<div></div>'
+		$httpProvider.defaults.headers.put = {
+			'Content-Type': undefined
+		};
+
+		$locationProvider.html5Mode({
+			enabled: false,
+			requireBase: false
 		});
 
-	$locationProvider.html5Mode({
-		enabled: false,
-		requireBase: false
-	});
-
-	$locationProvider.hashPrefix('');
-}]);
+		$locationProvider.hashPrefix('');
+	}]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (
 	$scope, $rootScope, settings, $state, authService) {
@@ -47,7 +44,9 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 	$scope.currentUser = null;
 	$scope.authReady = false;
 
-	console.log($state.current.name);
+	if (!supportsES6()) {
+		alert("Trình duyệt của bạn đã lỗi thời và nhiều tính năng có thể không hoạt động.\n Hãy nâng cấp trình duyệt của mình nếu có thể");
+	}
 
 	authService.tryPreviousSession(function (result) {
 		$scope.isLoggedIn = result;
@@ -68,5 +67,18 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 	$scope.$on("user:loggedin", function () {
 		$scope.isLoggedIn = true;
 		$scope.currentUser = authService.getCurrentUser();
+	});
+
+	$scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+		const affectedModule = "lesson";
+		window.scrollTo(0, 0);
+
+		if (toState.name.toLowerCase().indexOf(affectedModule) < 0) {
+			return;
+		}
+
+		if (!supportsES6()) {
+			alert("Trình duyệt của bạn không hỗ trợ tính năng code trực tiếp. Vui lòng nâng cấp");
+		}
 	});
 }]);

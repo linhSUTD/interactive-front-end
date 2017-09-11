@@ -247,7 +247,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	});
 
 
-	$scope.goPrevious = function() {
+	$scope.goPrevious = function () {
 		//move on to the next exercise
 		var selectedIndex = $scope.outline.indexOf($scope.selectedModule);
 		if (selectedIndex == 0) {
@@ -257,7 +257,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		setModule($scope.outline[(selectedIndex - 1) % $scope.outline.length]);
 	}
 
-	$scope.goForward = function() {
+	$scope.goForward = function () {
 		//move on to the next exercise
 		var selectedIndex = $scope.outline.indexOf($scope.selectedModule);
 		if (selectedIndex < 0) {

@@ -35,6 +35,7 @@ courseModule.controller('courseIntroductionCtrl', [
 		$scope.enrolling = false;
 		$scope.lessons = [];
 		$scope.registration = null;
+		$scope.rating = null;
 
 		/**
 		 * Load course reviews
@@ -42,6 +43,10 @@ courseModule.controller('courseIntroductionCtrl', [
 		function loadReviews() {
 			$course.reviews($stateParams.courseId).then(res => {
 				$scope.reviews = res.data;
+			});
+
+			$course.rating($stateParams.courseId).then(res => {
+				$scope.rating = res.data;
 			});
 		}
 
