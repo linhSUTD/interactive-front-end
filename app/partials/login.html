@@ -29,9 +29,9 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" ng-show="state=='error'">
                     <div class="col-sm-7 col-sm-offset-3">
-                        <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
+                        <div uib-alert class="alert-danger" close="closeAlert()">{{alertMessage}}</div>
                     </div>
                 </div>
 
@@ -42,7 +42,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>

@@ -21,18 +21,25 @@ const headerStateMap = {
 
 coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function ($scope, $course, $state) {
 
-	$scope.searchResults = [];
-	$scope.state = "recommended";
-	$scope.recommendations = [];
-	$scope.query = "";
-
 	$scope.header = function () {
 		return headerStateMap[$scope.state];
 	}
 
-	/**
-	 * Search courses
-	 */
+	// recommended | searching | searched | searchFailed
+	$scope.state = "recommended";
+
+	// Load all recommended courses
+	$course.recentCourses(null, null, 50, "descending").then(function (response) {
+		if (response.status >= 400) {
+			return;
+		}
+
+		$scope.recommendations = response.data;
+	});
+
+	// Handle searching courses
+	$scope.query = "";
+
 	$scope.onSearch = function () {
 		$scope.state = "searching";
 
@@ -43,15 +50,4 @@ coursesModule.controller('coursesCtrl', ['$scope', '$course', '$state', function
 			$scope.state = "searchFailed";
 		});
 	}
-
-	/**
-	 * Load all recommended courses
-	 */
-	$course.recentCourses(null, null, 50, "descending").then(function (response) {
-		if (response.status >= 400) {
-			return;
-		}
-
-		$scope.recommendations = response.data;
-	});
 }]);

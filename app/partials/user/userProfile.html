@@ -38,7 +38,7 @@
                             <li>
                                 <a ui-sref="user.settings">
                                     <i class="icon-settings"></i>
-                                    Cập Nhật Tài Khoản
+                                    Thông Tin Tài Khoản
                                 </a>
                             </li>
                         </ul>
@@ -120,9 +120,9 @@
                         <div class="col-md-4 col-sm-6" ng-repeat="reg in finishedCourses">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
-                                    <img src="../../img/products/model1.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                    <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive">
                                 </div>
-                                <h3><a href="javascript:void(0);">{{reg.course.title}}</a></h3>
+                                <h3>{{reg.course.title}}</h3>
                                 <div class="pi-price">{{reg.course.level}}</div>
                                 <a ui-sref="course.introduction({courseId: reg.course.id})" class="btn btn-default add2cart">Xem Lại</a>
                                 <div class="sticker sticker-sale"></div>

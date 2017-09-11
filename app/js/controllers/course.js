@@ -1,4 +1,4 @@
-var courseModule = angular.module('page.course', ['duScroll', 'service.academic', 'service.user', 'ui.bootstrap']);
+var courseModule = angular.module('page.course', ['duScroll', 'service.academic', 'service.user', 'ui.bootstrap', 'service.auth']);
 
 courseModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -27,19 +27,9 @@ courseModule.controller('courseIntroductionCtrl', [
 	'$stateParams',
 	'$state',
 	'$course',
-	'userService', function ($scope, $stateParams, $state, $course, userService) {
-
-		$scope.course = null;
-		$scope.author = null;
-		$scope.reviews = [];
-		$scope.enrolling = false;
-		$scope.lessons = [];
-		$scope.registration = null;
-		$scope.rating = null;
-
-		/**
-		 * Load course reviews
-		 */
+	'userService', 'authService', function ($scope, $stateParams, $state, $course, userService, authService) {
+		
+		// Load reviews
 		function loadReviews() {
 			$course.reviews($stateParams.courseId).then(res => {
 				$scope.reviews = res.data;
@@ -50,9 +40,7 @@ courseModule.controller('courseIntroductionCtrl', [
 			});
 		}
 
-		/**
-		 * Handle submitting course reviews
-		 */
+		// Handle submitting course reviews
 		$scope.review_onSubmit = function () {
 			if (!$scope.reviewScore || !$scope.reviewTitle) {
 				return;
@@ -66,15 +54,10 @@ courseModule.controller('courseIntroductionCtrl', [
 			});
 		}
 
-		/**
-		 * Handle course enrolment
-		 */
-		$scope.onEnrollClick = function () {
-			if (user == null) {
-				$state.go('registration');
-				return;
-			}
 
+		// Handle course enrolment
+		function handleCourseEnrolment (bool) {
+			
 			if (!$scope.registration) {
 				$course.register(user.id, $scope.course.id).then(res => {
 					$state.go('course.home', { courseId: $scope.course.id });
@@ -83,12 +66,64 @@ courseModule.controller('courseIntroductionCtrl', [
 				return;
 			}
 
-			$state.go('course.home', { courseId: $scope.course.id });
+			if (!bool) {
+				$state.go('course.home', { courseId: $scope.course.id });
+			} else {
+				setTimeout(function () {
+					$state.go('course.home', {courseId: $scope.course.id});
+				}, 500);
+			}
 		}
 
-		/**
-		 * Load required information
-		 */
+		$scope.onEnrollClick = function () {
+			if (user == null) {
+				document.getElementById('open-modal-button').click();
+				return;
+			}
+
+			handleCourseEnrolment(false);
+		}
+
+		// Handle login and register
+		$scope.state = "new";
+
+		$scope.login = function () {
+
+			authService.login($scope.user).then(function () {
+				$scope.$emit("user:loggedin");
+				document.getElementById('close-modal-button').click();
+
+				// Get current user
+				var user = authService.getCurrentUser();
+
+				// Check if a user has subscribed
+				return $course.subscription(user.id, $scope.course.id);
+
+			}).then(function (res) {
+
+				$scope.registration = !res.data ? null : res.data;
+
+			}).then(function () {
+
+				handleCourseEnrolment(true);
+
+			}).catch(function (error) {
+				$scope.alertMessage = error.data.errors[0];
+				$scope.state = "error";
+			})
+		}
+
+		$scope.register = function () {
+			document.getElementById('close-modal-button').click();
+			setTimeout(function(){ $state.go('registration'); }, 200);
+		}
+
+		// Handle closing alert
+		$scope.closeAlert = function () {
+			$scope.state = "new";
+		};
+
+		// Load required information
 		var user = userService.getUser();
 
 		$course.get($stateParams.courseId).then(res => {
@@ -108,7 +143,6 @@ courseModule.controller('courseIntroductionCtrl', [
 			$course.subscription(user.id, $scope.course.id).then(r => {
 				$scope.registration = !r.data ? null : r.data;
 			});
-
 		});
 
 		$course.lessons($stateParams.courseId).then(res => {
@@ -116,20 +150,11 @@ courseModule.controller('courseIntroductionCtrl', [
 		});
 
 		loadReviews();
-
 	}
 ]);
 
 /**
  * Course Home Page
- * @param $timeout
- * @param $q
- * @param $scope
- * @param $state
- * @param $stateParams
- * @param userService
- * @param $lesson
- * @param $course
  */
 function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course) {
 

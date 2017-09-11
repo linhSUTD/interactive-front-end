@@ -12,43 +12,37 @@ loginModule.config(function ($stateProvider, $urlRouterProvider) {
 
 function loginCtrlFunc($scope, authService, settings, $state) {
 
-	var currentUser = authService.getCurrentUser();
+	$scope.user = {
+		activationUrl: `${location.protocol}//${location.host}${settings.activationUrl}`
+	};
 
+	// Check if a user has signed in.
+	var currentUser = authService.getCurrentUser();
 	if (!!currentUser) {
 		$state.go("dashboard");
 		return;
 	}
 
-	$scope.alert = {};
-	$scope.hasAlert = false;
-	$scope.user = {
-		activationUrl: `${location.protocol}//${location.protocol}//${location.host}${settings.activationUrl}`
-	};
+	// new | error
+	$scope.state = "new";
 
+
+	// Handle signing in
 	$scope.login = function () {
 
 		authService.login($scope.user).then(function (response) {
-
 			$scope.$emit("user:loggedin");
 			$state.go('home');
-
 		}, function (error) {
-
-			$scope.alert = {
-				type: 'danger',
-				msg: error.data.errors[0]
-			}
-			$scope.hasAlert = true;
-
+			$scope.alertMessage = error.data.errors[0];
+			$scope.state = "error";
 		})
-
 	}
 
+	// Handle closing alert
 	$scope.closeAlert = function () {
-		$scope.hasAlert = false;
-		$scope.alert = {};
+		$scope.state = "new";
 	};
-
 }
 
 loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$state',
@@ -60,6 +54,5 @@ loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$stat
 		}
 
 		$scope.$on("auth:ready", _ => loginCtrlFunc($scope, authService, settings, $state));
-
 	}
 ]);

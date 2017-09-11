@@ -54,7 +54,7 @@
         <h2>Người Dùng Nói Về <strong>Sản Phẩm</strong></h2>
         <h4></h4>
 
-        <div class="carousel slide" data-ride="carousel">
+        <div class="carousel slide" data-ride="carousel" id="testimonials-block">
             <div class="carousel-inner">
                 <div class="active item">
                     <blockquote style="margin-bottom: 30px;"><p>Tôi đã thành thạo sử dụng và lập trình ngôn ngữ Python sau 5 ngày tham gia khoá học.</p></blockquote>
@@ -91,12 +91,12 @@
                         </h4>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tiêu Đề" ng-required="true">
+                        <input type="text" class="form-control" placeholder="Tiêu Đề" required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="3=6" placeholder="Nội Dung" ng-required="true"></textarea>
+                        <textarea class="form-control" rows="3=6" placeholder="Nội Dung" required></textarea>
                     </div>
-                    <button type="submit" class="btn green" ng-disabled="feedbackForm.$invalid">Submit</button>
+                    <button type="submit" class="btn green">Gửi Góp Ý</button>
                 </form>
             </div>
         </div>

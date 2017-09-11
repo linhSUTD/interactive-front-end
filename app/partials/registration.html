@@ -20,26 +20,26 @@
                 <div class="form-group" ng-hide="state=='sent'">
                     <label class="col-sm-3 control-label">Tên Đầy Đủ <span style="color:red;">*</span></label>
                     <div class="col-sm-7">
-                        <input class="form-control" type="text" name="name" placeholder="Họ và tên" ng-required="true" ng-model="user.name">
+                        <input class="form-control" type="text" name="name" placeholder="Họ và tên" required ng-model="user.name">
                     </div>
                 </div>
 
                 <div class="form-group" ng-hide="state=='sent'">
                     <label class="col-sm-3 control-label">Địa Chỉ Email <span style="color:red;">*</span></label>
                     <div class="col-sm-7" ng-hide="state=='sent'">
-                        <input class="form-control" type="email" name="email" placeholder="email@fundml.com" ng-required="true" ng-model="user.email">
+                        <input class="form-control" type="email" name="email" placeholder="email@fundml.com" required ng-model="user.email">
                     </div>
                 </div>
 
                 <div class="form-group" ng-hide="state=='sent'">
                     <label class="col-sm-3 control-label">Mật Khẩu <span style="color:red;">*</span></label>
                     <div class="col-sm-7">
-                        <input class="form-control" type="password" name="password" placeholder="Mật Khẩu" ng-required="true" ng-model="user.password">
+                        <input class="form-control" type="password" name="password" placeholder="Mật Khẩu" required ng-model="user.password">
                     </div>
                 </div>
 
                 <div class="form-group" ng-show="state=='sent'">
-                    <div class="col-sm-7 col-sm-offset-3">
+                    <div class="col-sm-6 col-sm-offset-3">
                         <div uib-alert class="alert-success" close="closeAlert()">
                             Đăng ký thành công! Vui lòng kiểm tra email và kích hoạt tài khoản.
                         </div>

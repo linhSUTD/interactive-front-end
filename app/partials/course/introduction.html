@@ -19,202 +19,221 @@
                     <li class="list-group-item clearfix"><a href="#review-tab" du-smooth-scroll du-scrollspy><i class="fa fa-angle-right"></i>Bình luận và reviews</a></li>
                 </ul>
 
-                <div class="profile-sidebar" style="width: 250px;" ng-show="!!author">
-
-                    <div class="portlet light profile-sidebar-portlet">
-
-                        <div class="profile-userpic">
-                            <img ng-src={{author.avatarUrl}} class="img-responsive" alt="">
-                        </div>
-
-                        <div class="profile-usertitle">
-                            <div class="profile-usertitle-name">
-                                {{author.name}}
-                            </div>
-                            <div class="profile-usertitle-job">
-                                {{author.title}}
-                            </div>
-                        </div>
+                <div class="team-block content content-center margin-bottom-40" id="team" ng-show="!!author">
+                    <div class="row item">
+                        <img ng-src={{author.avatarUrl}} alt="{{author.name}}" class="img-responsive">
+                        <h3 style="margin-top: 15px;">{{author.name}}</h3>
+                        <em>{{author.title}}</em>
                     </div>
                 </div>
 
-                <div class="pricing hover-effect">
-                    <div class="pricing-head">
-                        <p style="color: #fff">.</p>
-                    </div>
-                </div>
-
-                <input type="button" class="btn red btn-block" value="{{!registration? 'Đăng ký!' : 'Tiếp tục'}}" ng-click="onEnrollClick()"
+                <input type="button" class="btn red btn-block" style="margin-top: 30px;" value="{{!registration? 'Đăng ký!' : 'Tiếp tục'}}" ng-click="onEnrollClick()"
                     ng-disabled="enrolling">
+
+                <a data-toggle="modal" href="#login-modal" target="_self" style="visibility: hidden;" id="open-modal-button">
+                </a>
             </div>
 
 
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="portlet light" style="padding-top:0">
-                        <div class="portlet-title">
-                            <h1 style="margin-top:0">{{course.title}}</h1>
-                            <h5>{{course.description}}</h5>
+            <div class="col-md-9" style="padding-left: 50px;">
+                <div class="portlet-title">
+                    <h1 style="margin-top:0">{{course.title}}</h1>
+                    <h5>{{course.description}}</h5>
+                </div>
+
+                <div class="row" style="margin-top: 25px;">
+                    <div class="portlet-title" id="overview-tab">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">Thông tin cơ bản</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body" style="margin-top: 25px;">
+                        <div class="table-scrollable">
+                            <table class="table table-striped table-bordered table-advance table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td width="20%">
+                                            <span class="fa fa-clock-o"> </span> Khối lượng
+                                        </td>
+                                        <td width="80%">
+                                            6 weeks of study, 6 - 8 hours / week.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            <span class="fa fa-gift"> </span> Kiến thức
+                                        </td>
+                                        <td width="80%">
+                                            Python, Machine Learning
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            <span class="fa fa-user-md"> </span> Giảng viên
+                                        </td>
+                                        <td width="80%">
+                                            Tiep Vu, Dung Nguyen
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            <span class="fa fa-star-o"> </span> Đánh giá
+                                        </td>
+                                        <td width="80%">
+                                            {{!rating? '': (rating.sum*1.0 / rating.count) + '/5'}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="portlet light">
-                        <div class="portlet-title" id="overview-tab">
-                            <div class="caption">
-                                <i class="fa fa-cogs font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Thông tin cơ bản</span>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div class="table-scrollable">
-                                <table class="table table-striped table-bordered table-advance table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <td width="20%">
-                                                <span class="fa fa-clock-o"> </span> Khối lượng
-                                            </td>
-                                            <td width="80%">
-                                                6 weeks of study, 6 - 8 hours / week.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20%">
-                                                <span class="fa fa-gift"> </span> Kiến thức
-                                            </td>
-                                            <td width="80%">
-                                                Python, Machine Learning
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20%">
-                                                <span class="fa fa-user-md"> </span> Giảng viên
-                                            </td>
-                                            <td width="80%">
-                                                Tiep Vu, Dung Nguyen
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="20%">
-                                                <span class="fa fa-star-o"> </span> Đánh giá
-                                            </td>
-                                            <td width="80%">
-                                                {{!rating? '': (rating.sum*1.0 / rating.count) + '/5'}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                <div class="row" style="margin-top: 25px;">
+                    <div class="portlet-title" id="syllabus-tab">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">Danh sách bài</span>
                         </div>
                     </div>
-                </div>
+                    <div class="portlet-body" style="margin-top: 15px;">
+                        <ul style="list-style: none; margin-bottom: 26px; margin-left: -45px;">
+                            <li class="lesson_exercise" ng-repeat="lesson in lessons">
+                                <div class="lesson_exercise_link">
+                                    <span class="lesson_exercise_icon">
+                                        <img width="23" height="23" alt="Icon exercise interactive"
+                                             ng-src="{{item.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">
+                                    </span>
 
-                <div class="row">
-                    <div class="portlet light">
-                        <div class="portlet-title" id="syllabus-tab">
-                            <div class="caption">
-                                <i class="fa fa-cogs font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Danh sách bài</span>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <ul style="list-style: none; margin-bottom: 26px; margin-left: -45px;">
-                                <li class="lesson_exercise" ng-repeat="lesson in lessons">
-                                    <a class="lesson_exercise_link" style="text-decoration: none;">
-                                        <span class="lesson_exercise_icon">
-                                            <img width="23" height="23" alt="Icon exercise interactive"
-                                                 ng-src="{{item.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">
-                                        </span>
-
-                                        <h5 class="lesson_exercise_title" title="Fitting the model">Bài {{lesson.index}}: {{lesson.description}}</h5>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="portlet light">
-                        <div class="portlet-title" id="faq-tab">
-                            <div class="caption">
-                                <i class="fa fa-cogs font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Hỏi đáp</span>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <uib-accordion>
-                                <div uib-accordion-group class="panel-default accordion-toggle accordion-toggle-styled" heading="{{question.title}}" is-open="true"
-                                    ng-repeat="question in questions">
-                                    {{question.answer}}
+                                    <h5 class="lesson_exercise_title" title="Fitting the model">Bài {{lesson.index}}: {{lesson.description}}</h5>
                                 </div>
-                            </uib-accordion>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="portlet light">
-                        <div class="portlet-title" id="review-tab">
-                            <div class="caption">
-                                <i class="fa fa-cogs font-green-sharp"></i>
-                                <span class="caption-subject font-green-sharp bold uppercase">Bình luận & Reviews</span>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div class="table-scrollable">
-                                <table class="table table-striped table-advance table-hover">
-                                    <tbody>
-                                        <tr ng-repeat="review in reviews">
-                                            <td width="10%" style="text-align: center;">
-                                                <span class="photo">
-                                                <img ng-src="{{review.user.avatarUrl || 'https://tailuns.com/avatar/no.png'}}" class="img-circle" alt="{{review.user.name}}"
-                                                     style="width:45px;height:45px">
-                                            </span>
-                                            </td>
-                                            <td width="75%">
-                                                <strong>{{review.title}}</strong>
-                                                <br /> {{review.detail || ""}}
-                                            </td>
-                                            <td width="15%">
-                                                <i ng-class="review.score>=1? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
-                                                <i ng-class="review.score>=2? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
-                                                <i ng-class="review.score>=3? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
-                                                <i ng-class="review.score>=4? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
-                                                <i ng-class="review.score>=5? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <form ng-submit="review_onSubmit()" name="reviewForm">
-                                <fieldset ng-disabled="!registration">
-                                    <div class="form-group">
-                                        <select class="form-control" name="select" ng-model="reviewScore" ng-required="true">
-                                            <option value="">Chấm điểm</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Tiêu đề" ng-model="reviewTitle" ng-required="true" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="3=6" placeholder="Nội dung phản hồi" ng-model="review" ng-required="true"></textarea>
-                                    </div>
-
-                                    <button type="submit" class="btn green" ng-disabled="reviewForm.$invalid">Đánh giá</button>
-                                </fieldset>
-                            </form>
+                    <div class="portlet-title" id="faq-tab">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">Hỏi đáp</span>
                         </div>
                     </div>
+                    <div class="portlet-body" style="margin-top: 15px;">
+                        <uib-accordion>
+                            <div uib-accordion-group class="panel-default accordion-toggle accordion-toggle-styled" heading="{{question.title}}" is-open="true"
+                                ng-repeat="question in questions">
+                                {{question.answer}}
+                            </div>
+                        </uib-accordion>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 25px;">
+                    <div class="portlet-title" id="review-tab">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">Bình luận & Reviews</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body" style="margin-top: 15px;">
+                        <div class="table-scrollable">
+                            <table class="table table-striped table-advance table-hover">
+                                <tbody>
+                                    <tr ng-repeat="review in reviews">
+                                        <td width="10%" style="text-align: center;">
+                                            <span class="photo">
+                                            <img ng-src="{{review.user.avatarUrl || 'https://tailuns.com/avatar/no.png'}}" class="img-circle" alt="{{review.user.name}}"
+                                                 style="width:45px;height:45px">
+                                        </span>
+                                        </td>
+                                        <td width="75%">
+                                            <strong>{{review.title}}</strong>
+                                            <br /> {{review.detail || ""}}
+                                        </td>
+                                        <td width="15%">
+                                            <i ng-class="review.score>=1? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
+                                            <i ng-class="review.score>=2? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
+                                            <i ng-class="review.score>=3? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
+                                            <i ng-class="review.score>=4? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
+                                            <i ng-class="review.score>=5? 'fa fa-star':'fa fa-star-o'" aria-hidden="true"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <form ng-submit="review_onSubmit()" name="reviewForm">
+                            <fieldset ng-disabled="!registration">
+                                <div class="form-group">
+                                    <select class="form-control" name="select" ng-model="reviewScore" required>
+                                        <option value="">Chấm điểm</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Tiêu đề" ng-model="reviewTitle" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3=6" placeholder="Nội dung phản hồi" ng-model="review" required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn green">Đánh giá</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="login-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title bold" style="text-align: center;">Đăng nhập để tham gia khoá học</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" ng-submit="login()" name="loginForm">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Địa Chỉ Email <span style="color:red;">*</span></label>
+                        <div class="col-sm-9">
+                            <input class="form-control" type="email" name="email" placeholder="email@email.com" required ng-model="user.email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Mật Khẩu <span style="color:red;">*</span></label>
+                        <div class="col-sm-9">
+                            <input required class="form-control" type="password" name="password" placeholder="Password" ng-model="user.password">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="state=='error'">
+                        <div class="col-sm-9 col-sm-offset-3">
+                            <div uib-alert class="alert-danger" close="closeAlert()">{{alertMessage}}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-7">
+                            <button class="col-sm-5 btn btn-primary" type="submit"> Đăng nhập </button>
+                            <a class="btn btn-link" ng-click="register()">Chưa có tài khoản?</a>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer" style="visibility: hidden;">
+                    <button type="button" data-dismiss="modal" class="btn default" id="close-modal-button">Close</button>
                 </div>
             </div>
         </div>

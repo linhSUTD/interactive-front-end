@@ -21,30 +21,27 @@
 
                     <div class="row margin-bottom-40" ng-show="state=='recommended'">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-4 col-sm-6" ng-repeat="rCourse in recommendations">
-                                    <div class="product-item">
-                                        <div class="pi-img-wrapper">
-                                            <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
-                                        </div>
-                                        <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
-                                        <div class="pi-price">{{rCourse.level}}</div>
-                                        <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
-                                        <div class="sticker sticker-sale"></div>
+                            <div class="col-md-4 col-sm-6 margin-bottom-30" ng-repeat="rCourse in recommendations">
+                                <div class="product-item">
+                                    <div class="pi-img-wrapper">
+                                        <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
                                     </div>
+                                    <h3>{{rCourse.title}}</h3>
+                                    <div class="pi-price">{{rCourse.level}}</div>
+                                    <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
+                                    <div class="sticker sticker-sale"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row margin-bottom-40" ng-show="state=='searched'">
-
                         <div class="col-md-4" ng-repeat="rCourse in searchResults">
                             <div class="product-item">
                                 <div class="pi-img-wrapper">
                                     <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Berry Lace Dress">
                                 </div>
-                                <h3><a href="shop-item.html">{{rCourse.title}}</a></h3>
+                                <h3>{{rCourse.title}}</h3>
                                 <div class="pi-price">{{rCourse.level}}</div>
                                 <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
                                 <div class="sticker sticker-sale"></div>

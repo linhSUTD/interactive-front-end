@@ -37,7 +37,6 @@ function getSummaries($course, $lesson, $exercise, userService, $q) {
 			exerciseCount: exerciseCount,
 			userCount: userCount
 		});
-
 	});
 
 	return defer.promise;
@@ -45,22 +44,14 @@ function getSummaries($course, $lesson, $exercise, userService, $q) {
 
 function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state) {
 
+	// Check if a user has signed in.
 	var user = userService.getUser();
-
 	if (!!user) {
 		$state.go('dashboard');
 		return;
 	}
 
-	$course.recentCourses(null, null, 10, "descending").then(function (response) {
-
-		if (response.status >= 400) {
-			return;
-		}
-		$scope.recentCourses = response.data;
-
-	});
-
+	// Query product insights
 	getSummaries($course, $lesson, $exercise, userService, $q).then(res => {
 		$scope.summaries = res;
 	});
@@ -81,6 +72,5 @@ homeModule.controller('homeCtrl', [
 		}
 
 		$scope.$on("auth:ready", _ => homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $state));
-
 	}
 ]);

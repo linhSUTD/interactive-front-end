@@ -11,8 +11,13 @@ forgotPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 function forgotPasswordCtrlFunc($state, $scope, $http, settings, authService) {
-	var currentUser = authService.getCurrentUser();
 
+	$scope.user = {
+		email: ""
+	};
+
+	// Check if a user has signed in.
+	var currentUser = authService.getCurrentUser();
 	if (!!currentUser) {
 		$state.go('dashboard');
 		return;
@@ -21,13 +26,9 @@ function forgotPasswordCtrlFunc($state, $scope, $http, settings, authService) {
 	// new | error | sent
 	$scope.state = "new";
 
-	$scope.alert = {};
-	$scope.hasAlert = false;
-	$scope.user = {
-		email: ""
-	};
-
+	// Handle resetting password
 	$scope.onSubmit = function () {
+
 		authService.requestResetPassword($scope.user.email).then(res => {
 			$scope.state = "sent";
 		}, function (error) {
@@ -36,9 +37,9 @@ function forgotPasswordCtrlFunc($state, $scope, $http, settings, authService) {
 		});
 	};
 
+	// Handle closing alert
 	$scope.closeAlert = function () {
-		$scope.hasAlert = false;
-		$scope.alert = {};
+		$scope.state = "new";
 	};
 }
 
