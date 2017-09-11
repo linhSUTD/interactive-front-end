@@ -158,21 +158,18 @@ courseModule.controller('courseIntroductionCtrl', [
  */
 function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, $lesson, $course) {
 
+	var outlines = {};
+	var progress = null;
+	var lessons = [];
+
+	// Check if a user has signed in.
 	var user = userService.getUser();
 	if (!user) {
 		$state.go('login');
 		return;
 	}
 
-	var outlines = {};
-	$scope.lessons = [];
-	$scope.course = null;
-	var progress = null;
-	var lessons = [];
-
-	/**
-	 * Query required information
-	 */
+	// Query required information
 	function init() {
 		var defer = $q.defer();
 
@@ -198,9 +195,7 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 		return defer.promise;
 	}
 
-	/**
-	 * Query lesson details
-	 */
+	// Query lesson details
 	$scope.showLessonInDetail = function (lesson, index) {
 		if (!!lesson.outline) {
 			lesson.outline = null;
@@ -240,9 +235,7 @@ function courseHomePageCtrlFunc($timeout, $q, $scope, $state, $stateParams, user
 		}
 	});
 
-	/**
-	 * Query course information
-	 */
+	// Query course information
 	$course.get($stateParams.courseId)
 		.then(res => {
 			$scope.course = res.data;
