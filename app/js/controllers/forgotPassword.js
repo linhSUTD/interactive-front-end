@@ -11,13 +11,15 @@ forgotPasswordModule.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 function forgotPasswordCtrlFunc($state, $scope, $http, settings, authService) {
-
 	var currentUser = authService.getCurrentUser();
 
 	if (!!currentUser) {
 		$state.go('dashboard');
 		return;
 	}
+
+	// new | error | sent
+	$scope.state = "new";
 
 	$scope.alert = {};
 	$scope.hasAlert = false;
@@ -27,23 +29,12 @@ function forgotPasswordCtrlFunc($state, $scope, $http, settings, authService) {
 
 	$scope.onSubmit = function () {
 		authService.requestResetPassword($scope.user.email).then(res => {
-
-			$scope.alert = {
-				type: 'success',
-				msg: 'Chúng tôi đã gửi email thay đổi mật khẩu cho bạn.'
-			}
-			$scope.hasAlert = true;
-
+			$scope.state = "sent";
 		}, function (error) {
-
-			$scope.alert = {
-				type: 'danger',
-				msg: error.data.errors[0]
-			}
-			$scope.hasAlert = true;
-
+			$scope.alertMessage = error.data.errors[0];
+			$scope.state = "error";
 		});
-	}
+	};
 
 	$scope.closeAlert = function () {
 		$scope.hasAlert = false;
@@ -60,6 +51,5 @@ forgotPasswordModule.controller('forgotPasswordCtrl', ['$state', '$scope', '$htt
 		}
 
 		$scope.$on("auth:ready", _ => forgotPasswordCtrlFunc($state, $scope, $http, settings, authService));
-
 	}
 ]);

@@ -18,28 +18,25 @@ var app = angular.module('mainApp', [
 	'ngCookies'
 ]);
 
-app.config(['$httpProvider', '$stateProvider', '$locationProvider', function ($httpProvider, $stateProvider, $locationProvider) {
-	$httpProvider.defaults.headers.post = {
-		'Content-Type': undefined
-	};
+app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider',
+	function ($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('/');
 
-	$httpProvider.defaults.headers.put = {
-		'Content-Type': undefined
-	};
+		$httpProvider.defaults.headers.post = {
+			'Content-Type': undefined
+		};
 
-	$stateProvider
-		.state('default', {
-			url: '/auth',
-			template: '<div></div>'
+		$httpProvider.defaults.headers.put = {
+			'Content-Type': undefined
+		};
+
+		$locationProvider.html5Mode({
+			enabled: false,
+			requireBase: false
 		});
 
-	$locationProvider.html5Mode({
-		enabled: false,
-		requireBase: false
-	});
-
-	$locationProvider.hashPrefix('');
-}]);
+		$locationProvider.hashPrefix('');
+	}]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (
 	$scope, $rootScope, settings, $state, authService) {
@@ -74,6 +71,7 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 
 	$scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 		const affectedModule = "lesson";
+		window.scrollTo(0, 0);
 
 		if (toState.name.toLowerCase().indexOf(affectedModule) < 0) {
 			return;

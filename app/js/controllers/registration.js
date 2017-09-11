@@ -22,27 +22,19 @@ function registrationCtrlFunc($scope, authService, settings, $state) {
 	$scope.user = {
 		activationUrl: `${location.protocol}//${location.host}${settings.activationUrl}`
 	};
+
+	// new | error | sent
+	$scope.state = "new";
 	$scope.alert = {};
 	$scope.hasAlert = false;
 
 	$scope.register = function () {
 
 		authService.register($scope.user).then(function (response) {
-
-			$scope.alert = {
-				type: 'success',
-				msg: 'Đăng ký thành công! Chúng tôi đã gửi email xác nhận cho bạn.'
-			}
-			$scope.hasAlert = true;
-
+			$scope.state = "sent";
 		}, function (error, msg) {
-
-			$scope.alert = {
-				type: 'danger',
-				msg: error.data.errors[0]
-			}
-			$scope.hasAlert = true;
-
+			$scope.alertMessage = error.data.errors[0];
+			$scope.state = "error";
 		});
 	}
 

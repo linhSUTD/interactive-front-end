@@ -1,6 +1,3 @@
-/**
- * Created by nguyenlinh on 9/2/17.
- */
 var coursesModule = angular.module('page.courses', []);
 
 coursesModule.config(function ($stateProvider, $urlRouterProvider) {
