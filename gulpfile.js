@@ -21,7 +21,6 @@ gulp.task('vendor', function () {
 	return gulp.src([
 		"node_modules/bootstrap/dist/js/bootstrap.min.js",
 		"node_modules/angular/angular.min.js",
-		"node_modules/angular-route/angular-route.min.js",
 		"node_modules/angular-cookies/angular-cookies.min.js",
 		"node_modules/angular-ui-router/release/angular-ui-router.min.js",
 		"node_modules/angular-sanitize/angular-sanitize.min.js",
@@ -34,13 +33,13 @@ gulp.task('vendor', function () {
 		.pipe(gulp.dest('app/build'));
 })
 
-/// Bundle CSS Libraries
-gulp.task('css-vendor', function () {
-	return gulp.src([
-	]).pipe(cssconcat('vendor.css'))
-		.pipe(gulpif(production, cssmin()))
-		.pipe(gulp.dest('app/build'));
-});
+// /// Bundle CSS Libraries
+// gulp.task('css-vendor', function () {
+// 	return gulp.src([
+// 	]).pipe(cssconcat('vendor.css'))
+// 		.pipe(gulpif(production, cssmin()))
+// 		.pipe(gulp.dest('app/build'));
+// });
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['styles', 'scripts'], function () {
@@ -96,5 +95,5 @@ gulp.task('styles', function () {
 })
 
 
-gulp.task('default', ['vendor', 'css-vendor', 'styles', 'scripts', 'serve']);
-gulp.task('build:prod', ['set-production', 'vendor', 'css-vendor', 'styles', 'scripts']);
+gulp.task('default', ['vendor', 'styles', 'scripts', 'serve']);
+gulp.task('build:prod', ['set-production', 'vendor', 'styles', 'scripts']);
