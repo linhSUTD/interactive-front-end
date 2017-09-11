@@ -41,6 +41,7 @@ app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterP
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (
 	$scope, $rootScope, settings, $state, authService) {
 
+	$scope.adminPageUrl = `${location.protocol}//54.169.165.200/static/admin.prod.html`;
 	$scope.currentUser = null;
 	$scope.authReady = false;
 

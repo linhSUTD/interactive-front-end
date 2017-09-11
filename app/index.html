@@ -104,6 +104,12 @@
                         <li>
                             <a target="_blank" href="https://www.facebook.com/machinelearningbasicvn/">Cộng Đồng</a>
                         </li>
+                        <li>
+                            <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
+                        </li>
+                        <li ng-show="currentUser.roles.indexOf('admin') > -1">
+                            <a target="_blank" ng-href="{{adminPageUrl}}">Admin</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -150,6 +156,9 @@
                         </li>
                         <li>
                             <a target="_blank" href="https://www.facebook.com/machinelearningbasicvn/">Cộng Đồng</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
                         </li>
                     </ul>
                 </div>

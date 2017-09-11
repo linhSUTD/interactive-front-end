@@ -29,6 +29,12 @@ function registrationCtrlFunc($scope, authService, settings, $state) {
 	// Handle user registration
 	$scope.register = function () {
 
+		if ($scope.user.password !== $scope.user.confirmPassword) {
+			$scope.alertMessage = "Mật khẩu không trùng khớp.";
+			$scope.state = "error";
+			return;
+		}
+
 		authService.register($scope.user).then(function (response) {
 			$scope.state = "sent";
 		}, function (error, msg) {
