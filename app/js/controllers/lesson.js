@@ -70,31 +70,6 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		return;
 	}
 
-	function isLessonComplete() {
-		var defer = $q.defer();
-		$lesson.progress($stateParams.lessonId, user.id).then(res => {
-			defer.resolve(!!res.data);
-		}, _ => defer.resolve(false));
-
-		return defer.promise;
-	}
-
-	function checkLessonComplete() {
-		isLessonComplete().then(res => {
-			if (res) {
-				$state.go('course.home', { courseId: $scope.outline[0].data.courseId });
-				return;
-			}
-
-			//move on to the next exercise
-			var selectedIndex = $scope.outline.indexOf($scope.selectedModule);
-			if (selectedIndex < 0) {
-				return;
-			}
-			setModule($scope.outline[(selectedIndex + 1) % $scope.outline.length]);
-		});
-	}
-
 	function initializeExercise() {
 		$("#editor-tab").empty();
 		var outputWindow = document.getElementById("outputWindow");
@@ -143,7 +118,14 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	}
 
 	function setModule(moduleItem) {
+		if (!$scope.outline || !$scope.outline.length) {
+			return;
+		}
 
+		$state.go('course.lesson', {
+			lessonId: $stateParams.lessonId,
+			index: $scope.outline.indexOf(moduleItem)
+		}, { notify: false })
 		$scope.selectedModule = moduleItem;
 
 		if (moduleItem.type == "exercise") {
@@ -175,7 +157,6 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 						msg: 'Kết quả chính xác.'
 					}
 					$scope.hasAlert = true;
-					checkLessonComplete();
 				}
 			});
 		}

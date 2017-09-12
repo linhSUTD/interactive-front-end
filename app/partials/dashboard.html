@@ -1,11 +1,9 @@
 <div class="container">
     <div class="container" style="padding: 15px 0 15px;">
-        <div>
-            <div class="note note-success note-bordered">
-                <h4 class="block">Notice!!!</h4>
-                <p>
-                </p>
-            </div>
+        <div class="note note-success note-bordered" ng-show="false">
+            <h4 class="block">Notice!!!</h4>
+            <p>
+            </p>
         </div>
 
         <div style="margin-top: 50px;">
@@ -24,7 +22,7 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="courses-in-progress" >
+                        <div class="tab-pane active" id="courses-in-progress">
                             <div class="col-md-3 col-sm-6" ng-repeat="reg in ongoingCourses" style="margin-bottom:30px">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">

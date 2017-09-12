@@ -6,7 +6,7 @@
             </a>
             <a class="navigation-outline navigation-middle" data-toggle="modal" href="#lesson-outline" target="_self">
                 <i class="fa fa-bars"></i>
-                <span>Lesson Outline</span>
+                <span>Mục lục bài</span>
             </a>
             <a class="navigation-right" ng-click="goForward()">
                 <i class="fa fa-chevron-right"></i>
@@ -15,14 +15,14 @@
     </div>
 
     <div class="row" style="margin-top: 90px;margin-bottom:10px; padding:15px 30px; border:1px solid lightblue" ng-show="!!selectedModule && selectedModule.type=='lesson'">
-        <markdown ng-data-src="{{selectedModule.data.content}}" />
+        <div markdown ng-data-src="{{selectedModule.data.content}}" />
     </div>
 
     <div class="row parent_panel" style="margin-top: 90px;" ng-show="!!selectedModule && selectedModule.type=='exercise'">
         <div class="instruction_panel" style="overflow-y: auto; overflow-x: hidden;">
             <div class="instruction">
                 <h2 style="margin-top:5px">{{exercise.title}} ({{exercise.score}} xp)</h2>
-                <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
+                <div markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
             </div>
         </div>
 
@@ -86,7 +86,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title bold" style="text-align: center;">Lesson 1: Outline</h4>
+                    <h4 class="modal-title bold" style="text-align: center;">{{outline[0].data.title}}</h4>
                 </div>
                 <div class="modal-body">
                     <ul style="list-style: none; margin-bottom: 26px; margin-left: -45px;">

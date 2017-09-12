@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "ace-builds": "^1.2.8",
-    "angular-markdown-directive": "^0.3.1",
     "angular-sanitize": "^1.6.5",
     "angular-scroll": "^1.0.2",
     "angular-ui-bootstrap": "^2.5.0",
