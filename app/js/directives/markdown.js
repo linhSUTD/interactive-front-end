@@ -1,8 +1,11 @@
 var directiveModule = angular.module('directives', []);
 
 directiveModule.directive("markdown", function ($timeout) {
-    var converter = new Showdown.converter();
+    var md = new Remarkable();
+    
+    console.log(md.render('# Remarkable rulezz!'));
     function scheduleRendering(ele) {
+        console.log("schedule");
         $timeout(function () {
             var items = ele[0].querySelectorAll('pre');
             angular.forEach(items, function (item) {
@@ -25,14 +28,14 @@ directiveModule.directive("markdown", function ($timeout) {
         link: function ($scope, $element, $attrs) {
             //DOM manipulation
             $attrs.$observe("ngDataSrc", function (newValue) {
-                var html = converter.makeHtml($attrs.ngDataSrc || "");
+                var html = md.render($attrs.ngDataSrc || "");
                 $element.html(html);
                 if (!!html) {
                     scheduleRendering($element);
                 }
             });
 
-            var html = converter.makeHtml($attrs.ngDataSrc || "");
+            var html = md.render($attrs.ngDataSrc || "");
             $element.html(html);
             if (!!html) {
                 scheduleRendering($element);
