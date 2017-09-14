@@ -13,6 +13,7 @@ config.constant('settings', {
 		LOGIN: '/login',
 		REGISTRATION: '/registration',
 		FORGOT_PASSWORD: '/forgotPassword',
-		DASH_BOARD: '/dashboard'
+		DASH_BOARD: '/dashboard',
+		ADMIN: '/admin'
 	}
 });
