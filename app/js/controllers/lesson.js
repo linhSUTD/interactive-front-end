@@ -107,9 +107,9 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 			$scope.exercise = res.data;
 
 		}).then(_ => $exercise.progress($scope.selectedModule.data.id, user.id)).then(res => {
-
 			if (!res.data) {
 				editor.setValue($scope.exercise.sampleCode || "");
+				$exercise.saveProgress($scope.selectedModule.data.id, user.id, editor.getValue() || "#", "")
 				return;
 			}
 
