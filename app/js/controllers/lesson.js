@@ -107,13 +107,12 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 			$scope.exercise = res.data;
 
 		}).then(_ => $exercise.progress($scope.selectedModule.data.id, user.id)).then(res => {
+			editor.setValue($scope.exercise.sampleCode || "");
+
 			if (!res.data) {
-				editor.setValue($scope.exercise.sampleCode || "");
-				$exercise.saveProgress($scope.selectedModule.data.id, user.id, editor.getValue() || "#", "")
+				$exercise.saveProgress($scope.selectedModule.data.id, user.id, "");
 				return;
 			}
-
-			editor.setValue(res.data.currentSolution || "");
 		});
 	}
 

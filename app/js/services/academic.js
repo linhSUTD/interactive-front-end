@@ -30,7 +30,18 @@ academicModule.factory('$course', function ($http, $q, settings) {
         },
 
         lessons: function (id) {
-            return $http.get(settings.apiUrl + "/course/" + id + "/lessons");
+            var defer = $q.defer();
+            $http.get(settings.apiUrl + "/course/" + id + "/lessons").then(res => {
+                if (res.data && res.data.length) {
+                    for (var i = 0; i < res.data.length; i++) {
+                        res.data[i].index = i + 1;
+                    }
+                }
+
+                defer.resolve(res);
+            }, err => defer.reject(err));
+
+            return defer.promise;
         },
 
         reviews: function (id) {
@@ -99,7 +110,18 @@ academicModule.factory('$lesson', function ($http, $q, settings) {
     }
 
     function getExercises(id) {
-        return $http.get(`${settings.apiUrl}/lesson/${id}/exercises`);
+        var defer = $q.defer();
+        $http.get(`${settings.apiUrl}/lesson/${id}/exercises`).then(res => {
+            if (res.data && res.data.length) {
+                for (var i = 0; i < res.data.length; i++) {
+                    res.data[i].index = i + 1;
+                }
+            }
+
+            defer.resolve(res);
+        }, err => defer.reject(err));
+
+        return defer.promise;
     }
 
     function getProgress(id, userId) {
