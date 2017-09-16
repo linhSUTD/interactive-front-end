@@ -66,6 +66,7 @@
                                 <div class="tab-pane active" id="console-tab">
                                     <div class="form-group">
                                         <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
+                                        <div ng-show="busy">Busy...</div>
                                     </div>
 
                                     <pre ng-show="!!output" ng-class="outputClass(resultType)">{{output}}</pre>

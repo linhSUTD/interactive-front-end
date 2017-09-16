@@ -134,7 +134,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	}
 
 	function setResult() {
-
+		$scope.busy = resultState.type == "executing";
 		$scope.output = resultState.outputText;
 		$scope.graphPayload = resultState.outputGraph;
 		$scope.resultType = resultState.type;
@@ -172,7 +172,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	};
 
 	$scope.submitcode = function () {
-		if (!editor) {
+		if (!editor || !!$scope.busy) {
 			return;
 		}
 
@@ -204,7 +204,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 
 		switch (rp.type) {
 			default:
-				return;
+				break;
 			case "script-output":
 				resultState.outputText = rp.payload["output"];
 				break;
@@ -215,7 +215,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 				resultState.outputGraph = getGraphSrc(rp.payload)
 				break;
 			case "empty":
-				resultState.outputText = "Xảy ra vấn đề trong quá trình xử lý, xin thử lại";
+				resultState.outputText = "Code chưa hiệu quả, thời gian chạy quá lâu";
 				$('a[href="#console-tab"]').tab('show');
 				break;
 			case "error":
