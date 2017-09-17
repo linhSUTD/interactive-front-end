@@ -64,6 +64,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	var editor = null;
 	var resultState = {};
 	var saveInterval = 0;
+	var currentIndex = $stateParams.index;
 
 	if (user == null) {
 		$state.go('login');
@@ -84,6 +85,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		$scope.resultType = "";
 		$scope.hasAlert = false;
 		$scope.alert = {};
+		$scope.courseId = $stateParams.courseId;
 
 		$scope.fullscreenRequest = function () {
 			editor.setOption("fullScreen", true);
@@ -130,10 +132,13 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 
 		var index = moduleItem.type == "lesson" ? "" : moduleItem.data.id;
 
-		$state.go('course.lesson', {
-			lessonId: $stateParams.lessonId,
-			index: index
-		}, { notify: false });
+		if (index != currentIndex) {
+			$state.go('course.lesson', {
+				lessonId: $stateParams.lessonId,
+				index: index
+			}, { notify: false });
+			currentIndex = index;
+		}
 
 		$scope.selectedModule = moduleItem;
 

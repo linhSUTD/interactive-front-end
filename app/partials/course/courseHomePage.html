@@ -51,7 +51,11 @@
                                         <div class="col-md-7">
                                             <ul ng-show="!!lesson.outline" style="list-style: none; margin-bottom: 26px; margin-top: 30px; margin-left: -57px;">
                                                 <li class="lesson_exercise" ng-repeat="item in lesson.outline">
-                                                    <a class="lesson_exercise_link" style="text-decoration: none;" ui-sref="course.lesson({courseId: course.id, lessonId: lesson.id, index:item.data.id})">
+                                                    <a class="lesson_exercise_link" style="text-decoration: none;" ui-sref="course.lesson({
+                                                        courseId: course.id, 
+                                                        lessonId: lesson.id, 
+                                                        index: item.type=='exercise'? item.data.id:''
+                                                    })">
                                                         <span class="lesson_exercise_icon">
                                                             <img width="23" height="23" alt="Icon exercise interactive"
                                                                 ng-src="{{item.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">

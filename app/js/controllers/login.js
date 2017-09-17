@@ -31,11 +31,6 @@ function loginCtrlFunc($scope, authService, settings, $state, $course) {
 	$scope.login = function () {
 		authService.login($scope.user).then(function (response) {
 			$scope.$emit("user:loggedin");
-
-		}, function (error) {
-			$scope.alertMessage = error.data.errors[0];
-			$scope.state = "error";
-		}).then(_ => {
 			$course.recentCourses(null, null, 100, "descending").then(res => {
 				if (res.data && res.data.length == 1) {
 					$state.go('course.introduction', {
@@ -45,8 +40,9 @@ function loginCtrlFunc($scope, authService, settings, $state, $course) {
 					$state.go('home');
 				}
 			});
-
-
+		}, function (error) {
+			$scope.alertMessage = error.data.errors[0];
+			$scope.state = "error";
 		});
 	}
 

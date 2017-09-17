@@ -1,15 +1,18 @@
 <div style="position: relative; height: 100%; width: 100%;">
     <div class="row">
         <div class="navigation-buttons-center">
-            <a class="navigation-left" ng-click="goPrevious()">
-                <i class="fa fa-chevron-left"></i>
+            <a title="Trở về trang khóa học" class="navigation-left" ui-sref="course.home({courseId:courseId})">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
+            <a title="Bài trước" class="navigation-left" ng-click="goPrevious()">
+                <i class="fa fa-angle-left"></i>
             </a>
             <a class="navigation-outline navigation-middle" data-toggle="modal" href="#lesson-outline" target="_self">
                 <i class="fa fa-bars"></i>
                 <span>Mục lục</span>
             </a>
-            <a class="navigation-right" ng-click="goForward()">
-                <i class="fa fa-chevron-right"></i>
+            <a title="Bài kế tiếp" class="navigation-right" ng-click="goForward()">
+                <i class="fa fa-angle-right"></i>
             </a>
         </div>
     </div>
