@@ -16,6 +16,28 @@ markdown{
   }
 }
 
+.course-list{
+  .list-group-item-heading{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 16px;
+    display: block;
+  }
+  
+  .list-group-item-text {
+    display: inline-block;
+    overflow: hidden;
+    height: 85px;
+  }
+
+  .list-group-image{
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+  }
+}
+
 .row {
   margin-left: 0px;
   margin-right: 0px;
@@ -476,11 +498,6 @@ Sidebar
   top: 1px;
   margin-right: 2px;
   float: left;
-}
-.sidebar .dropdown.open .dropdown-toggle {
-}
-
-.sidebar .dropdown.open .dropdown-toggle:hover {
 }
 
 .sidebar .dropup.open > .dropdown-toggle, .dropdown.open > .dropdown-toggle {

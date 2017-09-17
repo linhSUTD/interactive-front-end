@@ -1,4 +1,4 @@
-var loginModule = angular.module('page.login', []);
+var loginModule = angular.module('page.login', ['service.academic']);
 
 loginModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -10,7 +10,7 @@ loginModule.config(function ($stateProvider, $urlRouterProvider) {
 		})
 });
 
-function loginCtrlFunc($scope, authService, settings, $state) {
+function loginCtrlFunc($scope, authService, settings, $state, $course) {
 
 	$scope.user = {
 		activationUrl: `${location.protocol}//${location.host}${settings.activationUrl}`
@@ -29,14 +29,25 @@ function loginCtrlFunc($scope, authService, settings, $state) {
 
 	// Handle signing in
 	$scope.login = function () {
-
 		authService.login($scope.user).then(function (response) {
 			$scope.$emit("user:loggedin");
-			$state.go('home');
+
 		}, function (error) {
 			$scope.alertMessage = error.data.errors[0];
 			$scope.state = "error";
-		})
+		}).then(_ => {
+			$course.recentCourses(null, null, 100, "descending").then(res => {
+				if (res.data && res.data.length == 1) {
+					$state.go('course.introduction', {
+						courseId: res.data[0].id
+					});
+				} else {
+					$state.go('home');
+				}
+			});
+
+
+		});
 	}
 
 	// Handle closing alert
@@ -45,14 +56,14 @@ function loginCtrlFunc($scope, authService, settings, $state) {
 	};
 }
 
-loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$state',
-	function ($scope, authService, settings, $state) {
+loginModule.controller('loginCtrl', ['$scope', 'authService', 'settings', '$state', '$course',
+	function ($scope, authService, settings, $state, $course) {
 
 		if ($scope.authReady) {
-			loginCtrlFunc($scope, authService, settings, $state);
+			loginCtrlFunc($scope, authService, settings, $state, $course);
 			return;
 		}
 
-		$scope.$on("auth:ready", _ => loginCtrlFunc($scope, authService, settings, $state));
+		$scope.$on("auth:ready", _ => loginCtrlFunc($scope, authService, settings, $state, $course));
 	}
 ]);

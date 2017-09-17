@@ -28,7 +28,7 @@ courseModule.controller('courseIntroductionCtrl', [
 	'$state',
 	'$course',
 	'userService', 'authService', function ($scope, $stateParams, $state, $course, userService, authService) {
-		
+
 		// Load reviews
 		function loadReviews() {
 			$course.reviews($stateParams.courseId).then(res => {
@@ -36,7 +36,9 @@ courseModule.controller('courseIntroductionCtrl', [
 			});
 
 			$course.rating($stateParams.courseId).then(res => {
-				$scope.rating = res.data;
+				var ratingData = res.data;
+				$scope.rating = (ratingData && ratingData.count) ?
+					Number(ratingData.sum * 1.0 / ratingData.count).toFixed(1) + '/5' : '';
 			});
 		}
 
@@ -56,8 +58,8 @@ courseModule.controller('courseIntroductionCtrl', [
 
 
 		// Handle course enrolment
-		function handleCourseEnrolment (bool) {
-			
+		function handleCourseEnrolment(bool) {
+
 			if (!$scope.registration) {
 				$course.register(user.id, $scope.course.id).then(res => {
 					$state.go('course.home', { courseId: $scope.course.id });
@@ -70,7 +72,7 @@ courseModule.controller('courseIntroductionCtrl', [
 				$state.go('course.home', { courseId: $scope.course.id });
 			} else {
 				setTimeout(function () {
-					$state.go('course.home', {courseId: $scope.course.id});
+					$state.go('course.home', { courseId: $scope.course.id });
 				}, 500);
 			}
 		}
@@ -115,7 +117,7 @@ courseModule.controller('courseIntroductionCtrl', [
 
 		$scope.register = function () {
 			document.getElementById('close-modal-button').click();
-			setTimeout(function(){ $state.go('registration'); }, 200);
+			setTimeout(function () { $state.go('registration'); }, 200);
 		}
 
 		// Handle closing alert

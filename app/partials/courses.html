@@ -19,36 +19,41 @@
                         <h2><strong>{{header()}}</strong></h2>
                     </div>
 
-                    <div class="row margin-bottom-40" ng-show="state=='recommended'">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6 margin-bottom-30" ng-repeat="rCourse in recommendations">
-                                <div class="product-item">
-                                    <div class="pi-img-wrapper">
-                                        <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Python for Linear Algebra">
+                    <div id="products" class="row list-group course-list" ng-show="state=='recommended'">
+                        <div class="item  col-xs-4 col-lg-4" ng-repeat="rCourse in recommendations">
+                            <div class="thumbnail">
+                                <img class="group list-group-image" ng-src="{{rCourse.coverImageUrl}}" alt="{{rCourse.title}}" />
+                                <div class="caption">
+                                    <a ui-sref="course.introduction({courseId: rCourse.id})" class="group inner list-group-item-heading">{{rCourse.title}}</a>
+                                    <p class="group inner list-group-item-text"> {{rCourse.description}} </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a class="btn btn-success" href="javascript:void()">{{rCourse.level}}</a>
+                                        </div>
                                     </div>
-                                    <h3>{{rCourse.title}}</h3>
-                                    <div class="pi-price">{{rCourse.level}}</div>
-                                    <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
-                                    <div class="sticker sticker-sale"></div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row margin-bottom-40" ng-show="state=='searched'">
-                        <div class="col-md-4" ng-repeat="rCourse in searchResults">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img src="../../img/products/model{{$index + 1}}.jpg" class="img-responsive" alt="Python for Machine Learing 1">
-                                </div>
-                                <h3>{{rCourse.title}}</h3>
-                                <div class="pi-price">{{rCourse.level}}</div>
-                                <a ui-sref="course.introduction({courseId: rCourse.id})" class="btn btn-default add2cart">Chi Tiết</a>
-                                <div class="sticker sticker-sale"></div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div id="products" class="row list-group course-list" ng-show="state=='searched'">
+                    <div class="item  col-xs-4 col-lg-4" ng-repeat="rCourse in searchResults">
+                        <div class="thumbnail">
+                            <img class="group list-group-image" ng-src="{{rCourse.coverImageUrl}}" alt="{{rCourse.title}}" />
+                            <div class="caption">
+                                <a ui-sref="course.introduction({courseId: rCourse.id})" class="group inner list-group-item-heading">{{rCourse.title}}</a>
+                                <p class="group inner list-group-item-text"> {{rCourse.description}} </p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a class="btn btn-success" href="javascript:void()">{{rCourse.level}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
