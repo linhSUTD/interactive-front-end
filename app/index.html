@@ -39,7 +39,7 @@
 
 <body ng-app="mainApp" ng-controller="baseCtrl">
 
-    <div class="page-header" ng-show="isLoggedIn">
+    <div class="page-header" ng-show="isLoggedIn" ng-cloak>
         <div class="page-header-top">
             <div class="container">
                 <div class="page-logo">
@@ -131,7 +131,7 @@
         </div>
     </div>
 
-    <div class="page-header" ng-hide="isLoggedIn">
+    <div class="page-header" ng-hide="isLoggedIn" ng-cloak>
         <div class="page-header-top">
             <div class="container">
                 <div class="page-logo">
