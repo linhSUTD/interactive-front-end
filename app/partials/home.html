@@ -9,7 +9,7 @@
             </div>
 
             <div class="btn-group">
-                <a class="btn blue btn-lg" type="button" ui-sref="courses">
+                <a class="btn blue btn-lg" type="button"  ui-sref="course.introduction({courseId: courses[0].id})">
                     Tham Gia Ngay
                 </a>
             </div>
@@ -21,25 +21,19 @@
     <h2>Hiện đã có:</h2>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-6">
-                <div class="item">
-                    <strong>{{summaries.courseCount}}</strong>
-                    Khoá Học
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="item">
                     <strong>{{summaries.lessonCount}}</strong>
                                         Bài Học
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="item">
                     <strong>{{summaries.exerciseCount}}</strong>
                     Bài Tập Thực Hành
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="item">
                     <strong>{{summaries.userCount}}</strong>
                     Thành Viên
@@ -57,7 +51,7 @@
         <div class="carousel slide" data-ride="carousel" id="testimonials-block">
             <div class="carousel-inner">
                 <div class="active item">
-                    <blockquote style="margin-bottom: 30px;"><p>Tôi đã thành thạo sử dụng và lập trình ngôn ngữ Python sau 5 ngày tham gia khoá học.</p></blockquote>
+                    <blockquote style="margin-bottom: 30px;"><p>Nhờ nền tảng FundaML, tôi có thể thực hành ngay những kiến thức đại số tuyến tính vừa học.</p></blockquote>
                     <span class="testimonials-name">Linh Nguyễn</span>
                 </div>
                 <div class="item">

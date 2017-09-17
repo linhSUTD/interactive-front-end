@@ -51,6 +51,14 @@ function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $sta
 		return;
 	}
 
+	$course.recentCourses(null, null, 50, "descending").then(function (response) {
+		if (response.status >= 400) {
+			return;
+		}
+
+		$scope.courses = response.data;
+	});
+
 	// Query product insights
 	getSummaries($course, $lesson, $exercise, userService, $q).then(res => {
 		$scope.summaries = res;
