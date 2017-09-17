@@ -11,6 +11,7 @@
 
     <title>Interactive Machine Learning</title>
     <link href="build/main.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="http://i1016.photobucket.com/albums/af286/Goaty_elegant/logo_zpsrqmjycwk.png" type="image/png" />
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css" />
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.min.css"
@@ -98,7 +99,7 @@
                         <li>
                             <a ui-sref="dashboard">Trang Chủ</a>
                         </li>
-                        <li>
+                        <li ng-show="false">
                             <a ui-sref="courses">Khoá Học</a>
                         </li>
                         <li>
@@ -110,9 +111,7 @@
                         <li>
                             <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
                         </li>
-                        <li ng-show="currentUser.roles.indexOf('admin') > -1">
-                            <a target="_blank" ng-href="{{adminPageUrl}}">Admin</a>
-                        </li>
+
                         <li>
                             <a target="_blank" href="https://machinelearningcoban.com/about/">Giới thiệu</a>
                         </li>
@@ -121,6 +120,10 @@
                         </li>
                         <li>
                             <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng hộ</a>
+                        </li>
+
+                        <li ng-show="currentUser.roles.indexOf('admin') > -1">
+                            <a target="_blank" ng-href="{{adminPageUrl}}">ADMIN</a>
                         </li>
                     </ul>
                 </div>
