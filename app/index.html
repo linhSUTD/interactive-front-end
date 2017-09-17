@@ -12,6 +12,7 @@
     <title>Interactive Machine Learning</title>
     <link href="build/main.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css" />
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.min.css"
     />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/addon/display/fullscreen.css"
@@ -20,8 +21,7 @@
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/x-mathjax-config">
-        console.log("mathjax")
-        MathJax.Hub.Config({ tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
+        console.log("mathjax") MathJax.Hub.Config({ tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
     </script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -30,8 +30,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/python/python.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/addon/display/fullscreen.min.js"></script>
-    <!-- <script src="http://localhost:8080/datacampService.js"></script> -->
-    <script src="http://54.169.165.200/static/datacampService.prod.js"></script>
+    <script src="http://localhost:8080/datacampService.js"></script>
+    <!-- <script src="http://54.169.165.200/static/datacampService.prod.js"></script> -->
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
@@ -114,6 +114,15 @@
                         <li ng-show="currentUser.roles.indexOf('admin') > -1">
                             <a target="_blank" ng-href="{{adminPageUrl}}">Admin</a>
                         </li>
+                        <li>
+                            <a target="_blank" href="https://machinelearningcoban.com/about/">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://machinelearningcoban.com/ebook/">Ebook</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng hộ</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -163,6 +172,15 @@
                         </li>
                         <li>
                             <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://machinelearningcoban.com/about/">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://machinelearningcoban.com/ebook/">Ebook</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng hộ</a>
                         </li>
                     </ul>
                 </div>

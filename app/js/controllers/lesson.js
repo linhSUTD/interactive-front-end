@@ -73,7 +73,10 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	function initializeExercise() {
 		$("#editor-tab").empty();
 		var outputWindow = document.getElementById("outputWindow");
-		$datacamp.startSession(outputWindow.clientHeight * 0.5, outputWindow.clientWidth);
+
+		if (!$datacamp.sessionStarted()) {
+			$datacamp.startSession(outputWindow.clientHeight * 0.5, outputWindow.clientWidth);
+		}
 
 		$scope.exercise = null;
 		$scope.output = "";
@@ -81,6 +84,10 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		$scope.resultType = "";
 		$scope.hasAlert = false;
 		$scope.alert = {};
+
+		$scope.fullscreenRequest = function () {
+			editor.setOption("fullScreen", true);
+		}
 
 		editor = CodeMirror(document.getElementById("editor-tab"), {
 			value: "",
@@ -117,14 +124,17 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	}
 
 	function setModule(moduleItem) {
-		if (!$scope.outline || !$scope.outline.length) {
+		if (!moduleItem || !$scope.outline || !$scope.outline.length) {
 			return;
 		}
 
+		var index = moduleItem.type == "lesson" ? "" : moduleItem.data.id;
+
 		$state.go('course.lesson', {
 			lessonId: $stateParams.lessonId,
-			index: $scope.outline.indexOf(moduleItem)
-		}, { notify: false })
+			index: index
+		}, { notify: false });
+
 		$scope.selectedModule = moduleItem;
 
 		if (moduleItem.type == "exercise") {
@@ -192,7 +202,8 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 
 	$lesson.outline($stateParams.lessonId, user.id).then(ol => {
 		$scope.outline = ol;
-		setModule($scope.outline[parseInt($stateParams.index)]);
+		var item = !$stateParams.index ? $scope.outline[0] : $scope.outline.filter(i => i.data.id == $stateParams.index)[0];
+		setModule(item);
 	});
 
 	$datacamp.addBackendListener(rp => {
