@@ -71,6 +71,8 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		return;
 	}
 
+	$scope.courseId = $stateParams.courseId;
+
 	function initializeExercise() {
 		$("#editor-tab").empty();
 		var outputWindow = document.getElementById("outputWindow");
@@ -85,7 +87,6 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		$scope.resultType = "";
 		$scope.hasAlert = false;
 		$scope.alert = {};
-		$scope.courseId = $stateParams.courseId;
 
 		$scope.fullscreenRequest = function () {
 			editor.setOption("fullScreen", true);

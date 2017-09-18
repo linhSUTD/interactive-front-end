@@ -1,4 +1,4 @@
-var dashboardModule = angular.module('page.dashboard', ['ngCookies', 'service.academic']);
+var dashboardModule = angular.module('page.dashboard', ['ngCookies', 'service.academic', 'ui.bootstrap']);
 
 dashboardModule.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -25,6 +25,13 @@ function dashboardCtrlFunc($scope, $state, $course, userService) {
 		return;
 	}
 
+	$scope.state = 'unregistered';
+
+	// Get achievements
+	userService.achievements(user.id).then(res => {
+		$scope.achievements = res.data;
+	});
+
 	$scope.finishedCourses = [];
 	$scope.ongoingCourses = [];
 
@@ -38,6 +45,10 @@ function dashboardCtrlFunc($scope, $state, $course, userService) {
 
 		$scope.ongoingCourses = response.data.filter(c => !c.completed);
 		$scope.finishedCourses = response.data.filter(c => c.completed);
+
+		if ($scope.ongoingCourses != null && $scope.ongoingCourses.length > 0) {
+			$scope.state = 'registered';
+		}
 	});
 }
 

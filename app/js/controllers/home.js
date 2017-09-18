@@ -51,13 +51,17 @@ function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $sta
 		return;
 	}
 
-	$course.recentCourses(null, null, 50, "descending").then(function (response) {
-		if (response.status >= 400) {
-			return;
-		}
+	$scope.email = "";
 
-		$scope.courses = response.data;
-	});
+	$scope.feedback = {};
+
+	$scope.sendFeedback = function() {
+		showPopUp("Cám ơn bạn vì những góp ý chân thành nhất. Chúng tôi đã nhận được và sẽ xử lý trong thời gian sớm nhất.")
+	}
+
+	$scope.subscribe = function () {
+		showPopUp("Hàng tuần chúng tôi sẽ gửi những thông tin về các bài giảng mới, những kiến thức bổ ích đến cho bạn.")
+	}
 
 	// Query product insights
 	getSummaries($course, $lesson, $exercise, userService, $q).then(res => {

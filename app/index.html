@@ -43,7 +43,7 @@
         <div class="page-header-top">
             <div class="container">
                 <div class="page-logo">
-                    <a ui-sref="home"><img src="img/fundaml_logo.png" alt="logo" class="logo-default"></a>
+                    <a ui-sref="home"><img src="img/fundaml_logo_2.png" alt="logo" class="logo-default"></a>
                 </div>
 
                 <a href="javascript:;" class="menu-toggler"></a>
@@ -61,8 +61,6 @@
                                     <h3>Bạn có <strong>0</strong> thông báo mới.</h3>
                                 </li>
                             </ul>
-
-                            
                         </li>
 
                         <li class="droddown dropdown-separator">
@@ -101,8 +99,8 @@
                         <li>
                             <a ui-sref="dashboard">Trang Chủ</a>
                         </li>
-                        <li ng-show="false">
-                            <a ui-sref="courses">Khoá Học</a>
+                        <li>
+                            <a  ui-sref="course.introduction({courseId: courses[0].id})">Khoá Học</a>
                         </li>
                         <li>
                             <a target="_blank" href="https://machinelearningcoban.com/">Blog</a>
@@ -138,7 +136,7 @@
             <div class="container">
                 <div class="page-logo">
                     <a ui-sref="home"><img style="object-fit:cover"
-                         src="img/fundaml_logo.png" alt="logo" class="logo-default">
+                         src="img/fundaml_logo_2.png" alt="logo" class="logo-default">
                     </a>
                 </div>
 
@@ -165,8 +163,8 @@
                         <li>
                             <a ui-sref="home">Trang Chủ</a>
                         </li>
-                        <li ng-show="false">
-                            <a ui-sref="courses">Khoá Học</a>
+                        <li>
+                            <a  ui-sref="course.introduction({courseId: courses[0].id})">Khoá Học</a>
                         </li>
                         <li>
                             <a target="_blank" href="https://machinelearningcoban.com/">Blog</a>

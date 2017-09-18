@@ -2,7 +2,7 @@ function showPopUp(title, text, time) {
 	$.gritter.add({
 		title: title,
 		text: text || " ",
-		time: time || 2000
+		time: time || 4000
 	});
 }
 

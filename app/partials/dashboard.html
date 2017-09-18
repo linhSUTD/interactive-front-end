@@ -8,7 +8,73 @@
 
         <div style="margin-top: 50px;">
             <div class="portlet-body">
-                <div class="tabbable-line">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div uib-alert class="alert-success">
+                            Chào mừng bạn đã quay trở lại với Machine Learning cơ bản và FundaML. Chúc bạn một ngày tốt lành.
+                        </div>
+                    </form>
+                </div> 
+
+
+                <div class="row" style="margin-bottom: 65px;" ng-show="state=='unregistered'">
+                    <div class="content-block content content-center">
+                        <div class="container">
+                            <h2>Bạn đang tìm hiểu về <strong>machine learning</strong>...</h2>
+                            <div style="margin-top: 20px;">
+                                <h4>
+                                    và gặp khó khăn trong lập trình? Chúng ta hãy cùng bắt đầu từ những thứ đơn giản nhất, bằng việc học và lập trình trực tiếp trên trình duyệt. 
+                                </h4>
+                            </div>
+
+                            <div class="btn-group">
+                                <a class="btn blue btn-lg" type="button"  ui-sref="course.introduction({courseId: courses[0].id})">
+                                    Tham Gia Ngay
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+
+                <div class="row" ng-show="state=='registered'" style="margin-top: 30px; margin-bottom: 30px;">
+                    <div class="col-md-3" style="padding-left: 0px;">
+                        <div class="pricing hover-effect">
+                            <div class="pricing-head">
+                                <h3>Khoá Học
+                                </h3>
+                                <h4>{{achievements.coursesCompleted}}
+                                    <span>Đã Hoàn Thành</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="pricing hover-effect">
+                            <div class="pricing-head">
+                                <h3>Bài Tập
+                                </h3>
+                                <h4>{{achievements.exercisesFinished}}
+                                    <span>Đã Hoàn Thành</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="pricing hover-effect">
+                            <div class="pricing-head">
+                                <h3>Điểm XP
+                                </h3>
+                                <h4>{{achievements.scores}}
+                                    <span>Tích Luỹ</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabbable-line" ng-show="state=='registered'">
                     <ul class="nav nav-tabs ">
                         <li class="active">
                             <a href="#courses-in-progress" data-toggle="tab" target="_self">

@@ -15,7 +15,8 @@ var app = angular.module('mainApp', [
 	'page.user',
 	'service.user',
 	'service.auth',
-	'ngCookies'
+	'ngCookies',
+	'service.academic'
 ]);
 
 app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider',
@@ -38,8 +39,8 @@ app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterP
 		$locationProvider.hashPrefix('');
 	}]);
 
-app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', function (
-	$scope, $rootScope, settings, $state, authService) {
+app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', '$course', function (
+	$scope, $rootScope, settings, $state, authService, $course) {
 
 	$scope.adminPageUrl = settings.pageUrl.ADMIN;
 	$scope.currentUser = null;
@@ -81,5 +82,13 @@ app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authS
 		if (!supportsES6()) {
 			alert("Trình duyệt của bạn không hỗ trợ tính năng code trực tiếp. Vui lòng nâng cấp");
 		}
+	});
+
+	$course.recentCourses(null, null, 50, "descending").then(function (response) {
+		if (response.status >= 400) {
+			return;
+		}
+
+		$scope.courses = response.data;
 	});
 }]);
