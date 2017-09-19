@@ -39,10 +39,6 @@ function dashboardCtrlFunc($scope, $state, $course, userService) {
 	 * Query course subscriptions
 	 */
 	$course.subscriptions(user.id, null, null, 100, "descending").then(function (response) {
-		if (response.status >= 400) {
-			return;
-		}
-
 		$scope.ongoingCourses = response.data.filter(c => !c.completed);
 		$scope.finishedCourses = response.data.filter(c => c.completed);
 

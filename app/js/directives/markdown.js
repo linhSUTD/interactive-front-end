@@ -1,8 +1,12 @@
 var directiveModule = angular.module('directives', []);
 
 directiveModule.directive("markdown", function ($timeout) {
-    var md = new Remarkable();
-    
+    var md = new Remarkable('full', {
+        html: true,
+        linkify: true,
+        typographer: true
+    });
+
     console.log(md.render('# Remarkable rulezz!'));
     function scheduleRendering(ele) {
         console.log("schedule");
