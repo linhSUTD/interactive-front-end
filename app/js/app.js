@@ -19,8 +19,8 @@ var app = angular.module('mainApp', [
 	'service.academic'
 ]);
 
-app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider',
-	function ($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider', 'settings',
+	function ($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, settings) {
 		$urlRouterProvider.otherwise('/');
 
 		$httpProvider.defaults.headers.post = {
@@ -32,7 +32,7 @@ app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterP
 		};
 
 		$locationProvider.html5Mode({
-			enabled: false,
+			enabled: settings.html5mode,
 			requireBase: false
 		});
 

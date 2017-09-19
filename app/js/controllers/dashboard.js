@@ -42,7 +42,7 @@ function dashboardCtrlFunc($scope, $state, $course, userService) {
 		$scope.ongoingCourses = response.data.filter(c => !c.completed);
 		$scope.finishedCourses = response.data.filter(c => c.completed);
 
-		if ($scope.ongoingCourses != null && $scope.ongoingCourses.length > 0) {
+		if (!!response.data && response.data.length > 0) {
 			$scope.state = 'registered';
 		}
 	});

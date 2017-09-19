@@ -107,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" ng-show="false">
                         <div class="portlet-title" id="faq-tab">
                             <div class="caption">
                                 <i class="fa fa-cogs font-green-sharp"></i>
@@ -138,8 +138,8 @@
                                         <tr ng-repeat="review in reviews">
                                             <td width="10%" style="text-align: center;">
                                                 <span class="photo">
-                                                <img ng-src="{{review.user.avatarUrl || 'https://tailuns.com/avatar/no.png'}}" class="img-circle" alt="{{review.user.name}}"
-                                                     style="width:45px;height:45px">
+                                                <img ng-src="{{review.user.avatarUrl || 'https://tailuns.com/avatar/no.png'}}" class="img-circle" alt="{{review.user.name}}" 
+                                                    title="{{review.user.name}}" style="width:45px;height:45px" />
                                             </span>
                                             </td>
                                             <td width="75%">

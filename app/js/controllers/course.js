@@ -152,21 +152,6 @@ courseModule.controller('courseIntroductionCtrl', [
 		});
 
 		loadReviews();
-
-		$scope.questions = [
-			{
-				title: "Anh Tiệp đã có bạn gái chưa?",
-				answer: "Anh Tiệp hiện đang độc thân vui vẻ bạn nhé."
-			},
-			{
-				title: "Anh Tiệp thích mẫu con gái thế nào?",
-				answer: "Xinh, ngoan, hiền, hiểu biết, nhà giàu, đơn giản vậy thôi bạn nhé."
-			},
-			{
-				title: "Em rất thích comment của anh Linh Nguyễn, em có thể xin facebook của anh Tiệp Vũ được không ạ?",
-				answer: "Hoàn toàn được nhé, ahihi."
-			}
-		]
 	}
 ]);
 

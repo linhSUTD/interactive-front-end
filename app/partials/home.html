@@ -4,12 +4,13 @@
             <h2>Bạn đang tìm hiểu về <strong>machine learning</strong>...</h2>
             <div style="margin-top: 20px;">
                 <h4>
-                    và gặp khó khăn trong lập trình? Chúng ta hãy cùng bắt đầu từ những thứ đơn giản nhất, bằng việc học và lập trình trực tiếp trên trình duyệt. 
+                    và gặp khó khăn trong lập trình? Chúng ta hãy cùng bắt đầu từ những thứ đơn giản nhất, bằng việc học và lập trình trực tiếp
+                    trên trình duyệt.
                 </h4>
             </div>
 
             <div class="btn-group">
-                <a class="btn blue btn-lg" type="button"  ui-sref="course.introduction({courseId: courses[0].id})">
+                <a class="btn blue btn-lg" type="button" ui-sref="course.introduction({courseId: courses[0].id})">
                     Tham Gia Ngay
                 </a>
             </div>
@@ -23,20 +24,17 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="item">
-                    <strong>{{summaries.lessonCount}}</strong>
-                                        Bài Học
+                    <strong>{{summaries.lessonCount}}</strong> Bài Học
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="item">
-                    <strong>{{summaries.exerciseCount}}</strong>
-                    Bài Tập Thực Hành
+                    <strong>{{summaries.exerciseCount}}</strong> Bài Tập Thực Hành
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="item">
-                    <strong>{{summaries.userCount}}</strong>
-                    Thành Viên
+                    <strong>{{summaries.userCount}}</strong> Thành Viên
                 </div>
             </div>
         </div>
@@ -50,12 +48,16 @@
 
         <div class="carousel slide" data-ride="carousel" id="testimonials-block">
             <div class="carousel-inner">
-                <div class="active item">
-                    <blockquote style="margin-bottom: 30px;"><p>Nhờ nền tảng FundaML, tôi có thể thực hành ngay những kiến thức đại số tuyến tính vừa học.</p></blockquote>
+                <div class="active item" id="fb-1">
+                    <blockquote style="margin-bottom: 30px;">
+                        <p>Nhờ nền tảng FundaML, tôi có thể thực hành ngay những kiến thức đại số tuyến tính vừa học.</p>
+                    </blockquote>
                     <span class="testimonials-name">Linh Nguyễn</span>
                 </div>
-                <div class="item">
-                    <blockquote style="margin-bottom: 30px;"><p>Khoá học vô cùng dễ hiểu và chi tiết, tôi sẽ giới thiệu khoá học cho các bạn bè của mình.</p></blockquote>
+                <div class="item" id="fb-2">
+                    <blockquote style="margin-bottom: 30px;">
+                        <p>Khoá học vô cùng dễ hiểu và chi tiết, tôi sẽ giới thiệu khoá học cho các bạn bè của mình.</p>
+                    </blockquote>
                     <span class="testimonials-name">Huy Hoàng</span>
                 </div>
             </div>
@@ -71,24 +73,24 @@
 <div class="row" style="margin-top: 65px;">
     <div class="services-block content content-center">
         <div class="container">
-            <h2>Đánh giá của bạn</strong></h2>
+            <h2>Đánh giá của bạn</strong>
+            </h2>
 
             <div class="col-md-6 col-md-offset-3">
                 <div class="space20">
                 </div>
-                <form action="javascript:;" name="feedbackForm" ng-submit="sendFeedback()">
+                <form name="feedbackForm" ng-submit="sendFeedback()">
                     <div style="margin-top: 20px;">
                         <h4 style="margin-bottom: 30px;">
                             Chúng tôi lắng nghe mọi ý kiến góp ý và phản hồi từ các bạn.
-                            <br/>
-                            Cám ơn bạn rất nhiều!
+                            <br/> Cám ơn bạn rất nhiều!
                         </h4>
                     </div>
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Địa Chỉ Email" required ng-model="feedback.email">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Tiêu Đề" required ng-model="feedback.title">
+                        <input type="text" class="form-control" placeholder="Tên của bạn" required ng-model="feedback.title">
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" rows="3=6" placeholder="Nội Dung" required ng-model="feedback.content"></textarea>
@@ -125,8 +127,7 @@
                 <div class="col-md-4 col-sm-6 pre-footer-col">
                     <h2>Địa Chỉ</h2>
                     <address class="margin-bottom-20">
-                        State College, <br>
-                        Pennsylvania, USA<br>
+                        State College, <br> Pennsylvania, USA<br>
                         <!-- Phone: 226 868 9827<br> -->
                         Email: <a href="mailto:vuhuutiep@gmail.com">vuhuutiep@gmail.com</a><br>
                     </address>
@@ -136,7 +137,7 @@
                         <form ng-submit="subscribe()">
                             <div class="input-group">
                                 <input type="email" required ng-model="email" placeholder="youremail@mail.com" class="form-control">
-                            <span class="input-group-btn">
+                                <span class="input-group-btn">
                               <button class="btn btn-primary" type="submit">Subscribe</button>
                             </span>
                             </div>

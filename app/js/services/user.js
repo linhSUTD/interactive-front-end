@@ -27,6 +27,23 @@ userServiceModule.factory('userService', function ($http, $q, settings, $cookies
 		},
 		queryUser: function () {
 			return $http.get(settings.apiUrl + '/account/me');
+		},
+		postFeedback: function (email, title, content) {
+			return $http.post(`${settings.apiUrl}/user/feedback`, convertToFormData({
+				email: email,
+				title: title,
+				content: content
+			}));
+		},
+		feedback: function (before, after, limit, sort) {
+			return $http.get(settings.apiUrl + '/user/feedback', {
+                params: {
+                    before: before,
+                    after: after,
+                    limit: limit,
+                    sort: sort
+                }
+            });
 		}
 	}
 });
