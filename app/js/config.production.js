@@ -1,7 +1,7 @@
 var config = angular.module('config', []);
 
 config.constant('settings', {
-	html5mode: false,
+	html5mode: true,
 	apiUrl: '/api',
 	activationUrl: '/activation',
 	resetPasswordUrl: '/resetPassword',
