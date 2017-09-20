@@ -55,20 +55,6 @@ function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $sta
 
 	$scope.feedback = {};
 
-	userService.feedback(null, null, 4, "descending").then(res => {
-		if (res.data.length == 0) {
-			$("#testimonials-block").css("display", "none");
-			return;
-		}
-		$("#fb-1 p").text(res.data[0].detail);
-		$("#fb-1 span").text(res.data[0].title);
-
-		if (!!res.data[1]) {
-			$("#fb-2 p").text(res.data[1].detail);
-			$("#fb-2 span").text(res.data[1].title);
-		}
-	});
-
 	$scope.sendFeedback = function () {
 		showPopUp("Cám ơn bạn vì những góp ý chân thành nhất. Chúng tôi đã nhận được và sẽ xử lý trong thời gian sớm nhất.");
 		userService.postFeedback($scope.feedback.email, $scope.feedback.title, $scope.feedback.content);
