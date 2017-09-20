@@ -317,7 +317,9 @@
 		* @private
 		*/
 		_runSetup: function(){
-		
+			
+			var opt;
+
 			for(opt in $.gritter.options){
 				this[opt] = $.gritter.options[opt];
 			}
