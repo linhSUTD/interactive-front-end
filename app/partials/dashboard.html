@@ -6,7 +6,7 @@
             </p>
         </div>
 
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 20px;">
             <div class="portlet-body">
                 <div class="row">
                     <form class="form-horizontal">
@@ -14,7 +14,7 @@
                             Chào mừng bạn đã quay trở lại với Machine Learning cơ bản và FundaML. Chúc bạn một ngày tốt lành.
                         </div>
                     </form>
-                </div> 
+                </div>
 
 
                 <div class="row" style="margin-bottom: 65px;" ng-show="state=='unregistered'">
@@ -23,18 +23,19 @@
                             <h2>Bạn đang tìm hiểu về <strong>machine learning</strong>...</h2>
                             <div style="margin-top: 20px;">
                                 <h4>
-                                    và gặp khó khăn trong lập trình? Chúng ta hãy cùng bắt đầu từ những thứ đơn giản nhất, bằng việc học và lập trình trực tiếp trên trình duyệt. 
+                                    và gặp khó khăn trong lập trình? Chúng ta hãy cùng bắt đầu từ những thứ đơn giản nhất, bằng việc học và lập trình trực tiếp
+                                    trên trình duyệt.
                                 </h4>
                             </div>
 
                             <div class="btn-group">
-                                <a class="btn blue btn-lg" type="button"  ui-sref="course.introduction({courseId: courses[0].id})">
+                                <a class="btn blue btn-lg" type="button" ui-sref="course.introduction({courseId: courses[0].id})">
                                     Tham Gia Ngay
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
 
                 <div class="row" ng-show="state=='registered'" style="margin-top: 30px; margin-bottom: 30px;">
                     <div class="col-md-3" style="padding-left: 0px;">
@@ -99,10 +100,10 @@
                                     <a ui-sref="course.introduction({courseId: reg.course.id})" class="btn btn-default add2cart">Tiếp Tục</a>
                                     <div class="sticker sticker-sale"></div>
                                 </div>
-                            </div>     
+                            </div>
                         </div>
 
-                        <div class="row list-group course-list tab-pane active" id="courses-completed">
+                        <div class="row list-group course-list tab-pane" id="courses-completed">
                             <div class="item  col-xs-3 col-lg-3" ng-repeat="reg in finishedCourses">
                                 <div class="product-item">
                                     <div class="pi-img-wrapper">
@@ -113,7 +114,7 @@
                                     <a ui-sref="course.introduction({courseId: reg.course.id})" class="btn btn-default add2cart">Xem Lại</a>
                                     <div class="sticker sticker-sale"></div>
                                 </div>
-                            </div>     
+                            </div>
                         </div>
                     </div>
                 </div>
