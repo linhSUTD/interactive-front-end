@@ -60,10 +60,6 @@ function homeCtrlFunc($q, $scope, $course, $lesson, $exercise, userService, $sta
 		userService.postFeedback($scope.feedback.email, $scope.feedback.title, $scope.feedback.content);
 	}
 
-	$scope.subscribe = function () {
-		showPopUp("Hàng tuần chúng tôi sẽ gửi những thông tin về các bài giảng mới, những kiến thức bổ ích đến cho bạn.")
-	}
-
 	// Query product insights
 	getSummaries($course, $lesson, $exercise, userService, $q).then(res => {
 		$scope.summaries = res;
