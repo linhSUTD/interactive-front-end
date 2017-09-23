@@ -2,7 +2,7 @@ var config = angular.module('config', []);
 
 config.constant('settings', {
 	html5mode: false,
-	apiUrl: 'http://fundaml.com/api',
+	apiUrl: 'https://fundaml.com/api',
 	activationUrl: '/activation.html',
 	resetPasswordUrl: '/resetPassword.html',
 	userRole: {
