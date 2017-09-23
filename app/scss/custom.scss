@@ -776,3 +776,30 @@ Sidebar
 .console-output{
   color: black;
 }
+
+.navbar-nav {
+    > li > a {
+
+      &:hover,
+      &:focus {
+        color: #999999;
+        background-color: transparent;
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: #999999;
+        background-color: transparent;
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        color: #999999;
+        background-color: transparent;
+      }
+    }
+  }
