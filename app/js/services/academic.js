@@ -44,8 +44,15 @@ academicModule.factory('$course', function ($http, $q, settings) {
             return defer.promise;
         },
 
-        reviews: function (id) {
-            return $http.get(settings.apiUrl + "/course/" + id + "/reviews");
+        reviews: function (id, before, after, limit, sort) {
+            return $http.get(settings.apiUrl + "/course/" + id + "/reviews", {
+                params: {
+                    before: before,
+                    after: after,
+                    limit: limit,
+                    sort: sort
+                }
+            });
         },
 
         rating: function (id) {

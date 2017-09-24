@@ -31,7 +31,7 @@ courseModule.controller('courseIntroductionCtrl', [
 
 		// Load reviews
 		function loadReviews() {
-			$course.reviews($stateParams.courseId).then(res => {
+			$course.reviews($stateParams.courseId, null, null, 5, "descending").then(res => {
 				$scope.reviews = res.data;
 			});
 
