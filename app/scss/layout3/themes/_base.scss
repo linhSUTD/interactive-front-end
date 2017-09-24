@@ -77,7 +77,7 @@ Page Header
                         }
 
                         &:hover {
-                            background-color: $header-top-menu-bg-hover-color;
+                            background-color: transparent;
 
                             > i {
                                 color: darken($header-top-menu-icon-font-color, 10%);
@@ -92,7 +92,7 @@ Page Header
 
                     &.open {
                         .dropdown-toggle {
-                            background-color: $header-top-menu-bg-hover-color-on-dropdown-open;
+                            background-color: transparent;
 
                             > i {
                                 color: darken($header-top-menu-icon-font-color, 10%);
