@@ -289,7 +289,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
     $scope.state = "exercise";
 
 	$scope.changeState = function() {
-		$scope.state = 'solution';
+		$scope.state == 'exercise' ? $scope.state = 'solution' : $scope.state = 'exercise';
 	}
 }
 

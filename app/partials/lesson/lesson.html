@@ -1,126 +1,89 @@
-<div style="position: relative; height: 100%; width: 100%;">
+<div style="position: relative; height: 100%; width: 100%;" ng-show="state=='exercise'">
 
-    <div ng-show="state=='exercise'">
-        <div class="row">
-            <div class="navigation-buttons-center">
-                <a title="Trở về trang khóa học" class="navigation-left" ui-sref="course.home({courseId:courseId})">
-                    <i class="fa fa-angle-double-left"></i>
-                </a>
-                <a title="Bài trước" class="navigation-left" ng-click="goPrevious()">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                <a class="navigation-outline navigation-middle" data-toggle="modal" href="#lesson-outline" target="_self">
-                    <i class="fa fa-bars"></i>
-                    <span>Mục lục</span>
-                </a>
-                <a title="Bài kế tiếp" class="navigation-right" ng-click="goForward()">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-
-            <button class="btn btn-default btn-sm green-haze" ng-click="changeState()" style="float: right; margin-top: -4px;">Loi Giai</button>
+    <div class="row">
+        <div class="navigation-buttons-center">
+            <a title="Trở về trang khóa học" class="navigation-left" ui-sref="course.home({courseId:courseId})">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
+            <a title="Bài trước" class="navigation-left" ng-click="goPrevious()">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="navigation-outline navigation-middle" data-toggle="modal" href="#lesson-outline" target="_self">
+                <i class="fa fa-bars"></i>
+                <span>Mục lục</span>
+            </a>
+            <a title="Bài kế tiếp" class="navigation-right" ng-click="goForward()">
+                <i class="fa fa-angle-right"></i>
+            </a>
         </div>
 
-        <div class="row" style="margin-top: 90px;margin-bottom:10px; padding:15px 30px; border:1px solid lightblue" ng-show="!!selectedModule && selectedModule.type=='lesson'">
-            <markdown ng-data-src="{{selectedModule.data.content}}" />
+        <button class="btn btn-danger navigation-buttons-right" ng-click="changeState()" ng-show="!!selectedModule && selectedModule.type=='exercise'">Xem Bình Luận </button>
+    </div>
+
+    <div class="row" style="margin-top: 90px;margin-bottom:10px; padding:15px 30px; border:1px solid lightblue" ng-show="!!selectedModule && selectedModule.type=='lesson'">
+        <markdown ng-data-src="{{selectedModule.data.content}}" />
+    </div>
+
+    <div class="row parent_panel" style="margin-top: 90px;" ng-show="!!selectedModule && selectedModule.type=='exercise'">
+        <div class="instruction_panel" style="overflow-y: auto; overflow-x: hidden;">
+            <div class="instruction">
+                <h2 style="margin-top:5px">{{exercise.title}} ({{exercise.score}} xp)</h2>
+                <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
+            </div>
         </div>
 
-        <div class="row parent_panel" style="margin-top: 90px;" ng-show="!!selectedModule && selectedModule.type=='exercise'">
-            <div class="instruction_panel" style="overflow-y: auto; overflow-x: hidden;">
-                <div class="instruction">
-                    <h2 style="margin-top:5px">{{exercise.title}} ({{exercise.score}} xp)</h2>
-                    <markdown ng-hide="!exercise" ng-data-src="{{exercise.instruction}}" />
-                </div>
-            </div>
+        <div class="interactive_panel">
+            <div class="editor_panel">
+                <div class="editor portlet light">
+                    <div class="portlet-body" style="height: inherit">
+                        <div class="tabbable-custom nav-justified" style="height: inherit;">
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="active" style="border-bottom:1px solid lightgray">
+                                    <a href="#editor-tab" data-toggle="tab" target="_self">
+                                        <button class="btn btn-default btn-sm green-haze" ng-click="fullscreenRequest()" style="float: left; margin-top: -4px;">
+                                            <i class="fa fa-arrows" style="color:white;" aria-hidden="true"></i>
+                                        </button>
+                                        Editor
+                                        <button class="btn btn-default btn-sm green-haze" ng-click="submitcode()" style="float: right; margin-top: -4px;">Nộp bài</button>
+                                    </a>
+                                </li>
+                            </ul>
 
-            <div class="interactive_panel">
-                <div class="editor_panel">
-                    <div class="editor portlet light">
-                        <div class="portlet-body" style="height: inherit">
-                            <div class="tabbable-custom nav-justified" style="height: inherit;">
-                                <ul class="nav nav-tabs nav-justified">
-                                    <li class="active" style="border-bottom:1px solid lightgray">
-                                        <a href="#editor-tab" data-toggle="tab" target="_self">
-                                            <button class="btn btn-default btn-sm green-haze" ng-click="fullscreenRequest()" style="float: left; margin-top: -4px;">
-                                                <i class="fa fa-arrows" style="color:white;" aria-hidden="true"></i>
-                                            </button>
-                                            Editor
-                                            <button class="btn btn-default btn-sm green-haze" ng-click="submitcode()" style="float: right; margin-top: -4px;">Nộp bài</button>
-                                        </a>
-                                    </li>
-                                </ul>
-
-                                <div class="tab-content" style="height: 90%; overflow: auto;">
-                                    <div class="tab-pane active" id="editor-tab"> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="console_panel">
-                    <div class="console portlet light">
-                        <div class="portlet-body" style="height: inherit">
-                            <div class="tabbable-custom nav-justified" style="height: inherit;">
-                                <ul class="nav nav-tabs nav-justified">
-                                    <li class="active">
-                                        <a href="#console-tab" data-toggle="tab" target="_self">
-                                            Console </a>
-                                    </li>
-                                    <li>
-                                        <a href="#plots-tab" data-toggle="tab" target="_self">
-                                            Plots </a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="outputWindow" style="height: 90%; overflow: auto;">
-                                    <div class="tab-pane active" id="console-tab">
-                                        <div class="form-group">
-                                            <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
-                                            <div ng-show="busy">Busy...</div>
-                                        </div>
-
-                                        <pre ng-show="!!output" ng-class="outputClass(resultType)">{{output}}</pre>
-                                    </div>
-                                    <div class="tab-pane" id="plots-tab">
-                                        <img ng-src="{{graphPayload}}" alt="graph" ng-show="!!graphPayload">
-                                    </div>
-                                </div>
+                            <div class="tab-content" style="height: 90%; overflow: auto;">
+                                <div class="tab-pane active" id="editor-tab"> </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="lesson-outline" class="modal fade" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title bold" style="text-align: center;">{{outline[0].data.title}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <ul style="list-style: none; margin-bottom: 26px; margin-left: -45px;">
-                            <li class="lesson_exercise" ng-repeat="lItem in outline">
-                                <a class="lesson_exercise_link" style="text-decoration: none;" ng-click="onItemSelect(lItem)">
-                                    <span class="lesson_exercise_icon">
-                                        <img width="23" height="23" alt="Icon exercise interactive"
-                                             ng-src="{{lItem.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">
-                                    </span>
+            <div class="console_panel">
+                <div class="console portlet light">
+                    <div class="portlet-body" style="height: inherit">
+                        <div class="tabbable-custom nav-justified" style="height: inherit;">
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="active">
+                                    <a href="#console-tab" data-toggle="tab" target="_self">
+                                        Console </a>
+                                </li>
+                                <li>
+                                    <a href="#plots-tab" data-toggle="tab" target="_self">
+                                        Plots </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="outputWindow" style="height: 90%; overflow: auto;">
+                                <div class="tab-pane active" id="console-tab">
+                                    <div class="form-group">
+                                        <div uib-alert ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert()" ng-show="hasAlert">{{alert.msg}}</div>
+                                        <div ng-show="busy">Busy...</div>
+                                    </div>
 
-                                    <h5 class="lesson_exercise_title" title="Fitting the model">
-                                        {{lItem.type=='exercise' ? lItem.data.index + '. ' : ''}}{{lItem.data.title}}
-                                    </h5>
-                                    <span ng-show="lItem.type=='exercise'" class="lesson_exercise_xp">{{lItem.data.score}} xp</span>
-                                    <span ng-show="lItem.type=='exercise'" style="margin-left: 20px">
-                                        <i ng-show="lItem.completed" class="fa fa-check fa-check-success"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-
-                        <div class="modal-footer">
-                            <button type="button" data-dismiss="modal" class="btn default">Close</button>
+                                    <pre ng-show="!!output" ng-class="outputClass(resultType)">{{output}}</pre>
+                                </div>
+                                <div class="tab-pane" id="plots-tab">
+                                    <img ng-src="{{graphPayload}}" alt="graph" ng-show="!!graphPayload">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,32 +91,93 @@
         </div>
     </div>
 
+    <div id="lesson-outline" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title bold" style="text-align: center;">{{outline[0].data.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <ul style="list-style: none; margin-bottom: 26px; margin-left: -45px;">
+                        <li class="lesson_exercise" ng-repeat="lItem in outline">
+                            <a class="lesson_exercise_link" style="text-decoration: none;" ng-click="onItemSelect(lItem)">
+                                <span class="lesson_exercise_icon">
+                                    <img width="23" height="23" alt="Icon exercise interactive"
+                                         ng-src="{{lItem.type=='exercise' ? 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_interactive-fc6a320c6df96e05d5510a829280db3e77e7d70ae04ece8566bc569dea1afecd.svg' : 'https://cdn.datacamp.com/main-app/assets/courses/icon_exercise_video-444db9dafa06125c2345d07d2481a5d7ae17e349857a79a5da6c6dcc5fb3c890.svg'}}">
+                                </span>
+
+                                <h5 class="lesson_exercise_title" title="Fitting the model">
+                                    {{lItem.type=='exercise' ? lItem.data.index + '. ' : ''}}{{lItem.data.title}}
+                                </h5>
+                                <span ng-show="lItem.type=='exercise'" class="lesson_exercise_xp">{{lItem.data.score}} xp</span>
+                                <span ng-show="lItem.type=='exercise'" style="margin-left: 20px">
+                                    <i ng-show="lItem.completed" class="fa fa-check fa-check-success"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn default">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="position: relative; height: 100%; width: 100%;" ng-show="state=='solution'">
 
     <div ng-show="state=='solution'">
         <div class="container">
-            <div id="disqus_thread"></div>
+
+            <div class="row">
+                <button class="btn btn-danger navigation-buttons-center" ng-click="changeState()" ng-show="!!selectedModule && selectedModule.type=='exercise'">Quay Lại Bài Tập</button>
+            </div>
+
+            <div class="portlet-body" style="margin-bottom: 10px; margin-top: 100px;">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div uib-alert class="alert-success">
+
+                            <p>Disqus supports automatic syntax highlighting in a number of languages. To use this feature, place your code inside <code>&lt;pre&gt;&lt;code&gt;</code> tags. For example:</p>
+
+                            <p><code>&lt;pre&gt;&lt;code&gt;<br>
+                                var foo = 'bar';<br>
+                                alert('foo');<br>
+                                &lt;/code&gt;&lt;/pre&gt;</code>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="disqus_thread" class="margin-bottom-30 margin-top-20"></div>
         </div>
     </div>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-
-            $(".editor_panel").resizable();
-            $('.editor_panel').resize(function () {
-                $('.console_panel').height($(".interactive_panel").height() - $(".editor_panel").height());
-            });
-            $(window).resize(function () {
-                $('.console_panel').height($(".interactive_panel").height() - $(".editor_panel").height());
-                $('.editor_panel').width($(".interactive_panel").width());
-            });
-
-            var d = document, s = d.createElement('script');
-
-            s.src = 'https://fundaml.disqus.com/embed.js';
-
-            s.setAttribute('data-timestamp', +new Date());
-
-            (d.head || d.body).appendChild(s);
-        });
-    </script>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        $(".editor_panel").resizable();
+        $('.editor_panel').resize(function () {
+            $('.console_panel').height($(".interactive_panel").height() - $(".editor_panel").height());
+        });
+        $(window).resize(function () {
+            $('.console_panel').height($(".interactive_panel").height() - $(".editor_panel").height());
+            $('.editor_panel').width($(".interactive_panel").width());
+        });
+
+        var d = document, s = d.createElement('script');
+
+        s.src = 'https://fundaml.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+
+        (d.head || d.body).appendChild(s);
+    });
+</script>
