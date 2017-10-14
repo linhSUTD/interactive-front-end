@@ -26,7 +26,8 @@ gulp.task('vendor', function () {
 		"node_modules/angular-sanitize/angular-sanitize.min.js",
 		"node_modules/angular-scroll/angular-scroll.min.js",
 		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js",
-		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"
+		"node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
+		"node_modules/angular-disqus/src/angular-disqus.js"
 	]).pipe(concat('vendor.js'))
 		.pipe(gulpif(production, uglify({ mangle: false })))
 		.pipe(gulp.dest('app/build'));

@@ -16,11 +16,12 @@ var app = angular.module('mainApp', [
 	'service.user',
 	'service.auth',
 	'ngCookies',
-	'service.academic'
+	'service.academic',
+	'ngDisqus'
 ]);
 
-app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider', 'settings',
-	function ($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, settings) {
+app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterProvider', 'settings', '$disqusProvider',
+	function ($httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, settings, $disqusProvider) {
 		$urlRouterProvider.otherwise('/');
 
 		$httpProvider.defaults.headers.post = {
@@ -36,8 +37,11 @@ app.config(['$httpProvider', '$stateProvider', '$locationProvider', '$urlRouterP
 			requireBase: false
 		});
 
-		$locationProvider.hashPrefix('');
-	}]);
+		$locationProvider.hashPrefix('!');
+
+        $disqusProvider.setShortname('fundaml');
+	}
+]);
 
 app.controller('baseCtrl', ['$scope', '$rootScope', 'settings', '$state', 'authService', '$course', function (
 	$scope, $rootScope, settings, $state, authService, $course) {

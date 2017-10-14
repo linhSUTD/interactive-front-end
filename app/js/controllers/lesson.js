@@ -1,4 +1,4 @@
-var lessonModule = angular.module('page.lesson', ["directives", "service.academic", 'service.user']);
+var lessonModule = angular.module('page.lesson', ["directives", "service.academic", 'service.user', 'ngDisqus']);
 
 const SAVE_SOLUTION_INTERVAL = 5000;
 
@@ -76,19 +76,7 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	function initializeExercise() {
 
 		// Load Disqus
-		var url = window.location.href;
-
-		var pathArray = url.split('/');
-
-		var identifier = pathArray[pathArray.length - 1];
-
-        DISQUS.reset({
-            reload: true,
-            config: function () {
-                this.page.identifier = identifier;
-                this.page.url = url;
-            }
-        });
+		$scope.exerciseId = window.location.href;
 
 		// Handle loading exercise
 		$("#editor-tab").empty();
