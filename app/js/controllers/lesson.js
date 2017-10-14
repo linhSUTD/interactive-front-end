@@ -74,6 +74,23 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 	$scope.courseId = $stateParams.courseId;
 
 	function initializeExercise() {
+
+		// Load Disqus
+		var url = window.location.href;
+
+		var pathArray = url.split('/');
+
+		var identifier = pathArray[pathArray.length - 1];
+
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                this.page.identifier = identifier;
+                this.page.url = url;
+            }
+        });
+
+		// Handle loading exercise
 		$("#editor-tab").empty();
 		var outputWindow = document.getElementById("outputWindow");
 
@@ -267,6 +284,13 @@ function lessonCtrlFunc($timeout, $state, $scope, $stateParams, $q, userService,
 		$scope.hasAlert = false;
 		$scope.alert = {};
 	};
+
+    // new | error | sent
+    $scope.state = "exercise";
+
+	$scope.changeState = function() {
+		$scope.state = 'solution';
+	}
 }
 
 lessonModule.controller('lessonCtrl', [
