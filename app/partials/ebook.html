@@ -41,7 +41,7 @@
                                 </button>
 
                                 <button class="btn btn-primary" disabled type="submit" ng-show="order.status == 'ordered'" disabled>
-                                    Sách đã đặt
+                                    Đặt sách
                                 </button>
 
                                 <button class="btn btn-primary" ng-show="order.status == 'paid'" ng-click="onDownload()">
@@ -56,7 +56,7 @@
 
                         <div class="row">
                             <form class="form-horizontal">
-                                <div uib-alert class="alert-success" ng-show="state == 'ordered'">
+                                <div uib-alert class="alert-success" ng-show="order.status == 'ordered'">
                                     Để hoàn thành order sách. Bạn vui lòng đọc và làm theo hướng dẫn ở link dưới đây:
                                     <a target="_blank" href="https://machinelearningcoban.com/ebook/#-gia-moi-ebook">Click Here!
                                     </a>
