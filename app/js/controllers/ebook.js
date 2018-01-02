@@ -25,7 +25,7 @@ function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userServi
     }
 
     function loadOrder(id) {
-        if (!$scope.user) {
+        if (!$scope.currentUser) {
             return;
         }
         $ebook.order($scope.ebook.id).then(r => {
