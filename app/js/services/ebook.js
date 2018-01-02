@@ -1,6 +1,6 @@
 var ebookModule = angular.module('service.ebook', []);
 
-ebookModule.factory('ebookService', function ($http, $q, settings) {
+ebookModule.factory('$ebook', function ($http, $q, settings) {
     return {
         reviews: function (id, before, after, limit, sort) {
             return $http.get(settings.apiUrl + "/book/" + id + "/reviews", {
@@ -24,5 +24,25 @@ ebookModule.factory('ebookService', function ($http, $q, settings) {
                 score: score
             }));
         },
+
+        get: function () {
+            return $http.get(`${settings.apiUrl}/book?limit=1`);
+        },
+
+        order: function (bookId) {
+            return $http.get(`${settings.apiUrl}/book/${bookId}/order`);
+        },
+
+        placeOrder: function (bookId) {
+            return $http.post(`${settings.apiUrl}/book/${bookId}/order`);
+        },
+
+        downloadToken: function (bookId) {
+            return $http.get(`${settings.apiUrl}/book/${bookId}/download-token`);
+        },
+
+        downloadLink: function (bookId, token) {
+            return `${settings.apiUrl}/book/${bookId}/download?token=${token}`;
+        }
     }
 });

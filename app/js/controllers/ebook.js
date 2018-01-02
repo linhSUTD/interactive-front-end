@@ -10,81 +10,61 @@ ebookModule.config(function ($stateProvider, $urlRouterProvider) {
         });
 })
 
-function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, ebookService) {
-
+function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, $ebook) {
     // Load reviews
-    function loadReviews() {
-        ebookService.reviews($stateParams.courseId, null, null, 5, "descending").then(res => {
+    function loadReviews(id) {
+        $ebook.reviews(id, null, null, 5, "descending").then(res => {
             $scope.reviews = res.data;
         });
 
-        ebookService.rating($stateParams.courseId).then(res => {
+        $ebook.rating($stateParams.courseId).then(res => {
             var ratingData = res.data;
             $scope.rating = (ratingData && ratingData.count) ?
                 Number(ratingData.sum * 1.0 / ratingData.count).toFixed(1) + '/5' : '';
         });
     }
 
-    $scope.state = 'new';
+    function loadOrder(id) {
+        if (!$scope.user) {
+            return;
+        }
+        $ebook.order($scope.ebook.id).then(r => {
+            $scope.order = r.data;
+        });
+    }
 
+    function download() {
+        $ebook.downloadToken($scope.ebook.id).then(r => {
+            $("#download-link").attr("href", $ebook.downloadLink($scope.ebook.id, r.data));
+            document.getElementById("download-link").click();
+        });
+    }
+
+    $scope.state = 'new';
+    $scope.ebook = {};
     $scope.user = userService.getUser();
 
-    $scope.login = function () {
-
-        authService.login($scope.user).then(function () {
-            $scope.$emit("user:loggedin");
-            document.getElementById('close-login-modal-button').click();
-            $scope.state = 'ordered';
-
-        }).then(_ => {
-            // Handle updating user profile
-            $scope.user = userService.getUser();
-
-            $scope.updateUser = function () {
-
-                userService.update($scope.user.id, {
-
-                    orderStatus: 'ordered'
-
-                }).then(res => {
-
-                    // Update current user.
-                    userService.queryUser().then(res => {
-                        $scope.user = res.data;
-                        $cookies.put('currentUser', JSON.stringify(res.data));
-                    })
-
-                }).catch(error => {
-
-                    $scope.alertMessage = error.data.errors[0];
-                    $scope.state = "error";
-
-                });
-            }
-
-        }).catch(function (error) {
-            $scope.alertMessage = error.data.errors[0];
-            $scope.state = "error";
-        })
-    }
-
     $scope.onOrder = function () {
-        if ($scope.user == null) {
-            document.getElementById('open-login-modal-button').click();
-            return;
-        } else {
-            $scope.state = 'ordered';
-        }
+        $ebook.placeOrder($scope.ebook.id).then(r => {
+            loadOrder();
+        });
     }
 
-    $scope.register = function () {
-        document.getElementById('close-login-modal-button').click();
-        setTimeout(function () {
-            $state.go('register');
-        }, 200);
+    $scope.review_onSubmit = function () {
+        $ebook.postReview($scope.ebook.id, $scope.reviewTitle, $scope.review, $scope.reviewScore).then(r => {
+            loadReviews($scope.ebook.id);
+        });
     }
 
-    loadReviews();
+    $ebook.get().then(d => {
+        $scope.ebook = d.data[0];
+        loadReviews($scope.ebook.id);
+        loadOrder();
+    });
+
+    $scope.onDownload = function () {
+        download();
+    }
 }
 
 ebookModule.controller('ebookCtrl', [
@@ -95,14 +75,14 @@ ebookModule.controller('ebookCtrl', [
     '$stateParams',
     'userService',
     'authService',
-    'ebookService',
-    function ($timeout, $q, $scope, $state, $stateParams, userService, authService, ebookService) {
+    '$ebook',
+    function ($timeout, $q, $scope, $state, $stateParams, userService, authService, $ebook) {
 
         if ($scope.authReady) {
-            ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, ebookService);
+            ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, $ebook);
             return;
         }
 
-        $scope.$on("auth:ready", _ => ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, ebookService));
+        $scope.$on("auth:ready", _ => ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, $ebook));
     }
 ]);
