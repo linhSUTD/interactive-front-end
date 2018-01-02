@@ -11,19 +11,24 @@
 
     <base href="/">
     <title>Interactive Machine Learning</title>
-    <link href="/build/main.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="https://i.imgur.com/rO3F0Tl.png" type="image/png" />
-    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css" />
+    <link href="/build/main.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="https://i.imgur.com/rO3F0Tl.png" type="image/png"/>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css"/>
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.min.css"
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/addon/display/fullscreen.css"
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/addon/display/fullscreen.css"
     />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({ tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} });
+
+
     </script>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -39,161 +44,162 @@
 
 <body ng-app="mainApp" ng-controller="baseCtrl">
 
-    <div class="page-header" ng-show="isLoggedIn" ng-cloak>
-        <div class="page-header-top" style="background: #444d58">
-            <div class="container">
-                <div class="page-logo">
-                    <a ui-sref="home"><img src="/img/fundaml_web_logo.png" alt="logo" class="logo-default"></a>
-                </div>
-
-                <a href="javascript:;" class="menu-toggler"></a>
-
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-
-                        <li class="dropdown dropdown-extended dropdown-dark dropdown-notification">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-bell"></i>
-                                <span class="badge badge-default">0</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="external">
-                                    <h3>Bạn có <strong>0</strong> thông báo mới.</h3>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="droddown dropdown-separator">
-                            <span class="separator"></span>
-                        </li>
-
-                        <li class="dropdown dropdown-user dropdown-dark" style="padding-left: 15px;">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                                <img alt="" class="img-circle" style="width:40px; object-fit:cover" ng-src="{{currentUser.avatarUrl}}">
-                                <span class="username username-hide-mobile">{{currentUser.name}}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-default">
-                                <li>
-                                    <a ui-sref="user.profile({userId: 1})">
-                                        <i class="icon-user"></i> Tài Khoản
-                                    </a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a ng-click="logout()">
-                                        <i class="icon-key"></i> Log Out
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+<div class="page-header" ng-show="isLoggedIn" ng-cloak>
+    <div class="page-header-top" style="background: #444d58">
+        <div class="container">
+            <div class="page-logo">
+                <a ui-sref="home"><img src="/img/fundaml_web_logo.png" alt="logo" class="logo-default"></a>
             </div>
-        </div>
 
-        <div class="page-header-menu">
-            <div class="container">
-                <div class="hor-menu ">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a ui-sref="dashboard">Trang Chủ</a>
-                        </li>
-                        <li>
-                            <a  ui-sref="course.introduction({courseId: courses[0].id})">Khoá Học</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/">Blog</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://www.facebook.com/machinelearningbasicvn/">Facebook Page</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
-                        </li>
+            <a href="javascript:;" class="menu-toggler"></a>
 
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/about/">Giới Thiệu</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/ebook/">Ebook</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng Hộ</a>
-                        </li>
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
 
-                        <li ng-show="currentUser.roles.indexOf('admin') > -1">
-                            <a target="_blank" ng-href="{{adminPageUrl}}">ADMIN</a>
-                        </li>
-                    </ul>
-                </div>
+                    <li class="dropdown dropdown-extended dropdown-dark dropdown-notification">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-bell"></i>
+                            <span class="badge badge-default">0</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3>Bạn có <strong>0</strong> thông báo mới.</h3>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="droddown dropdown-separator">
+                        <span class="separator"></span>
+                    </li>
+
+                    <li class="dropdown dropdown-user dropdown-dark" style="padding-left: 15px;">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                            <img alt="" class="img-circle" style="width:40px; object-fit:cover"
+                                 ng-src="{{currentUser.avatarUrl}}">
+                            <span class="username username-hide-mobile">{{currentUser.name}}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a ui-sref="user.profile({userId: 1})">
+                                    <i class="icon-user"></i> Tài Khoản
+                                </a>
+                            </li>
+                            <li class="divider">
+                            </li>
+                            <li>
+                                <a ng-click="logout()">
+                                    <i class="icon-key"></i> Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="page-header" ng-hide="isLoggedIn" ng-cloak>
-        <div class="page-header-top" style="background: #444d58">
-            <div class="container">
-                <div class="page-logo">
-                    <a ui-sref="home"><img style="object-fit:cover"
-                         src="/img/fundaml_web_logo.png" alt="logo" class="logo-default">
-                    </a>
-                </div>
+    <div class="page-header-menu">
+        <div class="container">
+            <div class="hor-menu ">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="dashboard">Trang Chủ</a>
+                    </li>
+                    <li>
+                        <a ui-sref="course.introduction({courseId: courses[0].id})">Khoá Học</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://machinelearningcoban.com/">Blog</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/machinelearningbasicvn/">Facebook Page</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
+                    </li>
 
-                <a href="javascript:;" class="menu-toggler"></a>
+                    <li>
+                        <a target="_blank" href="https://machinelearningcoban.com/about/">Giới Thiệu</a>
+                    </li>
+                    <li>
+                        <a ui-sref="ebook">Order Ebook</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng Hộ</a>
+                    </li>
 
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-                        <li><a ui-sref="login" style="color: #57c8eb">Đăng nhập</a></li>
-
-                        <li class="droddown dropdown-separator">
-                            <span class="separator"></span>
-                        </li>
-
-                        <li><a ui-sref="registration" style="color: #57c8eb">Đăng ký</a></li>
-                    </ul>
-                </div>
+                    <li ng-show="currentUser.roles.indexOf('admin') > -1">
+                        <a target="_blank" ng-href="{{adminPageUrl}}">ADMIN</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="page-header-menu">
-            <div class="container">
-                <div class="hor-menu ">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a ui-sref="home">Trang Chủ</a>
-                        </li>
-                        <li>
-                            <a  ui-sref="course.introduction({courseId: courses[0].id})">Khoá Học</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/">Blog</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://www.facebook.com/machinelearningbasicvn/">Facebook Page</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/about/">Giới Thiệu</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/ebook/">Ebook</a>
-                        </li>
-                        <li>
-                            <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng Hộ</a>
-                        </li>
-                    </ul>
-                </div>
+<div class="page-header" ng-hide="isLoggedIn" ng-cloak>
+    <div class="page-header-top" style="background: #444d58">
+        <div class="container">
+            <div class="page-logo">
+                <a ui-sref="home"><img style="object-fit:cover"
+                                       src="/img/fundaml_web_logo.png" alt="logo" class="logo-default">
+                </a>
+            </div>
+
+            <a href="javascript:;" class="menu-toggler"></a>
+
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li><a ui-sref="login" style="color: #57c8eb">Đăng nhập</a></li>
+
+                    <li class="droddown dropdown-separator">
+                        <span class="separator"></span>
+                    </li>
+
+                    <li><a ui-sref="registration" style="color: #57c8eb">Đăng ký</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div style="width: 100%; height: 100%; position: relative;" ui-view ng-show="authReady"></div>
+    <div class="page-header-menu">
+        <div class="container">
+            <div class="hor-menu ">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a ui-sref="home">Trang Chủ</a>
+                    </li>
+                    <li>
+                        <a ui-sref="course.introduction({courseId: courses[0].id})">Khoá Học</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://machinelearningcoban.com/">Blog</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/machinelearningbasicvn/">Facebook Page</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/groups/257768141347267/">Diễn Đàn</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://machinelearningcoban.com/about/">Giới Thiệu</a>
+                    </li>
+                    <li>
+                        <a ui-sref="ebook">Order Ebook</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://machinelearningcoban.com/buymeacoffee/">Ủng Hộ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="/build/vendor.js"></script>
-    <script src="/build/main.js"></script>
+<div style="width: 100%; height: 100%; position: relative;" ui-view ng-show="authReady"></div>
+
+<script src="/build/vendor.js"></script>
+<script src="/build/main.js"></script>
 </body>
 
 </html>

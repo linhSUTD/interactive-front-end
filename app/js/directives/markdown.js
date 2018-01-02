@@ -6,7 +6,6 @@ directiveModule.directive("markdown", function ($timeout) {
         linkify: true,
         typographer: true
     });
-
     console.log(md.render('# Remarkable rulezz!'));
     function scheduleRendering(ele) {
         console.log("schedule");

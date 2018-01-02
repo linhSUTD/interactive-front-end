@@ -1,0 +1,229 @@
+<div style="width: inherit; height: inherit;">
+    <div class="container" style="padding: 15px 0 15px;">
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a ui-sref="home">Trang chủ</a>
+            </li>
+            <li class="active">Order Ebook</li>
+        </ul>
+
+        <div class="row">
+            <div class="product-page">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="product-main-image">
+                            <img src="../img/cover.png"
+                                 alt="Cool green dress with red bell" class="img-responsive"
+                                 data-BigImgsrc="../img/cover.png">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <h1>Machine Learning Ebook</h1>
+                        <div class="price-availability-block clearfix">
+                            <div class="price">
+                                <strong><span>$</span>20.00</strong>
+                                <em>$<span>62.00</span></em>
+                            </div>
+                            <div class="availability">
+                                Availability: <strong>In Stock</strong>
+                            </div>
+                        </div>
+                        <div class="description">
+                            <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed nonumy nibh sed euismod laoreet
+                                dolore magna aliquarm erat volutpat Nostrud duis molestie at dolore.</p>
+                        </div>
+                        <div class="product-page-options">
+                            <div class="pull-left">
+                                <a data-toggle="modal" href="#login-modal" target="_self" style="visibility: hidden;" id="open-modal-button">
+                                </a>
+
+                                <button class="btn btn-primary" type="submit" ng-click="onOrder()" ng-show="state == 'new'">Order Now!</button>
+
+                                <button class="btn btn-primary" type="submit" ng-show="state == 'ordered'" disabled>Ordered!</button>
+
+                                <button class="btn btn-primary" type="submit" ng-show="state == 'download'" disabled>Download Now!</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <form class="form-horizontal">
+                                <div uib-alert class="alert-success" ng-show="state == 'ordered'">
+                                    Để hoàn thành order sách. Bạn vui lòng đọc và làm theo hướng dẫn ở link dưới đây:
+                                    <a target="_blank" href="https://machinelearningcoban.com/ebook/#-gia-moi-ebook">Click Here!</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="product-page-content" style="padding: 0px 0px;">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a target="_self" href="#Description"
+                                                      data-toggle="tab">Description</a></li>
+                                <li><a target="_self" href="#Information" data-toggle="tab">Information</a></li>
+                                <li><a target="_self" href="#Review" data-toggle="tab">Reviews</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content active" style="padding: 0px 0px; margin-top: 20px;">
+                                <div class="tab-pane fade" id="Description">
+                                    <p>Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed sit nonumy nibh sed
+                                        euismod
+                                        laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore.
+                                        Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed sit nonumy nibh sed
+                                        euismod
+                                        laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at dolore.
+                                        Lorem ipsum dolor ut sit ame dolore adipiscing elit, sed sit nonumy nibh sed
+                                        euismod
+                                        laoreet dolore magna aliquarm erat sit volutpat Nostrud duis molestie at
+                                        dolore. </p>
+                                </div>
+
+                                <div class="tab-pane fade" id="Information">
+                                    <div class="portlet-body">
+                                        <div class="table-scrollable">
+                                            <table class="table table-striped table-bordered table-advance table-hover">
+                                                <tbody>
+                                                <tr>
+                                                    <td width="20%">
+                                                        <span class="fa fa-gift"> </span> Kiến thức
+                                                    </td>
+                                                    <td width="80%">
+                                                        Python, Machine Learning
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%">
+                                                        <span class="fa fa-user-md"> </span> Giảng viên
+                                                    </td>
+                                                    <td width="80%">
+                                                        {{author.name}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%">
+                                                        <span class="fa fa-star-o"> </span> Đánh giá
+                                                    </td>
+                                                    <td width="80%">
+                                                        {{rating}}
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="Review">
+                                    <div class="portlet-body">
+                                        <div class="table-scrollable">
+                                            <table class="table table-striped table-advance table-hover">
+                                                <tbody>
+                                                <tr ng-repeat="review in reviews">
+                                                    <td width="10%" style="text-align: center;">
+                                                <span class="photo">
+                                                <img ng-src="{{review.user.avatarUrl || 'https://tailuns.com/avatar/no.png'}}"
+                                                     class="img-circle" alt="{{review.user.name}}"
+                                                     title="{{review.user.name}}" style="width:45px;height:45px"/>
+                                            </span>
+                                                    </td>
+                                                    <td width="75%">
+                                                        <strong>{{review.title}}</strong>
+                                                        <br/> {{review.detail || ""}}
+                                                    </td>
+                                                    <td width="15%">
+                                                        <i ng-class="review.score>=1? 'fa fa-star':'fa fa-star-o'"
+                                                           aria-hidden="true"></i>
+                                                        <i ng-class="review.score>=2? 'fa fa-star':'fa fa-star-o'"
+                                                           aria-hidden="true"></i>
+                                                        <i ng-class="review.score>=3? 'fa fa-star':'fa fa-star-o'"
+                                                           aria-hidden="true"></i>
+                                                        <i ng-class="review.score>=4? 'fa fa-star':'fa fa-star-o'"
+                                                           aria-hidden="true"></i>
+                                                        <i ng-class="review.score>=5? 'fa fa-star':'fa fa-star-o'"
+                                                           aria-hidden="true"></i>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <form ng-submit="review_onSubmit()" name="reviewForm">
+                                            <fieldset ng-disabled="!registration">
+                                                <div class="form-group">
+                                                    <select class="form-control" name="select" ng-model="reviewScore"
+                                                            required>
+                                                        <option value="">Chấm điểm</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Tiêu đề"
+                                                           ng-model="reviewTitle" required/>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <textarea class="form-control" rows="3=6"
+                                                              placeholder="Nội dung phản hồi" ng-model="review"
+                                                              required></textarea>
+                                                </div>
+
+                                                <button type="submit" class="btn green">Đánh giá</button>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-modal" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title bold" style="text-align: center;">Đăng nhập để hoàn thành order</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" ng-submit="login()" name="loginForm">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Địa Chỉ Email <span style="color:red;">*</span></label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="email" name="email" placeholder="email@email.com" required ng-model="user.email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Mật Khẩu <span style="color:red;">*</span></label>
+                            <div class="col-sm-9">
+                                <input required class="form-control" type="password" name="password" placeholder="Password" ng-model="user.password">
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-show="state=='error'">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <div uib-alert class="alert-danger" close="closeAlert()">{{alertMessage}}</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-7">
+                                <button class="col-sm-5 btn btn-primary" type="submit"> Đăng nhập </button>
+                                <a class="btn btn-link" ng-click="register()">Chưa có tài khoản?</a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="modal-footer" style="visibility: hidden;">
+                        <button type="button" data-dismiss="modal" class="btn default" id="close-modal-button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

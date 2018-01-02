@@ -13,6 +13,7 @@ var app = angular.module('mainApp', [
 	'page.course',
 	'page.lesson',
 	'page.user',
+	'page.ebook',
 	'service.user',
 	'service.auth',
 	'ngCookies',
