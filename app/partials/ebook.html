@@ -35,7 +35,7 @@
                                 <a data-toggle="modal" href="#login-to-order-modal" target="_self" style="visibility: hidden;" id="open-login-modal-button">
                                 </a>
 
-                                <a class="btn btn-primary" ui-sref="login" ng-show="!user">Đăng nhập để đặt sách</a>
+                                <a class="btn btn-primary" ui-sref="login" ng-show="!currentUser">Đăng nhập để đặt sách</a>
 
                                 <button class="btn btn-primary" type="submit" ng-click="onOrder()" ng-show="order.status == 'none'">Đặt sách
                                 </button>

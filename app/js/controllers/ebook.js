@@ -40,9 +40,9 @@ function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userServi
         });
     }
 
-    $scope.state = 'new';
     $scope.ebook = {};
-    $scope.user = userService.getUser();
+    $scope.currentUser = userService.getUser();
+    // $scope.currentUser = null;
 
     $scope.onOrder = function () {
         $ebook.placeOrder($scope.ebook.id).then(r => {
