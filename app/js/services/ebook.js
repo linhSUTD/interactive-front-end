@@ -14,7 +14,7 @@ ebookModule.factory('$ebook', function ($http, $q, settings) {
         },
 
         rating: function (id) {
-            return $http.get(settings.apiUrl + "/book/" + id + "/rating");
+            return $http.get(`${settings.apiUrl}/book/${id}/rating`);
         },
 
         postReview: function (id, title, detail, score) {

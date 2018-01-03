@@ -17,8 +17,9 @@ function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userServi
             $scope.reviews = res.data;
         });
 
-        $ebook.rating($stateParams.courseId).then(res => {
+        $ebook.rating(id).then(res => {
             var ratingData = res.data;
+            console.log(ratingData);
             $scope.rating = (ratingData && ratingData.count) ?
                 Number(ratingData.sum * 1.0 / ratingData.count).toFixed(1) + '/5' : '';
         });
