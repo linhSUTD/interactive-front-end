@@ -78,9 +78,10 @@ gulp.task('scripts', function () {
 	}
 
 
-	pipe = pipe.pipe(concat('main.js'))
+	pipe = pipe.pipe(concat('main_2.js'))
+		.pipe(babel({ presets: ['es2015'] }))
 		.pipe(gulpif(production, uglify({ mangle: false })))
-		.pipe(gulp.dest('./app/build'));
+			.pipe(gulp.dest('./app/build'));
 
 	return pipe;
 });

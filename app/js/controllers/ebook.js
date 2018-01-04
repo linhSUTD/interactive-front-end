@@ -11,6 +11,9 @@ ebookModule.config(function ($stateProvider, $urlRouterProvider) {
 })
 
 function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userService, authService, $ebook) {
+    $scope.ebook = {};
+    $scope.currentUser = userService.getUser();
+
     // Load reviews
     function loadReviews(id) {
         $ebook.reviews(id, null, null, 5, "descending").then(res => {
@@ -29,7 +32,7 @@ function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userServi
         if (!$scope.currentUser) {
             return;
         }
-        $ebook.order($scope.ebook.id).then(r => {
+        $ebook.order(id).then(r => {
             $scope.order = r.data;
         });
     }
@@ -41,13 +44,11 @@ function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userServi
         });
     }
 
-    $scope.ebook = {};
-    $scope.currentUser = userService.getUser();
     // $scope.currentUser = null;
 
     $scope.onOrder = function () {
         $ebook.placeOrder($scope.ebook.id).then(r => {
-            loadOrder();
+            loadOrder($scope.ebook.id);
         });
     }
 
@@ -59,8 +60,8 @@ function ebookPageCtrlFunc($timeout, $q, $scope, $state, $stateParams, userServi
 
     $ebook.get().then(d => {
         $scope.ebook = d.data[0];
+        loadOrder($scope.ebook.id);
         loadReviews($scope.ebook.id);
-        loadOrder();
     });
 
     $scope.onDownload = function () {
